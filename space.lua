@@ -27,16 +27,6 @@ function space.drawStars()
 
 end
 
-function only_run_once(func)
-    return function (...)
-        if func then
-            local f = func
-            func = nil
-            return f(...)
-        end
-    end
-end
-
 function UPDATE_SPACE(dt)
 
 end
