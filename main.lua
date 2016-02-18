@@ -8,8 +8,8 @@ function love.load()
 
 	--Loading Classes
 	--space.load()
-	--planet.load()
-	--player.load()
+	planet.load()
+	player.load()
 
 end
 
