@@ -4,6 +4,9 @@ function love.load()
 
 	love.graphics.setBackgroundColor(255, 255, 255)
 
+	--Loading Classes
+	space.load()
+
 end
 
 function love.update(dt)
