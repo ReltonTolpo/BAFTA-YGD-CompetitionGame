@@ -3,16 +3,16 @@ local stars = nil
 
 function space.load()
 
-	space.starNum = love.math.random(60, 200) 
-	space.starSize = 10
-	space.starXPosition = 100
-	space.starYPosition = 100
+    space.starNum = love.math.random(60, 200) 
+    space.starSize = 10
+    space.starXPosition = 100
+    space.starYPosition = 100
 
 end
 
 function space.draw()
 
-	love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setBackgroundColor(0, 0, 0)
 
 end
 
@@ -43,7 +43,7 @@ end
 
 function DRAW_SPACE()
 
-	space.draw()
-	space.drawStars()
+    space.draw()
+    space.drawStars()
 
 end

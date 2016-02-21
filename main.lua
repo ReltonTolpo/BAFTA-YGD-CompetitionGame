@@ -7,7 +7,7 @@ function love.load()
 	love.graphics.setBackgroundColor(255, 255, 255)
 
 	--Loading Classes
-	--space.load()
+	space.load()
 	planet.load()
 	player.load()
 
@@ -15,9 +15,9 @@ end
 
 function love.update(dt)
 
-	--UPDATE_SPACE()
-	UPDATE_PLANET()
-	UPDATE_PLAYER()
+	--UPDATE_SPACE(dt)
+	UPDATE_PLANET(dt)
+	UPDATE_PLAYER(dt)
 
 end
 
