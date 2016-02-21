@@ -10,12 +10,13 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	player.weight = player.mass * planet.gravity - 5
+	player.weight = player.mass * planet.gravity
 
 end
 
 function player.draw()
 
+	love.graphics.setColor(200, 200, 200)
 	idlePlayer = love.graphics.newImage("images/playerIdle.png")
 	love.graphics.draw(idlePlayer, player.x, player.y, 0, 8, 8)
 
@@ -48,10 +49,8 @@ function player.move(dt)
 		player.xvel = player.xvel - player.altspeed * dt
 	end
 
-	if love.keyboard.isDown('space') and player.y < planet.groundlevel then
-		if player.y + planet.gravity > planet.groundlevel then
-		player.y = player.y - 500 - planet.gravity *2
-	end
+	if love.keyboard.isDown('space') then
+		player.y = player.y - 10
 	end
 
 	if love.keyboard.isDown('s') and player.y < planet.groundlevel then
@@ -77,8 +76,8 @@ function player.boundary()
 		player.yvel = 0
 	end
 
-	if player.y + planet.gravity > planet.groundlevel then
-		player.y = planet.groundlevel - planet.gravity
+	if player.y > planet.groundlevel - 100 then
+		player.y = planet.groundlevel - 100
 		player.yvel = 0
 	end
 
