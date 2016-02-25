@@ -48,9 +48,13 @@ end
 
 function DRAW_SPACE()
 
-    if(space.isOn==1) then
-        space.draw()
+    space.draw()
+
+    if(space.isOn==1)then
         space.drawStars()
+    elseif(space.isOn==0)then
+        sun = love.graphics.newImage("images/sun.png")
+        love.graphics.draw(sun, 900, 150, 0, 10, 10)
     end
 
 end
