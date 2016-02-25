@@ -10,7 +10,7 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	player.weight = player.mass * planet.gravity
+	player.weight = player.mass * planetA.gravity
 
 end
 
@@ -76,8 +76,13 @@ function player.boundary()
 		player.yvel = 0
 	end
 
-	if player.y > planet.groundlevel - 100 then
-		player.y = planet.groundlevel - 100
+	if player.y < 0 and love.keyboard.isDown('space') then
+		player.y = player.y + 50
+		player.yvel = 0
+	end
+
+	if player.y > planetA.groundlevel - 100 then
+		player.y = planetA.groundlevel - 100
 		player.yvel = 0
 	end
 
