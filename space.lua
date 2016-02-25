@@ -7,6 +7,7 @@ function space.load()
     space.starSize = 10
     space.starXPosition = 100
     space.starYPosition = 100
+    space.isOn = love.math.random(0, 1)
 
 end
 
@@ -17,6 +18,7 @@ function space.draw()
 end
 
 local function createStars()
+
     if stars==nil then
         stars={}
         for i = 1, space.starNum do
@@ -27,14 +29,17 @@ local function createStars()
             }
         end
     end
+    
 end
 
 function space.drawStars()
+
     createStars()
     for i, star in ipairs(stars) do
         love.graphics.setColor(255, 255, 255)
         love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
     end
+
 end
 
 function UPDATE_SPACE(dt)
@@ -43,7 +48,9 @@ end
 
 function DRAW_SPACE()
 
-    space.draw()
-    space.drawStars()
+    if(space.isOn==1) then
+        space.draw()
+        space.drawStars()
+    end
 
 end
