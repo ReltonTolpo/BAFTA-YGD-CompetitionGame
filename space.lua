@@ -7,7 +7,8 @@ function space.load()
     space.starSize = 10
     space.starXPosition = 100
     space.starYPosition = 100
-    space.isOn = love.math.random(0, 1)
+    space.dayTime = love.math.random(0, 1)
+    space.switch = 1
 
 end
 
@@ -50,9 +51,10 @@ function DRAW_SPACE()
 
     space.draw()
 
-    if(space.isOn==1)then
+    if(space.dayTime==0)then
         space.drawStars()
-    elseif(space.isOn==0)then
+    elseif(space.dayTime==1)then
+        love.graphics.setColor(255, 255, 0)
         sun = love.graphics.newImage("images/sun.png")
         love.graphics.draw(sun, 900, 150, 0, 10, 10)
     end

@@ -1,3 +1,4 @@
+require "space"
 player = {}
 
 function player.load()
@@ -10,14 +11,34 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	player.weight = player.mass * planetA.gravity
+	player.currentGround = 575
+	player.currentGravity = 1
+
+	if(space.switch==1)then
+
+		player.currentGround = planetA.groundlevel
+		player.currentGravity = planetA.gravity
+
+	elseif(space.switch==2)then
+
+		player.currentGround = planetB.groundlevel
+		player.currentGravity = planetB.gravity
+
+	elseif(space.switch==3)then
+
+		player.currentGround = planetC.groundlevel
+		player.currentGravity = planetC.gravity
+
+	end
+
+	player.weight = player.mass * player.currentGravity
 
 end
 
 function player.draw()
 
 	love.graphics.setColor(200, 200, 200)
-	idlePlayer = love.graphics.newImage("images/playerIdle.png")
+	idlePlayer = love.graphics.newImage("images/player/playerIdle.png")
 	love.graphics.draw(idlePlayer, player.x, player.y, 0, 8, 8)
 
 end
@@ -53,8 +74,12 @@ function player.move(dt)
 		player.y = player.y - 10
 	end
 
-	if love.keyboard.isDown('s') and player.y < planet.groundlevel then
+	if love.keyboard.isDown('s') and player.y < player.currentGround then
 		player.y = player.y + 10
+	end
+
+	if love.keyboard.isDown('c') then
+		space.switch = space.switch + 1
 	end
 
 end
@@ -81,9 +106,13 @@ function player.boundary()
 		player.yvel = 0
 	end
 
-	if player.y > planetA.groundlevel - 100 then
-		player.y = planetA.groundlevel - 100
+	if player.y > player.currentGround - 100 then
+		player.y = player.currentGround - 100
 		player.yvel = 0
+	end
+
+	if space.switch > 3 then
+		space.switch = 1
 	end
 
 end
