@@ -18,7 +18,7 @@ function planet.draw()
 
 	love.graphics.setBackgroundColor(planet.backColourR, planet.backColourG, planet.backColourB)
 	love.graphics.setColor(82, 46, 23)
-	love.graphics.rectangle("fill", 0, planet.groundlevel, 1200, 600) --> Dirt
+	love.graphics.rectangle("fill", 0, planet.groundlevel, 1200, 600) --> Dirt/Earth
 	love.graphics.setColor(35, 115, 31)
 	love.graphics.rectangle("fill", 0, 600, 1200, 30) --> Grass
 

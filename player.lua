@@ -26,7 +26,7 @@ function player.physics(dt)
 
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
-	player.yvel = player.yvel + player.weight
+	player.yvel = player.yvel + player.weight --Gravity applied here
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
 end
