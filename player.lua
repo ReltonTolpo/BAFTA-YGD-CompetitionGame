@@ -61,13 +61,13 @@ end
 
 function player.boundary()
 
-	if player.x < 0 then
-		player.x = 0
+	if player.x < -50 then
+		player.x = 1150
 		player.xvel = 0
 	end
 
 	if player.x > 1200 then
-		player.x = 1200
+		player.x = -30
 		player.xvel = 0
 	end
 
