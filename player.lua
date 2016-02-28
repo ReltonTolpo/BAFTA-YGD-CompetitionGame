@@ -14,7 +14,7 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	--player.currentGround = 575
+	player.currentGround = 575
 	player.currentGravity = 1
 
 	if(space.switch==1)then
