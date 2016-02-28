@@ -1,4 +1,7 @@
 require "space"
+require "planetA"
+require "planetB"
+require "planetC"
 player = {}
 
 function player.load()
@@ -11,22 +14,22 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	player.currentGround = 575
+	--player.currentGround = 575
 	player.currentGravity = 1
 
 	if(space.switch==1)then
 
-		player.currentGround = planetA.groundlevel
+		--player.currentGround = planetA.groundlevel
 		player.currentGravity = planetA.gravity
 
 	elseif(space.switch==2)then
 
-		player.currentGround = planetB.groundlevel
+		--player.currentGround = planetB.groundlevel
 		player.currentGravity = planetB.gravity
 
 	elseif(space.switch==3)then
 
-		player.currentGround = planetC.groundlevel
+		--player.currentGround = planetC.groundlevel
 		player.currentGravity = planetC.gravity
 
 	end
@@ -106,8 +109,8 @@ function player.boundary()
 		player.yvel = 0
 	end
 
-	if player.y > player.currentGround - 100 then
-		player.y = player.currentGround - 100
+	if player.y > 580 - 100 then
+		player.y = 580 - 100
 		player.yvel = 0
 	end
 

@@ -8,6 +8,8 @@ function space.load()
     space.starXPosition = 100
     space.starYPosition = 100
     space.dayTime = love.math.random(0, 1)
+    space.weatherX = 0
+    space.weatherY = 150
     space.switch = 1
 
 end
@@ -44,19 +46,36 @@ function space.drawStars()
 end
 
 function UPDATE_SPACE(dt)
-
+space.weatherX = space.weatherX + 0.5
+if space.weatherX>500 then 
+    space.weatherY = space.weatherY + 0.2
+end
+if space.weatherX<500 then 
+space.weatherY = space.weatherY - 0.2
+end
+if space.weatherX>1200 then 
+    space.weatherX = 0
+    space.weatherY = 150
+    if space.dayTime == 0 then
+        space.dayTime = 1
+        elseif space.dayTime == 1 then
+            space.dayTime = 0
+        end
+    end
 end
 
 function DRAW_SPACE()
 
     space.draw()
-
     if(space.dayTime==0)then
         space.drawStars()
+        moon = love.graphics.newImage("images/weather/moon.png")
+        love.graphics.draw(moon, space.weatherX, space.weatherY, 0, 10, 10)
     elseif(space.dayTime==1)then
-        love.graphics.setColor(255, 255, 0)
-        sun = love.graphics.newImage("images/sun.png")
-        love.graphics.draw(sun, 900, 150, 0, 10, 10)
+      love.graphics.setColor(255, 255, 0)
+      sun = love.graphics.newImage("images/weather/sun.png")
+      love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
     end
+
 
 end
