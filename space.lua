@@ -45,7 +45,7 @@ function space.drawStars()
 
 end
 
-function space.dayTime()
+function space.currentSky()
 
     space.weatherX = space.weatherX + 0.5
     if space.weatherX>500 then 
@@ -68,7 +68,7 @@ end
 
 function UPDATE_SPACE(dt)
 
-    space.dayTime()
+    space.currentSky()
 
 end
 
