@@ -45,23 +45,31 @@ function space.drawStars()
 
 end
 
-function UPDATE_SPACE(dt)
-space.weatherX = space.weatherX + 0.5
-if space.weatherX>500 then 
-    space.weatherY = space.weatherY + 0.2
-end
-if space.weatherX<500 then 
-space.weatherY = space.weatherY - 0.2
-end
-if space.weatherX>1200 then 
-    space.weatherX = 0
-    space.weatherY = 150
-    if space.dayTime == 0 then
-        space.dayTime = 1
+function space.dayTime()
+
+    space.weatherX = space.weatherX + 0.5
+    if space.weatherX>500 then 
+        space.weatherY = space.weatherY + 0.2
+    end
+    if space.weatherX<500 then 
+    space.weatherY = space.weatherY - 0.2
+    end
+    if space.weatherX>1200 then 
+        space.weatherX = 0
+        space.weatherY = 150
+        if space.dayTime == 0 then
+            space.dayTime = 1
         elseif space.dayTime == 1 then
             space.dayTime = 0
         end
     end
+
+end
+
+function UPDATE_SPACE(dt)
+
+    space.dayTime()
+
 end
 
 function DRAW_SPACE()
@@ -76,6 +84,5 @@ function DRAW_SPACE()
       sun = love.graphics.newImage("images/weather/sun.png")
       love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
     end
-
 
 end
