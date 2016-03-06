@@ -17,32 +17,23 @@ function player.load()
 	player.currentGround = 575
 	player.currentGravity = 1
 
-	if(space.switch==1)then
+	player.weight = player.currentGravity * player.mass
 
-		--player.currentGround = planetA.groundlevel
-		player.currentGravity = planetA.gravity
+	--Importing the images
+	idlePlayer = love.graphics.newImage("images/player/playerIdle.png") -- Still player
+	spacePlayer = love.graphics.newImage("images/player/playerIdleSpace.png") -- Player in space
+	leftPlayer = love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
+	rightPlayer = love.graphics.newImage("images/player/playerWalkingRight.png") --Playeer moving right
 
-	elseif(space.switch==2)then
-
-		--player.currentGround = planetB.groundlevel
-		player.currentGravity = planetB.gravity
-
-	elseif(space.switch==3)then
-
-		--player.currentGround = planetC.groundlevel
-		player.currentGravity = planetC.gravity
-
-	end
-
-	player.weight = player.mass * player.currentGravity
-
+	hero = spacePlayer --Starts looking straight
+	
 end
 
 function player.draw()
 
-	love.graphics.setColor(200, 200, 200)
-	idlePlayer = love.graphics.newImage("images/player/playerIdle.png")
-	love.graphics.draw(idlePlayer, player.x, player.y, 0, 8, 8)
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.draw(hero, player.x, player.y, 0, 7, 7)
+
 
 end
 
@@ -55,22 +46,49 @@ function player.physics(dt)
 
 end
 
-function player.move(dt)
+function player.update(dt)
+
+	if(space.switch==1)then
+
+		player.currentGround = planetA.groundlevel
+		player.currentGravity = planetA.gravity
+
+	elseif(space.switch==2)then
+
+		player.currentGround = planetB.groundlevel
+		player.currentGravity = planetB.gravity
+
+	elseif(space.switch==3)then
+
+		player.currentGround = planetC.groundlevel
+		player.currentGravity = planetC.gravity
+
+	end
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed then
 		player.xvel = player.xvel + player.speed * dt
+		hero = rightPlayer
 	end
 
 	if love.keyboard.isDown('a') and player.xvel > -player.speed then
 		player.xvel = player.xvel - player.speed * dt
+		hero = leftPlayer
 	end
 
 	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed then
 		player.xvel = player.xvel + player.altspeed * dt
+		hero = rightPlayer
 	end
 
 	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed then
 		player.xvel = player.xvel - player.altspeed * dt
+		hero = leftPlayer
+	end
+
+	function love.keyreleased(key)
+		if key == "a" or "d" then
+			hero = idlePlayer
+		end
 	end
 
 	if love.keyboard.isDown('space') then
@@ -81,11 +99,16 @@ function player.move(dt)
 		player.y = player.y + 10
 	end
 
-	if love.keyboard.isDown('c') then
-		space.switch = space.switch + 1
+	function love.mousereleased(x, y, button)
+		if button == 2 then
+			space.switch = space.switch + 1
+		end
 	end
 
+	player.weight = player.currentGravity * player.mass
 end
+
+
 
 function player.boundary()
 
@@ -109,8 +132,8 @@ function player.boundary()
 		player.yvel = 0
 	end
 
-	if player.y > 580 - 100 then
-		player.y = 580 - 100
+	if player.y > player.currentGround - 100 then
+		player.y = player.currentGround - 100
 		player.yvel = 0
 	end
 
@@ -123,7 +146,7 @@ end
 function UPDATE_PLAYER(dt)
 
 	player.physics(dt)
-	player.move(dt)
+	player.update(dt)
 	player.boundary()
 
 end
