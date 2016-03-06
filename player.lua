@@ -1,6 +1,8 @@
+player = {}
 require "space"
 require "planet"
-player = {}
+require "sound"
+
 
 function player.load()
 
@@ -14,6 +16,7 @@ function player.load()
 	player.mass = 10
 	player.currentGround = 575
 	player.currentGravity = 1
+	player.moving = false
 
 	player.weight = player.currentGravity * player.mass
 
@@ -46,31 +49,41 @@ end
 
 function player.update(dt)
 
-	player.currentGravity = planet[space.switch][4]
+	--player.currentGravity = planet[space.switch][4]
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed then
 		player.xvel = player.xvel + player.speed * dt
 		hero = rightPlayer
+
+		player.moving = true
 	end
 
 	if love.keyboard.isDown('a') and player.xvel > -player.speed then
 		player.xvel = player.xvel - player.speed * dt
 		hero = leftPlayer
+
+		player.moving = true
 	end
 
 	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed then
 		player.xvel = player.xvel + player.altspeed * dt
 		hero = rightPlayer
+
+		player.moving = true
 	end
 
 	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed then
 		player.xvel = player.xvel - player.altspeed * dt
 		hero = leftPlayer
+
+		player.moving = true
 	end
 
 	function love.keyreleased(key)
 		if key == "a" or "d" then
 			hero = idlePlayer
+
+			player.moving = false
 		end
 	end
 
@@ -86,6 +99,12 @@ function player.update(dt)
 		if button == 2 then
 			space.switch = space.switch + 1
 		end
+	end
+
+	if player.moving == true then
+		sound.walking_sfx:play()
+	else
+		sound.walking_sfx:pause()
 	end
 
 	player.weight = player.currentGravity * player.mass

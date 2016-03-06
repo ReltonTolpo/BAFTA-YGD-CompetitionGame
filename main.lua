@@ -1,7 +1,9 @@
+main = {}
 require "space"
 
 require "planet"
 require "player"
+require "sound"
 
 function love.load()
 
@@ -10,7 +12,7 @@ function love.load()
 	--Loading Classes
 	space.load()
 	planet.load()
-
+	sound.load()
 	player.load()
 
 	main.onPlanet = true
@@ -22,7 +24,7 @@ function love.update(dt)
 
 	UPDATE_SPACE(dt)
 	UPDATE_PLANET(dt)
-	
+	UPDATE_SOUND(dt)
 	UPDATE_PLAYER(dt)
 
 end
