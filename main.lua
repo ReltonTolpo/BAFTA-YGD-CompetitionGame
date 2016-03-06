@@ -1,8 +1,6 @@
 require "space"
 
-require "planetA"
-require "planetB"
-require "planetC"
+require "planet"
 require "player"
 
 function love.load()
@@ -11,12 +9,11 @@ function love.load()
 
 	--Loading Classes
 	space.load()
-	planetA.load()
-	planetB.load()
-	planetC.load()
-	
+	planet.load()
 
 	player.load()
+
+	main.onPlanet = true
 
 	
 end
@@ -24,11 +21,8 @@ end
 function love.update(dt)
 
 	UPDATE_SPACE(dt)
-	UPDATE_PLANETA(dt)
-	UPDATE_PLANETB(dt)
-	UPDATE_PLANETC(dt)
+	UPDATE_PLANET(dt)
 	
-
 	UPDATE_PLAYER(dt)
 
 end
@@ -36,11 +30,8 @@ end
 function love.draw()
 
 	DRAW_SPACE()
-	DRAW_PLANETA()
-	DRAW_PLANETB()
-	DRAW_PLANETC()
+	DRAW_PLANET()
 
 	DRAW_PLAYER()
-
 
 end

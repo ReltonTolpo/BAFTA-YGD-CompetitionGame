@@ -1,7 +1,5 @@
 require "space"
-require "planetA"
-require "planetB"
-require "planetC"
+require "planet"
 player = {}
 
 function player.load()
@@ -48,22 +46,7 @@ end
 
 function player.update(dt)
 
-	if(space.switch==1)then
-
-		player.currentGround = planetA.groundlevel
-		player.currentGravity = planetA.gravity
-
-	elseif(space.switch==2)then
-
-		player.currentGround = planetB.groundlevel
-		player.currentGravity = planetB.gravity
-
-	elseif(space.switch==3)then
-
-		player.currentGround = planetC.groundlevel
-		player.currentGravity = planetC.gravity
-
-	end
+	player.currentGravity = planet[space.switch][4]
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed then
 		player.xvel = player.xvel + player.speed * dt
