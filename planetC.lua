@@ -9,7 +9,7 @@ function planetC.load()
 	planetC.backColourR = love.math.random(0, 255) 
 	planetC.backColourG = love.math.random(0, 255) 
 	planetC.backColourB = love.math.random(0, 255) 
-	planetC.gravity = love.math.random(1, 5)
+	planetC.gravity = love.math.random(2, 5)
 	planetC.groundlevel = 600
 
 end

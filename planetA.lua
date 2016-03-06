@@ -9,7 +9,7 @@ function planetA.load()
 	planetA.backColourR = love.math.random(0, 255) 
 	planetA.backColourG = love.math.random(0, 255) 
 	planetA.backColourB = love.math.random(0, 255) 
-	planetA.gravity = love.math.random(1, 5)
+	planetA.gravity = love.math.random(2, 5)
 	planetA.groundlevel = 600
 
 end
