@@ -10,7 +10,7 @@ function space.load()
     space.dayTime = love.math.random(0, 1)
     space.weatherX = 0
     space.weatherY = 150
-    space.switch = 1 --love.math.random(1, 3)
+    space.switch = 1
     space.orbitSpeed = love.math.random(0.01, 0.1)
 
 end
@@ -18,6 +18,16 @@ end
 function space.draw()
 
     love.graphics.setBackgroundColor(0, 0, 0)
+
+    if(space.dayTime==0)then
+        space.drawStars()
+        moon = love.graphics.newImage("images/weather/moon.png")
+        love.graphics.draw(moon, space.weatherX, space.weatherY, 0, 10, 10)
+    elseif(space.dayTime==1)then
+        love.graphics.setColor(255, 255, 0)
+        sun = love.graphics.newImage("images/weather/sun.png")
+        love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
+    end
 
 end
 
@@ -55,15 +65,5 @@ end
 function DRAW_SPACE()
 
     space.draw()
-    if(space.dayTime==0)then
-        space.drawStars()
-        moon = love.graphics.newImage("images/weather/moon.png")
-        love.graphics.draw(moon, space.weatherX, space.weatherY, 0, 10, 10)
-    elseif(space.dayTime==1)then
-      love.graphics.setColor(255, 255, 0)
-      sun = love.graphics.newImage("images/weather/sun.png")
-      love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
-    end
-
 
 end
