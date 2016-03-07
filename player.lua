@@ -110,8 +110,6 @@ function player.update(dt)
 	player.weight = player.currentGravity * player.mass
 end
 
-
-
 function player.boundary()
 
 	if player.x < -50 then

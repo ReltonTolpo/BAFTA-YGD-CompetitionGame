@@ -47,6 +47,9 @@ function space.drawStars()
 end
 
 function UPDATE_SPACE(dt)
+
+    --TODO LOGIC CODE
+
 end
 
 function DRAW_SPACE()

@@ -4,6 +4,7 @@ require "space"
 require "planet"
 require "player"
 require "sound"
+require "ship"
 
 function love.load()
 
@@ -14,8 +15,7 @@ function love.load()
 	planet.load()
 	sound.load()
 	player.load()
-	
-
+	ship.load()
 	main.onPlanet = true
 
 	
@@ -27,6 +27,7 @@ function love.update(dt)
 	UPDATE_PLANET(dt)
 	UPDATE_SOUND(dt)
 	UPDATE_PLAYER(dt)
+	UPDATE_SHIP(dt)
 
 end
 
@@ -36,5 +37,6 @@ function love.draw()
 	DRAW_PLANET()
 
 	DRAW_PLAYER()
+	DRAW_SHIP()
 
 end
