@@ -2,11 +2,11 @@ sound = {}
 
 function sound.load()
 
-	--import sounds here
+	--Import sounds here
 	sound.bg_music = love.audio.newSource("/sounds/BackgroundMusic.wav")
 	sound.walking_sfx = love.audio.newSource("/sounds/Walking.wav")
 
-	sound.loopBackground = true --will backround music loop
+	sound.loopBackground = true --Will backround music loop
 
 	sound.bg_music:setLooping(sound.loopBackground)
 	sound.bg_music:play()
@@ -15,7 +15,7 @@ end
 
 function sound.update()
 
-
+	--TODO LOGIC CODE
 
 end
 
