@@ -11,7 +11,7 @@ function space.load()
     space.weatherX = 0
     space.weatherY = 150
     space.switch = 1 --love.math.random(1, 3)
-    space.orbitSpeed = love.math.random(0.001, 0.1)
+    space.orbitSpeed = love.math.random(0.01, 0.1)
 
 end
 
@@ -47,22 +47,6 @@ function space.drawStars()
 end
 
 function UPDATE_SPACE(dt)
-space.weatherX = space.weatherX + space.orbitSpeed * 5
-if space.weatherX>500 then 
-    space.weatherY = space.weatherY + space.orbitSpeed * 2
-end
-if space.weatherX<500 then 
-space.weatherY = space.weatherY - space.orbitSpeed * 2
-end
-if space.weatherX>1200 then 
-    space.weatherX = 0
-    space.weatherY = 150
-    if space.dayTime == 0 then
-        space.dayTime = 1
-        elseif space.dayTime == 1 then
-            space.dayTime = 0
-        end
-    end
 end
 
 function DRAW_SPACE()

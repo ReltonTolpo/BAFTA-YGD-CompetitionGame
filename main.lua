@@ -14,6 +14,7 @@ function love.load()
 	planet.load()
 	sound.load()
 	player.load()
+	
 
 	main.onPlanet = true
 
