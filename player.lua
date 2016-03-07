@@ -80,13 +80,11 @@ function player.update(dt)
 	end
 
 	function love.keyreleased(key)
-
 		if key == "a" or "d" then
-				hero = idlePlayer
+			hero = idlePlayer
 
-				player.moving = false
+			player.moving = false
 		end
-
 	end
 
 	if love.keyboard.isDown('space') then
@@ -98,11 +96,9 @@ function player.update(dt)
 	end
 
 	function love.mousereleased(x, y, button)
-
 		if button == 2 then
 			space.switch = space.switch + 1
 		end
-		
 	end
 
 	if player.moving == true then
