@@ -33,7 +33,7 @@ end
 function player.draw()
 
 	love.graphics.setColor(255, 255, 255)
-	love.graphics.draw(hero, player.x, player.y, 0, 7, 7)
+	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 
 
 end

@@ -9,6 +9,8 @@ function sound.load()
 	sound.loopBackground = true --will backround music loop
 
 	sound.bg_music:setLooping(sound.loopBackground)
+	sound.bg_music:setVolume(0.6)
+	
 	sound.bg_music:play()
 
 end
