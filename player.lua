@@ -25,7 +25,6 @@ function player.load()
 	spacePlayer = love.graphics.newImage("images/player/playerIdleSpace.png") -- Player in space
 	leftPlayer = love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
 	rightPlayer = love.graphics.newImage("images/player/playerWalkingRight.png") --Playeer moving right
-	jumpPlayer = love.graphics.newImage("images/player/playerJump.png") --Jumping player
 
 	hero = spacePlayer --Starts looking straight
 	
@@ -90,7 +89,6 @@ function player.update(dt)
 
 	if love.keyboard.isDown('space') then
 		player.y = player.y - 10
-		hero = jumpPlayer
 	end
 
 	if love.keyboard.isDown('s') and player.y < player.currentGround then

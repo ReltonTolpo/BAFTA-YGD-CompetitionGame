@@ -1,28 +1,31 @@
 ship = {}
+require "player"
 
 function ship.load()
 
-	landedShip = love.graphics.newImage("images/ship/shipLand.png")
+	ship = love.graphics.newImage("images/ship/shipLand.png")
 
+end	
+
+function update(dt)
+if love.keyboard.isDown('e') and player.x < 20 then
+		ship = love.graphics.newImage("images/ship/shipLandPlayer.png")
+end
 end
 
-function ship.update(dt)
-
-end
-
-function ship.draw()
+function draw()
 
 	love.graphics.setColor(255, 255, 255)
-	love.graphics.draw(landedShip, 50 , 350, 0, 7, 7)
+	love.graphics.draw(ship, 50 , 350, 0, 7, 7)
 
 end
 
 function UPDATE_SHIP(dt)
 
-	ship.update(dt)
+	update(dt)
 
 end
 
 function DRAW_SHIP()
-		ship.draw()
+		draw()
 end
