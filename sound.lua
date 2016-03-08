@@ -3,7 +3,7 @@ sound = {}
 function sound.load()
 
 	--Import sounds here
-	sound.bg_music = love.audio.newSource("/sounds/BackgroundMusic.wav")
+	sound.bg_music = love.audio.newSource("/sounds/BackgroundMusic-Planet.wav")
 	sound.walking_sfx = love.audio.newSource("/sounds/Walking.wav")
 
 	sound.loopBackground = true --Will backround music loop
