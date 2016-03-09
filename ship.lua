@@ -2,14 +2,23 @@ ship = {}
 require "player"
 
 function ship.load()
-
+	shipActive = false
 	ship = love.graphics.newImage("images/ship/shipLand.png")
 
 end	
 
 function update(dt)
-if love.keyboard.isDown('e') and player.x < 20 then
+if love.keyboard.isDown('e') and player.x < 300 and player.x > 100 and shipActive == false then
 		ship = love.graphics.newImage("images/ship/shipLandPlayer.png")
+		player.playerExists = false
+		shipActive = true
+		love.timer.sleep(1)
+elseif love.keyboard.isDown('e') and shipActive == true then
+	ship = love.graphics.newImage("images/ship/shipLand.png")
+		player.x = 100
+		player.playerExists = true
+		shipActive = false
+		love.timer.sleep(1)
 end
 end
 

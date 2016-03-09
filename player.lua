@@ -17,6 +17,7 @@ function player.load()
 	player.currentGround = 575
 	player.currentGravity = 1
 	player.moving = false
+	player.playerExists = true
 
 	player.weight = player.currentGravity * player.mass
 
@@ -152,7 +153,8 @@ function UPDATE_PLAYER(dt)
 end
 
 function DRAW_PLAYER()
-
+if player.playerExists == true then
 	player.draw()
+end
 
 end
