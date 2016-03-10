@@ -24,7 +24,6 @@ function planet.draw()
 		love.graphics.setColor(35, 115, 31)
 		love.graphics.rectangle("fill", 0, 560, 1200, 30) --> Grass
 
-	
 end
 
 function UPDATE_PLANET(dt)
