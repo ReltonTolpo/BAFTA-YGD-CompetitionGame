@@ -3,7 +3,6 @@ require "space"
 require "planet"
 require "sound"
 
-
 function player.load()
 
 	player.health = 100
@@ -69,8 +68,6 @@ end
 
 function player.update(dt)
 
-	--player.currentGravity = planet[space.switch][4]
-
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = rightPlayer
@@ -124,6 +121,7 @@ function player.update(dt)
 			player.load()
 
 			player.dead = false
+			currentPlanet = 1
 		end
 
 	end
@@ -144,10 +142,12 @@ function player.update(dt)
 		player.y = player.y + 10
 	end
 
-	function love.mousereleased(x, y, button)
-		if button == 2 then
-			space.switch = space.switch + 1
-		end
+	if love.keyboard.isDown('c') and player.dead == false then
+		planet.currentPlanet = planet.currentPlanet + 1
+	end
+
+	if planet.currentPlanet == planet.planetNumStuff then
+		planet.currentPlanet = 1
 	end
 
 	if player.moving == true then
@@ -189,10 +189,6 @@ function player.boundary()
 	if player.y > player.currentGround - 100 then
 		player.y = player.currentGround - 100
 		player.yvel = 0
-	end
-
-	if space.switch > 3 then
-		space.switch = 1
 	end
 
 end
