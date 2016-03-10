@@ -46,8 +46,8 @@ function player.draw()
 	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
-	love.graphics.print("Player Health = ", 30, 30, 0, 5, 5)
-	love.graphics.print(player.health, 550, 30, 0, 5, 5)
+	love.graphics.print("Player Health = ", 30, 30, 0, 3, 3)
+	love.graphics.print(player.health, 330, 30, 0, 3, 3)
 	love.graphics.print("Die HERE", 650, 500, 0, 5, 5)
 
 	if player.dead == true then
