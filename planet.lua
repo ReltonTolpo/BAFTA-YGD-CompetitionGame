@@ -5,7 +5,7 @@ function planet.load()
 
 
 	currentPlanet = 1
-	planetNum = 3
+	planetNum = 3 --> we may have to set a default number of planets as the for loop will not accept a variable
 	planetNumStuff = planetNum + 1
 
 	planetArray = {{}}
@@ -33,6 +33,12 @@ end
 function UPDATE_PLANET(dt)
 
 	planet.draw()
+
+	if love.keyboard.isDown('c') then
+
+		currentPlanet = currentPlanet + 1
+
+	end
 
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5

@@ -35,13 +35,13 @@ function love.draw()
 	DRAW_SPACE()
 	DRAW_PLANET()
    
-	--if playerOverShip == false then
+if playerOverShip == false then
 		DRAW_PLAYER()
 		DRAW_SHIP()
-	--end
 
-	--if playerOverShip == true then  
+end
+if playerOverShip == true then  
 		DRAW_SHIP()
-		DRAW_PLAYER()
-	--end
+	DRAW_PLAYER()
+end
 end
