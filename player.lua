@@ -21,12 +21,10 @@ function player.load()
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.moving = false
 	player.playerExists = true
---<<<<<<< HEAD
 	player.canMove = true
 	player.doGravity = true
---=======
 	player.onPlanet = true
--->>>>>>> origin/master
+
 
 	player.weight = player.currentGravity * player.mass
 
