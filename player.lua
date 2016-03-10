@@ -14,10 +14,12 @@ function player.load()
 	player.speed = 1250
 	player.altspeed = 2500
 	player.mass = 10
-	player.currentGround = 575
+	player.currentGround = 550
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.moving = false
 	player.playerExists = true
+	player.canMove = true
+	player.doGravity = true
 
 	player.weight = player.currentGravity * player.mass
 
@@ -131,12 +133,12 @@ function player.boundary()
 		player.y = 0
 		player.yvel = 0
 	end
-
+if player.doGravity == true then
 	if player.y < 0 and love.keyboard.isDown('space') then
 		player.y = player.y + 50
 		player.yvel = 0
 	end
-
+end
 	if player.y > player.currentGround - 100 then
 		player.y = player.currentGround - 100
 		player.yvel = 0
@@ -151,7 +153,9 @@ end
 function UPDATE_PLAYER(dt)
 
 	player.physics(dt)
+	if player.canMove == true then
 	player.update(dt)
+end
 	player.boundary()
 
 end
