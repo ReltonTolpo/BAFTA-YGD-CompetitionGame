@@ -3,11 +3,14 @@ require "space"
 require "planet"
 require "sound"
 
-
 function player.load()
 
+	player.health = 100
 	player.x = 50
 	player.y = 50
+	player.deadX = 50
+	player.deadY = 50
+	player.dead = false
 	player.xvel = 1
 	player.yvel = 1
 	player.friction = 7
@@ -18,13 +21,18 @@ function player.load()
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.moving = false
 	player.playerExists = true
+--<<<<<<< HEAD
 	player.canMove = true
 	player.doGravity = true
+--=======
+	player.onPlanet = true
+-->>>>>>> origin/master
 
 	player.weight = player.currentGravity * player.mass
 
 	--Importing the images
 	idlePlayer = love.graphics.newImage("images/player/playerIdle.png") -- Still player
+	deadPlayer = love.graphics.newImage("images/player/playerDead.png") -- Dead player
 	spacePlayer = love.graphics.newImage("images/player/playerIdleSpace.png") -- Player in space
 	leftPlayer = love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
 	rightPlayer = love.graphics.newImage("images/player/playerWalkingRight.png") --Playeer moving right
@@ -35,9 +43,22 @@ end
 
 function player.draw()
 
+	player.healthColourR = planetArray[currentPlanet][1] - 100
+	player.healthColourG = planetArray[currentPlanet][2] - 100
+	player.healthColourB = planetArray[currentPlanet][3] - 100
+
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 
+	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
+	love.graphics.print("Player Health = ", 30, 30, 0, 3, 3)
+	love.graphics.print(player.health, 330, 30, 0, 3, 3)
+	love.graphics.print("Die HERE", 650, 500, 0, 5, 5)
+
+	if player.dead == true then
+		love.graphics.setColor(200, 80, 80)
+		love.graphics.print("Press SPACE to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
+	end
 
 end
 
@@ -52,34 +73,62 @@ end
 
 function player.update(dt)
 
-	--player.currentGravity = planet[space.switch][4]
-
-	if love.keyboard.isDown('d') and player.xvel < player.speed then
+	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = rightPlayer
 
 		player.moving = true
 	end
 
-	if love.keyboard.isDown('a') and player.xvel > -player.speed then
+	if love.keyboard.isDown('a') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.speed * dt
 		hero = leftPlayer
 
 		player.moving = true
 	end
 
-	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed then
+	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.altspeed * dt
 		hero = rightPlayer
 
 		player.moving = true
 	end
 
-	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed then
+	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.altspeed * dt
 		hero = leftPlayer
 
 		player.moving = true
+	end
+
+	if player.x > 600 and player.x < 900 and player.y > 400 then
+		player.health = player.health - 1
+	end
+
+	if player.health < 0 then
+		player.health = 0
+	end
+
+	if player.health == 0 then
+
+		player.deadX = player.x
+		player.deadY = player.y
+		hero = deadPlayer
+
+		player.dead = true
+		player.moving = false
+
+		if love.keyboard.isDown('space') then
+			player.health = 100
+
+			space.load()
+			planet.load()
+			player.load()
+
+			player.dead = false
+			currentPlanet = 1
+		end
+
 	end
 
 	function love.keyreleased(key)
@@ -90,18 +139,20 @@ function player.update(dt)
 		end
 	end
 
-	if love.keyboard.isDown('space') then
+	if love.keyboard.isDown('space') and player.dead == false then
 		player.y = player.y - 10
 	end
 
-	if love.keyboard.isDown('s') and player.y < player.currentGround then
+	if love.keyboard.isDown('s') and player.y < player.currentGround and player.dead == false then
 		player.y = player.y + 10
 	end
 
-	function love.mousereleased(x, y, button)
-		if button == 2 then
-			space.switch = space.switch + 1
-		end
+	if love.keyboard.isDown('c') and player.dead == false then
+		planet.currentPlanet = planet.currentPlanet + 1
+	end
+
+	if planet.currentPlanet == planet.planetNumStuff then
+		planet.currentPlanet = 1
 	end
 
 	if player.moving == true then
@@ -115,6 +166,7 @@ function player.update(dt)
 	end
 
 	player.weight = player.currentGravity * player.mass
+
 end
 
 function player.boundary()
@@ -144,10 +196,6 @@ end
 		player.yvel = 0
 	end
 
-	if space.switch > 3 then
-		space.switch = 1
-	end
-
 end
 
 function UPDATE_PLAYER(dt)
@@ -164,8 +212,6 @@ function DRAW_PLAYER()
 
 	if player.playerExists == true then
 		player.draw()
-	else
-
 	end
 
 end
