@@ -10,7 +10,6 @@ function space.load()
     space.dayTime = love.math.random(0, 1)
     space.weatherX = 0
     space.weatherY = 150
-    space.switch = 1 --love.math.random(1, 3)
     space.orbitSpeed = love.math.random(0.01, 0.1)
 
 end

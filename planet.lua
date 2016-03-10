@@ -5,7 +5,7 @@ function planet.load()
 
 
 	currentPlanet = 1
-	planetNum = 3 --> we may have to set a default number of planets as the for loop will not accept a variable
+	planetNum = 3
 	planetNumStuff = planetNum + 1
 
 	planetArray = {{}}

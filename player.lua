@@ -21,7 +21,6 @@ function player.load()
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.moving = false
 	player.playerExists = true
-	player.canMove = true
 	player.doGravity = true
 	player.onPlanet = true
 
@@ -126,7 +125,6 @@ function player.update(dt)
 			player.dead = false
 			currentPlanet = 1
 		end
-
 	end
 
 	function love.keyreleased(key)
@@ -184,12 +182,14 @@ function player.boundary()
 		player.y = 0
 		player.yvel = 0
 	end
-if player.doGravity == true then
-	if player.y < 0 and love.keyboard.isDown('space') then
-		player.y = player.y + 50
-		player.yvel = 0
+
+	if player.doGravity == true then
+		if player.y < 0 and love.keyboard.isDown('space') then
+			player.y = player.y + 50
+			player.yvel = 0
+		end
 	end
-end
+
 	if player.y > player.currentGround - 100 then
 		player.y = player.currentGround - 100
 		player.yvel = 0
@@ -200,9 +200,11 @@ end
 function UPDATE_PLAYER(dt)
 
 	player.physics(dt)
-	if player.canMove == true then
-	player.update(dt)
-end
+
+	--if player.canMove == true then
+		player.update(dt)
+	--end
+
 	player.boundary()
 
 end
