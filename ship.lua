@@ -12,13 +12,13 @@ if love.keyboard.isDown('e') and player.x < 300 and player.x > 100 and shipActiv
 		ship = love.graphics.newImage("images/ship/shipLandPlayer.png")
 		player.playerExists = false
 		shipActive = true
-		love.timer.sleep(1)
+		love.timer.sleep(0.1)
 elseif love.keyboard.isDown('e') and shipActive == true then
 	ship = love.graphics.newImage("images/ship/shipLand.png")
 		player.x = 100
 		player.playerExists = true
 		shipActive = false
-		love.timer.sleep(1)
+		love.timer.sleep(0.1)
 end
 end
 
