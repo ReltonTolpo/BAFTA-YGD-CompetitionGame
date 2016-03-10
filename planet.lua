@@ -34,12 +34,6 @@ function UPDATE_PLANET(dt)
 
 	planet.draw()
 
-	if love.keyboard.isDown('c') then
-
-		currentPlanet = currentPlanet + 1
-
-	end
-
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
 		if space.weatherX>500 then 

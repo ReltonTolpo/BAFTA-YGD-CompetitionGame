@@ -142,12 +142,13 @@ function player.update(dt)
 		player.y = player.y + 10
 	end
 
-	if love.keyboard.isDown('c') and player.dead == false then
-		planet.currentPlanet = planet.currentPlanet + 1
+	if love.keyboard.isDown('c') then
+		currentPlanet = currentPlanet + 1
+		love.timer.sleep(0.5)
 	end
 
-	if planet.currentPlanet == planet.planetNumStuff then
-		planet.currentPlanet = 1
+	if currentPlanet == planetNum then
+		currentPlanet = 1
 	end
 
 	if player.moving == true then

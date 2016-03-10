@@ -55,15 +55,15 @@ end
 function DRAW_SPACE()
 
     space.draw()
+    
     if(space.dayTime==0)then
         space.drawStars()
         moon = love.graphics.newImage("images/weather/moon.png")
         love.graphics.draw(moon, space.weatherX, space.weatherY, 0, 2, 2)
     elseif(space.dayTime==1)then
-      love.graphics.setColor(255, 255, 0)
-      sun = love.graphics.newImage("images/weather/sun.png")
-      love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
+        love.graphics.setColor(255, 255, 0)
+        sun = love.graphics.newImage("images/weather/sun.png")
+        love.graphics.draw(sun, space.weatherX, space.weatherY, 0, 10, 10)
     end
-
 
 end
