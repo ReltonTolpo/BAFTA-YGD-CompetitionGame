@@ -103,7 +103,11 @@ function player.update(dt)
 	end
 
 	if player.moving == true then
-		sound.walking_sfx:play()
+		if player.y >= player.currentGround - 120 then
+			sound.walking_sfx:play()
+		else
+			sound.walking_sfx:pause()
+		end
 	else
 		sound.walking_sfx:pause()
 	end
@@ -153,8 +157,11 @@ function UPDATE_PLAYER(dt)
 end
 
 function DRAW_PLAYER()
-if player.playerExists == true then
-	player.draw()
-end
+
+	if player.playerExists == true then
+		player.draw()
+	else
+
+	end
 
 end
