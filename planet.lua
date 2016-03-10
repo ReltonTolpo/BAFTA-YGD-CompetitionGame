@@ -10,6 +10,7 @@ function planet.load()
 
 	planetArray = {{}}
 	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}-- Planet R, Planet G, Planet B, gravity, orbitTime
+	planetArray[2] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}-- Planet R, Planet G, Planet B, gravity, orbitTime
 
 	for i = 1, planetNum do
 		planetArray[#planetArray + 1] = {love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}
@@ -32,6 +33,12 @@ end
 function UPDATE_PLANET(dt)
 
 	planet.draw()
+
+	if love.keyboard.isDown('c') then
+
+		currentPlanet = currentPlanet + 1
+
+	end
 
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
