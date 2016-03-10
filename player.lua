@@ -15,7 +15,7 @@ function player.load()
 	player.altspeed = 2500
 	player.mass = 10
 	player.currentGround = 575
-	player.currentGravity = 1
+	player.currentGravity = planetArray[currentPlanet][4]
 	player.moving = false
 	player.playerExists = true
 
