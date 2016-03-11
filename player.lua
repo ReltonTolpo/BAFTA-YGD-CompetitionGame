@@ -146,11 +146,12 @@ function player.update(dt)
 	end
 
 	if love.keyboard.isDown('c') and player.dead == false then
-		planet.currentPlanet = planet.currentPlanet + 1
+		currentPlanet = currentPlanet + 1
+		love.timer.sleep(0.5)
 	end
 
-	if planet.currentPlanet == planet.planetNumStuff then
-		planet.currentPlanet = 1
+	if currentPlanet == 4 then
+		currentPlanet = 1
 	end
 
 	if player.moving == true then
@@ -183,12 +184,12 @@ function player.boundary()
 		player.y = 0
 		player.yvel = 0
 	end
-if player.doGravity == true then
-	if player.y < 0 and love.keyboard.isDown('space') then
-		player.y = player.y + 50
-		player.yvel = 0
+	if player.doGravity == true then
+		if player.y < 0 and love.keyboard.isDown('space') then
+			player.y = player.y + 50
+			player.yvel = 0
+		end
 	end
-end
 	if player.y > player.currentGround - 100 then
 		player.y = player.currentGround - 100
 		player.yvel = 0
