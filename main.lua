@@ -4,6 +4,7 @@ require "planet"
 require "player"
 require "monster"
 require "sound"
+require "images"
 require "ship"
 
 function love.load()
@@ -11,22 +12,27 @@ function love.load()
 	--love.graphics.setBackgroundColor(255, 255, 255)
 
 	--Loading Classes
+	
+	sound.load()
+	images.load()
+
 	space.load()
 	planet.load()
-	sound.load()
+
 	player.load()
 
 	monster.load()
-
 	ship.load()
 	
 end
 
 function love.update(dt)
+	
+	UPDATE_SOUND(dt)
+	UPDATE_IMAGES(dt)
 
 	UPDATE_SPACE(dt)
 	UPDATE_PLANET(dt)
-	UPDATE_SOUND(dt)
 	UPDATE_PLAYER(dt)
 
 	UPDATE_MONSTER(dt)
@@ -34,7 +40,6 @@ function love.update(dt)
 	UPDATE_SHIP(dt)
 
 end 
-
 
 
 function love.draw()
@@ -47,8 +52,7 @@ function love.draw()
 	if playerOverShip == false then
 		DRAW_PLAYER()
 		DRAW_SHIP()
-	end
-	if playerOverShip == true then  
+	elseif playerOverShip == true then  
 		DRAW_SHIP()
 		DRAW_PLAYER()
 	end

@@ -1,10 +1,11 @@
 ship = {}
 require "player"
+require "images"
 
 function ship.load()
 
 	shipActive = false
-	ship = love.graphics.newImage("images/ship/shipLand.png")
+	ship = images.ship
 	animation1 = false
     animation2 = false
     animation3 = false
@@ -85,7 +86,7 @@ function playerIntoShip() --Animations for player getting into ship
 		if player.x < 300 then
 	   		player.canMove = true
 			player.playerExists = false
-		   	ship = love.graphics.newImage("images/ship/shipLandPlayer.png")
+		   	ship = images.playerInShip
 		   	animation3 = false
 	    end
 	end

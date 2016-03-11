@@ -2,6 +2,7 @@ player = {}
 require "space"
 require "planet"
 require "sound"
+require "images"
 
 function player.load()
 
@@ -25,17 +26,9 @@ function player.load()
 	player.doGravity = true
 	player.onPlanet = true
 
-
 	player.weight = player.currentGravity * player.mass
 
-	--Importing the images
-	idlePlayer = love.graphics.newImage("images/player/playerIdle.png") -- Still player
-	deadPlayer = love.graphics.newImage("images/player/playerDead.png") -- Dead player
-	spacePlayer = love.graphics.newImage("images/player/playerIdleSpace.png") -- Player in space
-	leftPlayer = love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
-	rightPlayer = love.graphics.newImage("images/player/playerWalkingRight.png") --Playeer moving right
-
-	hero = spacePlayer --Starts looking straight
+	hero = images.playerIdle --Starts looking straight
 	
 end
 
@@ -73,28 +66,28 @@ function player.update(dt)
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
-		hero = rightPlayer
+		hero = images.playerRight
 
 		player.moving = true
 	end
 
 	if love.keyboard.isDown('a') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.speed * dt
-		hero = leftPlayer
+		hero = images.playerLeft
 
 		player.moving = true
 	end
 
 	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.altspeed * dt
-		hero = rightPlayer
+		hero = images.playerRight
 
 		player.moving = true
 	end
 
 	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.altspeed * dt
-		hero = leftPlayer
+		hero = images.playerLeft
 
 		player.moving = true
 	end
@@ -111,7 +104,7 @@ function player.update(dt)
 
 		player.deadX = player.x
 		player.deadY = player.y
-		hero = deadPlayer
+		hero = images.playerDead
 
 		player.dead = true
 		player.moving = false
@@ -120,7 +113,6 @@ function player.update(dt)
 			player.health = 100
 
 			space.load()
-			--planet.load()  Do we need this?
 			player.load()
 
 			player.dead = false
@@ -131,7 +123,7 @@ function player.update(dt)
 
 	function love.keyreleased(key)
 		if key == "a" or "d" then
-			hero = idlePlayer
+			hero = images.playerIdle
 
 			player.moving = false
 		end
