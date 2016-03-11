@@ -6,6 +6,9 @@ function ship.load()
 
 	shipActive = false
 	ship = images.ship
+	rampx = 350
+	rampy = 550
+	animation4 = true
 	animation1 = false
     animation2 = false
     animation3 = false
@@ -41,21 +44,24 @@ function draw()
 	love.graphics.draw(ship, 50 , 350, 0, 7, 7)
 	if shipActive == true then
 
-		shipStairCoordTable = {
-			350, 550,
-			350, 560,
-			360, 560,
-			360, 570,
-			370, 570,
-			370, 580,
-			380, 580,
-			380, 590,
-			390, 590,
-		}
+		--shipStairCoordTable = {
+		--	350, 550,
+		--	350, 560,
+		--	360, 560,
+		--	360, 570,
+		--	370, 570,
+		--	370, 580,
+		--	380, 580,
+		--	380, 590,
+		--	390, 590,
+		--}
+		love.graphics.setColor(0, 0, 0,255)
+	    love.graphics.line(350,550,rampx,rampy)
+		--love.graphics.setColor(0, 0, 0)
 
-		love.graphics.setColor(0, 0, 0)
+	   -- love.graphics.line(shipStairCoordTable)
 
-	    love.graphics.line(shipStairCoordTable)
+
 	end
 end
 
@@ -75,6 +81,7 @@ function playerIntoShip() --Animations for player getting into ship
 		if player.x < 350 then
 		    animation2 = false
     		shipActive = true
+    		animation4 = true
 		    animation3 = true
   		end
 	end
@@ -82,7 +89,7 @@ function playerIntoShip() --Animations for player getting into ship
 	if animation3 == true then
 		player.doGravity = false
 		player.x = player.x - 0.5
-		player.y = player.y - 0.5
+		player.y = player.y - 5
 		if player.x < 300 then
 	   		player.canMove = true
 			player.playerExists = false
@@ -97,7 +104,16 @@ function UPDATE_SHIP(dt)
 
 	update(dt)
 	playerIntoShip()
-
+	if shipActive == true then
+	--if animation4 == true then
+		rampx = rampx + 1
+		rampy = rampy + 1
+	 --end
+	    if rampy > 589 and rampx > 389 then
+   rampy = 590
+   rampx = 390
+	    end
+	end
 end
 
 function DRAW_SHIP()
