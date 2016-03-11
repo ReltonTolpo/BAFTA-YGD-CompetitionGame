@@ -1,8 +1,8 @@
 main = {}
 require "space"
-
 require "planet"
 require "player"
+require "monster"
 require "sound"
 require "ship"
 
@@ -15,6 +15,9 @@ function love.load()
 	planet.load()
 	sound.load()
 	player.load()
+
+	monster.load()
+
 	ship.load()
 	
 end
@@ -25,7 +28,11 @@ function love.update(dt)
 	UPDATE_PLANET(dt)
 	UPDATE_SOUND(dt)
 	UPDATE_PLAYER(dt)
+
+	UPDATE_MONSTER(dt)
+
 	UPDATE_SHIP(dt)
+
 end 
 
 
@@ -34,6 +41,8 @@ function love.draw()
 
 	DRAW_SPACE()
 	DRAW_PLANET()
+
+	DRAW_MONSTER()
    
 	if playerOverShip == false then
 		DRAW_PLAYER()
