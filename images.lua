@@ -20,6 +20,10 @@ function images.load()
 	images.moon 		= love.graphics.newImage("images/weather/moon.png")				--Moon
 	images.sun 			= love.graphics.newImage("images/weather/sun.png")				--Sun
 
+	--↓ Particle images
+	images.smoke		= love.graphics.newImage("images/particles/smoke.png") 			--Smoke
+	images.fire			= love.graphics.newImage("images/particles/fire.png") 				--Fire
+
 end
 
 function images.update()

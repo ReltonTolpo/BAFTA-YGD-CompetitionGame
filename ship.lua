@@ -18,18 +18,18 @@ function ship.load()
     shipy = 350
 liftoff = false
 
-	local particle = love.graphics.newImage("images/particles/smoke.png")
-	local particle2 = love.graphics.newImage("images/particles/fire.png")
+	local smoke = images.smoke
+	local fire = images.fire
 
  
-	psystem1 = love.graphics.newParticleSystem(particle, 64)
+	psystem1 = love.graphics.newParticleSystem(smoke, 64)
 	psystem1:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
 	psystem1:setEmissionRate(2000)
 	psystem1:setSizeVariation(1)
 	psystem1:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
 	psystem1:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
 
-	psystem2 = love.graphics.newParticleSystem(particle2, 100)
+	psystem2 = love.graphics.newParticleSystem(fire, 100)
 	psystem2:setParticleLifetime(2, 2) -- Particles live at least 2s and at most 5s.
 	psystem2:setEmissionRate(20)
 	psystem2:setSizeVariation(0)
