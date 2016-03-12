@@ -48,7 +48,7 @@ function update(dt)
 		 player.hero = player.rightPlayer
 	     animation1 = true
 	elseif love.keyboard.isDown('e') and shipActive == true then
-		ship = love.graphics.newImage("images/ship/shipLand.png")
+		ship = images.ship
 
 		player.x = 100
 		player.playerExists = true
