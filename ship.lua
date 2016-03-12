@@ -12,8 +12,21 @@ function ship.load()
 	animation1 = false
     animation2 = false
     animation3 = false
-
     playerOverShip = false
+    smokeActive = false
+    shipx = 50
+    shipy = 350
+liftoff = false
+
+	local img = love.graphics.newImage("images/particles/smoke.png")
+ 
+	psystem = love.graphics.newParticleSystem(img, 64)
+	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
+	psystem:setEmissionRate(2000)
+	psystem:setSizeVariation(1)
+	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
+	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+
 end	
 
 function update(dt)
@@ -30,38 +43,40 @@ function update(dt)
 		player.x = 100
 		player.playerExists = true
 		player.doGravity = true
+		smokeActive = false
 		shipActive = false
 		playerOverShip = false
 		love.timer.sleep(0.1)
+		rampx = 350
+	rampy = 550
+	    shipx = 50
+    shipy = 350
+    liftoff = false
 	end
 
+		if love.keyboard.isDown('space') and smokeActive == true then
+liftoff = true
+			shipActive = false
+	end
 end
 
 function draw()
 
 	love.graphics.setColor(255, 255, 255)
 
-	love.graphics.draw(ship, 50 , 350, 0, 7, 7)
+	love.graphics.draw(ship, shipx,shipy, 0, 7, 7)
 	if shipActive == true then
 
-		--shipStairCoordTable = {
-		--	350, 550,
-		--	350, 560,
-		--	360, 560,
-		--	360, 570,
-		--	370, 570,
-		--	370, 580,
-		--	380, 580,
-		--	380, 590,
-		--	390, 590,
-		--}
 		love.graphics.setColor(0, 0, 0,255)
 	    love.graphics.line(350,550,rampx,rampy)
-		--love.graphics.setColor(0, 0, 0)
+	end
 
-	   -- love.graphics.line(shipStairCoordTable)
-
-
+	if smokeActive == true then
+			-- Draw the particle system at the center of the game window.
+	love.graphics.draw(psystem,shipx+170,shipy+140)
+    love.graphics.draw(psystem,shipx+150,shipy+140)
+    		love.graphics.setColor(200, 80, 80)
+		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
 	end
 end
 
@@ -72,6 +87,7 @@ function playerIntoShip() --Animations for player getting into ship
 		if player.x > 450 then			   
 		 	animation1 = false
 		   	animation2 = true
+		    shipActive = true
 		end
 	end
 
@@ -80,7 +96,6 @@ function playerIntoShip() --Animations for player getting into ship
 		player.x = player.x - 0.5
 		if player.x < 350 then
 		    animation2 = false
-    		shipActive = true
     		animation4 = true
 		    animation3 = true
   		end
@@ -95,19 +110,21 @@ function playerIntoShip() --Animations for player getting into ship
 			player.playerExists = false
 		   	ship = images.playerInShip
 		   	animation3 = false
+		   	smokeActive = true
 	    end
 	end
 
 end
 
 function UPDATE_SHIP(dt)
-
+	psystem:update(dt)
 	update(dt)
 	playerIntoShip()
+	liftOff()
 	if shipActive == true then
 	--if animation4 == true then
-		rampx = rampx + 1
-		rampy = rampy + 1
+		rampx = rampx + 0.25
+		rampy = rampy + 0.25
 	 --end
 	    if rampy > 589 and rampx > 389 then
    rampy = 590
@@ -121,5 +138,11 @@ function DRAW_SHIP()
 	draw()
 
 end 
+
+function liftOff()
+if liftoff == true then
+		shipy = shipy - 0.5
+	end
+	end
 
 
