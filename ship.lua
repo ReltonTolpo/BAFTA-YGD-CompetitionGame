@@ -58,9 +58,9 @@ function update(dt)
 		playerOverShip = false
 		love.timer.sleep(0.1)
 		rampx = 350
-	rampy = 550
+		rampy = 550
 	    shipx = 50
-    shipy = 350
+  	    shipy = 350
     liftoff = false
 	end
 
@@ -84,8 +84,8 @@ function draw()
 
 	if liftoff == true then
 		love.graphics.draw(psystem2,shipx+160,shipy+140)
-    love.graphics.draw(psystem2,shipx+160,shipy+145)
-end
+  	    love.graphics.draw(psystem2,shipx+160,shipy+145)
+	end
 
 	if smokeActive == true then
 			-- Draw the particle system at the center of the game window.
@@ -94,6 +94,7 @@ end
     		love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
 	end
+
 end
 
 function playerIntoShip() --Animations for player getting into ship
