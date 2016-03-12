@@ -18,14 +18,24 @@ function ship.load()
     shipy = 350
 liftoff = false
 
-	local img = love.graphics.newImage("images/particles/smoke.png")
+	local particle = love.graphics.newImage("images/particles/smoke.png")
+	local particle2 = love.graphics.newImage("images/particles/fire.png")
+
  
-	psystem = love.graphics.newParticleSystem(img, 64)
-	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
-	psystem:setEmissionRate(2000)
-	psystem:setSizeVariation(1)
-	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
-	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+	psystem1 = love.graphics.newParticleSystem(particle, 64)
+	psystem1:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
+	psystem1:setEmissionRate(2000)
+	psystem1:setSizeVariation(1)
+	psystem1:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
+	psystem1:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+
+	psystem2 = love.graphics.newParticleSystem(particle2, 100)
+	psystem2:setParticleLifetime(2, 2) -- Particles live at least 2s and at most 5s.
+	psystem2:setEmissionRate(20)
+	psystem2:setSizeVariation(0)
+	psystem2:setLinearAcceleration(-20, -1, -20, 1) -- Random movement in all directions.
+	psystem2:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+
 
 end	
 
@@ -55,8 +65,9 @@ function update(dt)
 	end
 
 		if love.keyboard.isDown('space') and smokeActive == true then
-liftoff = true
+			liftoff = true
 			shipActive = false
+			smokeActive = false
 	end
 end
 
@@ -71,10 +82,15 @@ function draw()
 	    love.graphics.line(350,550,rampx,rampy)
 	end
 
+	if liftoff == true then
+		love.graphics.draw(psystem2,shipx+160,shipy+140)
+    love.graphics.draw(psystem2,shipx+160,shipy+145)
+end
+
 	if smokeActive == true then
 			-- Draw the particle system at the center of the game window.
-	love.graphics.draw(psystem,shipx+170,shipy+140)
-    love.graphics.draw(psystem,shipx+150,shipy+140)
+	love.graphics.draw(psystem1,shipx+170,shipy+140)
+    love.graphics.draw(psystem1,shipx+150,shipy+140)
     		love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
 	end
@@ -117,7 +133,8 @@ function playerIntoShip() --Animations for player getting into ship
 end
 
 function UPDATE_SHIP(dt)
-	psystem:update(dt)
+	psystem1:update(dt)
+		psystem2:update(dt)
 	update(dt)
 	playerIntoShip()
 	liftOff()
@@ -142,6 +159,7 @@ end
 function liftOff()
 if liftoff == true then
 		shipy = shipy - 0.5
+		shipx = shipx + 1
 	end
 	end
 
