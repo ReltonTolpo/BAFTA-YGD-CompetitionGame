@@ -133,7 +133,17 @@ function playerIntoShip() --Animations for player getting into ship
 
 end
 
+function liftOff()
+
+	if liftoff == true then
+		shipy = shipy - 0.5
+		shipx = shipx + 1
+	end
+	
+end
+
 function UPDATE_SHIP(dt)
+	
 	psystem1:update(dt)
 		psystem2:update(dt)
 	update(dt)
@@ -149,6 +159,7 @@ function UPDATE_SHIP(dt)
    rampx = 390
 	    end
 	end
+
 end
 
 function DRAW_SHIP()
@@ -158,10 +169,12 @@ function DRAW_SHIP()
 end 
 
 function liftOff()
-if liftoff == true then
+
+	if liftoff == true then
 		shipy = shipy - 0.5
 		shipx = shipx + 1
 	end
-	end
+
+end
 
 
