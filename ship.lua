@@ -61,21 +61,27 @@ function update(dt)
 		rampy = 550
 	    shipx = 50
   	    shipy = 350
-    liftoff = false
+    	liftoff = false
 	end
 
-		if love.keyboard.isDown('space') and smokeActive == true then
-			liftoff = true
-			shipActive = false
-			smokeActive = false
+	if love.keyboard.isDown('space') and smokeActive == true then
+		liftoff = true
+		shipActive = false
+		smokeActive = false
 	end
+
 end
 
 function draw()
 
 	love.graphics.setColor(255, 255, 255)
 
-	love.graphics.draw(ship, shipx,shipy, 0, 7, 7)
+	if player.onPlanet == true then
+		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
+	elseif player.onPlanet == false then
+		love.graphics.draw(ship, shipx, shipy, 0, 1, 1)
+	end
+	
 	if shipActive == true then
 
 		love.graphics.setColor(0, 0, 0,255)
@@ -89,10 +95,10 @@ function draw()
 	end
 
 	if smokeActive == true then
-			-- Draw the particle system at the center of the game window.
-	love.graphics.draw(psystem1,shipx+170,shipy+140)
-    love.graphics.draw(psystem1,shipx+150,shipy+140)
-    		love.graphics.setColor(200, 80, 80)
+		-- Draw the particle system at the center of the game window.
+		love.graphics.draw(psystem1,shipx+170,shipy+140)
+		love.graphics.draw(psystem1,shipx+150,shipy+140)
+    	love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
 	end
 
@@ -137,8 +143,14 @@ end
 function liftOff()
 
 	if liftoff == true then
-		shipy = shipy - 0.5
-		shipx = shipx + 1
+		shipy = shipy - 3
+	end
+	if shipy < 0 and player.onPlanet == true then
+		liftoff = false
+		player.onPlanet = false
+		ship = images.shipInSpace
+		shipy = 600
+		shipx = 500
 	end
 	
 end
@@ -146,7 +158,7 @@ end
 function UPDATE_SHIP(dt)
 	
 	psystem1:update(dt)
-		psystem2:update(dt)
+	psystem2:update(dt)
 	update(dt)
 	playerIntoShip()
 	liftOff()

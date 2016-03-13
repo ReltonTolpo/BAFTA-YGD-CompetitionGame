@@ -25,6 +25,9 @@ function planet.draw()
 		love.graphics.rectangle("fill", 0, 560, 1200, 600) --> Dirt/Earth
 		love.graphics.setColor(35, 115, 31)
 		love.graphics.rectangle("fill", 0, 560, 1200, 30) --> Grass
+	elseif player.onPlanet == false then
+		love.graphics.setBackgroundColor(0, 0, 0)
+		space.dayTime = 0
 	end
 
 end
@@ -39,20 +42,19 @@ function UPDATE_PLANET(dt)
 		    space.weatherY = space.weatherY + planetArray[currentPlanet][5] * 2
 		end
 		if space.weatherX<500 then 
-		space.weatherY = space.weatherY - planetArray[currentPlanet][5] * 2
+			space.weatherY = space.weatherY - planetArray[currentPlanet][5] * 2
 		end
 		if space.weatherX>1200 then 
 		    space.weatherX = 0
 		    space.weatherY = 150
 		    if space.dayTime == 0 then
 		        space.dayTime = 1
-		        elseif space.dayTime == 1 then
-		            space.dayTime = 0
-		        end
+		    elseif space.dayTime == 1 then
+		        space.dayTime = 0
 		    end
-
 		end
 	end
+end
 
 function DRAW_PLANET()
 

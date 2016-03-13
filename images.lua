@@ -13,6 +13,7 @@ function images.load()
 	images.ship 		        = love.graphics.newImage("images/ship/shipLand.png")			--Ship without player inside
 	images.playerInShip     	= love.graphics.newImage("images/ship/shipLandPlayer.png")		--Ship with player inside
 	images.playerInShipNoGear	= love.graphics.newImage("images/ship/shipLandPlayerNoGear.png")--Ship with player inside and no landing gears
+	images.shipInSpace			= love.graphics.newImage("images/ship/shipSpace.png")			--Ship in space
 
 	--↓ Monster images
 	images.darkElf 				= love.graphics.newImage("images/monster/darkElf.png")			--Dark elf monster

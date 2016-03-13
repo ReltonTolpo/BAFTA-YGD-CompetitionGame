@@ -19,12 +19,14 @@ function space.draw()
 
     love.graphics.setBackgroundColor(0, 0, 0)
 
-    if(space.dayTime==0)then
+    if(space.dayTime==0 and player.onPlanet == true)then
         space.drawStars()
         love.graphics.draw(images.moon, space.weatherX, space.weatherY, 0, 2, 2)
     elseif(space.dayTime==1)then
         love.graphics.setColor(255, 255, 0)
         love.graphics.draw(images.sun, space.weatherX, space.weatherY, 0, 10, 10)
+    elseif(player.onPlanet == false)then
+        space.drawStars()
     end
 
 end
