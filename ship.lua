@@ -155,8 +155,8 @@ function UPDATE_SHIP(dt)
 		rampy = rampy + 0.25
 	 --end
 	    if rampy > 589 and rampx > 389 then
-   rampy = 590
-   rampx = 390
+		    rampy = 590
+		    rampx = 390
 	    end
 	end
 
@@ -166,15 +166,4 @@ function DRAW_SHIP()
 
 	draw()
 
-end 
-
-function liftOff()
-
-	if liftoff == true then
-		shipy = shipy - 0.5
-		shipx = shipx + 1
-	end
-
 end
-
-
