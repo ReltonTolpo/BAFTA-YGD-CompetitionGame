@@ -4,7 +4,8 @@ require "planet"
 
 function monster.load()
 
-	--TODO Logic Code
+	monster.x = 0
+	monster.y = 0
 	
 end
 

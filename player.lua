@@ -146,13 +146,13 @@ function player.update(dt)
 		currentPlanet = 1
 	end
 
-	if player.moving == true then
+	if player.moving == true and player.canMove == true then
 		if player.y >= player.currentGround - 120 then
 			sound.walking_sfx:play()
 		else
 			sound.walking_sfx:pause()
 		end
-	else
+	elseif player.moving == false or player.active == false then
 		sound.walking_sfx:pause()
 	end
 
@@ -193,8 +193,8 @@ function UPDATE_PLAYER(dt)
 
 	player.physics(dt)
 	if player.canMove == true then
-	player.update(dt)
-end
+		player.update(dt)
+	end
 	player.boundary()
 
 end

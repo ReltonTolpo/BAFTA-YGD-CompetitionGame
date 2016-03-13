@@ -19,7 +19,7 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
-	speed = 20
+	speed = 10
 
 	local smoke = images.smoke
 	local fire = images.fire
@@ -47,15 +47,16 @@ function update(dt)
 	n = 0
 	if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false then
 		player.canMove = false
-		 player.x = 350
-		 player.hero = player.rightPlayer
-	     animation1 = true
+		player.x = 350
+		player.hero = player.rightPlayer
+	    animation1 = true
 	elseif love.keyboard.isDown('e') and shipActive == true then
 		ship = images.ship
 
 		player.x = 100
 		player.playerExists = true
 		player.doGravity = true
+		player.canMove = true
 		smokeActive = false
 		shipActive = false
 		playerOverShip = false
@@ -71,6 +72,7 @@ function update(dt)
 		liftoff = true
 		shipActive = false
 		smokeActive = false
+		player.canMove = false
 	end
 
 end
@@ -133,12 +135,35 @@ function playerIntoShip() --Animations for player getting into ship
 		player.x = player.x - 0.5
 		player.y = player.y - 5
 		if player.x < 300 then
-	   		player.canMove = true
 			player.playerExists = false
 		   	ship = images.playerInShip
 		   	animation3 = false
 		   	smokeActive = true
 	    end
+	end
+
+end
+
+function boundary()
+
+	if shipx < 0 then
+		shipx = 0
+		shipxvel = 0
+	end
+
+	if shipx > 1180 then
+		shipx = 1180
+		shipxvel = 0
+	end
+
+	if shipy < 0 then
+		shipy = 0
+		shipyvel = 0
+	end
+
+	if shipy > 730 then
+		shipy = 730
+		shipyvel = 0
 	end
 
 end
@@ -152,6 +177,7 @@ function liftOff()
 	if shipy < 0 and player.onPlanet == true then
 		liftoff = false
 		player.onPlanet = false
+		player.canMove = false
 		ship = images.shipInSpace
 		shipy = 600
 		shipx = 500
@@ -196,6 +222,7 @@ function UPDATE_SHIP(dt)
 	psystem2:update(dt)
 	update(dt)
 	playerIntoShip()
+	boundary()
 	liftOff()
 	shipPhysics(dt)
 	shipMovement(dt)
