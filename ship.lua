@@ -8,6 +8,8 @@ function ship.load()
 	ship = images.ship
 	rampx = 350
 	rampy = 550
+	shipxvel = 1
+	shipyvel = 1
 	animation4 = true
 	animation1 = false
     animation2 = false
@@ -17,6 +19,7 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
+	speed = 1250
 
 	local smoke = images.smoke
 	local fire = images.fire
@@ -144,6 +147,7 @@ function liftOff()
 
 	if liftoff == true then
 		shipy = shipy - 3
+		shipx = shipx + 1
 	end
 	if shipy < 0 and player.onPlanet == true then
 		liftoff = false
@@ -155,10 +159,33 @@ function liftOff()
 	
 end
 
+function shipPhysics()
+
+	if player.onPlanet == false then
+		shipx = shipx + xvel
+		shipy = shipy + yvel
+	end
+
+end
+
 function shipMovement(dt)
 
 	if player.onPlanet == false then
+		if love.keyboard.isDown('d') and player.dead == false then
+			shipxvel = shipxvel + speed * dt
+		end
 
+		if love.keyboard.isDown('a') and player.dead == false then
+			shipxvel = shipxvel - speed * dt
+		end
+
+		if love.keyboard.isDown('w') and player.dead == false then
+			shipyvel = shipyvel - speed * dt
+		end
+
+		if love.keyboard.isDown('s') and player.dead == false then
+			shipyvel = shipyvel + speed * dt
+		end
 	end
 
 end
@@ -170,6 +197,8 @@ function UPDATE_SHIP(dt)
 	update(dt)
 	playerIntoShip()
 	liftOff()
+	shipPhysics(dt)
+	shipMovement(dt)
 	if shipActive == true then
 	--if animation4 == true then
 		rampx = rampx + 0.25
