@@ -25,11 +25,11 @@ function ship.load()
 	local fire = images.fire
 
  
-	psystem1 = love.graphics.newParticleSystem(smoke, 64)
-	psystem1:setParticleLifetime(2, 30) -- Particles live at least 2s and at most 5s.
-	psystem1:setEmissionRate(2000)
+	psystem1 = love.graphics.newParticleSystem(smoke, 70)
+	psystem1:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
+	psystem1:setEmissionRate(200)
 	psystem1:setSizeVariation(1)
-	psystem1:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
+	psystem1:setLinearAcceleration(-20, -10, -20, 10) -- Random movement in all directions.
 	psystem1:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
 
 	psystem2 = love.graphics.newParticleSystem(fire, 100)
@@ -172,7 +172,7 @@ function liftOff()
 
 	if liftoff == true then
 		shipy = shipy - 3
-		shipx = shipx + 1
+		shipx = shipx + 2
 	end
 	if shipy < 0 and player.onPlanet == true then
 		liftoff = false
