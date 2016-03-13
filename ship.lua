@@ -16,7 +16,7 @@ function ship.load()
     smokeActive = false
     shipx = 50
     shipy = 350
-liftoff = false
+	liftoff = false
 
 	local smoke = images.smoke
 	local fire = images.fire
@@ -85,6 +85,7 @@ function draw()
 	if liftoff == true then
 		love.graphics.draw(psystem2,shipx+160,shipy+140)
   	    love.graphics.draw(psystem2,shipx+160,shipy+145)
+  	    ship = images.playerInShipNoGear
 	end
 
 	if smokeActive == true then
