@@ -155,6 +155,14 @@ function liftOff()
 	
 end
 
+function shipMovement(dt)
+
+	if player.onPlanet == false then
+
+	end
+
+end
+
 function UPDATE_SHIP(dt)
 	
 	psystem1:update(dt)
