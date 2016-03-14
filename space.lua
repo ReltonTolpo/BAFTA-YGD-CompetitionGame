@@ -4,7 +4,7 @@ local stars = nil
 
 function space.load()
 
-    space.starNum = love.math.random(60, 200) 
+    space.starNum = love.math.random(600, 800) 
     space.starSize = 10
     space.starXPosition = 100
     space.starYPosition = 100
@@ -40,8 +40,8 @@ local function createStars()
         for i = 1, space.starNum do
             stars[i] = {
                 Size = love.math.random(1, 10),
-                XPosition = love.math.random(1, 1200),
-                YPosition = love.math.random(1, 750),
+                XPosition = love.math.random(-2400, 2400),
+                YPosition = love.math.random(-1500, 1500),
             }
         end
     end
