@@ -12,6 +12,8 @@ function space.load()
     space.weatherX = 0
     space.weatherY = 150
     space.orbitSpeed = love.math.random(0.01, 0.1)
+    space.starX = 0
+    space.starY = 0
 
 end
 
@@ -51,6 +53,8 @@ function space.drawStars()
     createStars()
     for i, star in ipairs(stars) do
         love.graphics.setColor(255, 255, 255)
+          star.XPosition = star.XPosition + space.starX
+          star.YPosition = star.YPosition + space.starY
         love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
     end
 
@@ -59,6 +63,7 @@ end
 function UPDATE_SPACE(dt)
 
     --TODO LOGIC CODE
+
 
 end
 

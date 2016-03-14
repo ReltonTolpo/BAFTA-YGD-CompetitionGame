@@ -1,6 +1,7 @@
 ship = {}
 require "player"
 require "images"
+require "space"
 
 function ship.load()
 
@@ -20,6 +21,8 @@ function ship.load()
     shipy = 350
 	liftoff = false
 	speed = 10
+	Xscroll = 0
+    Yscroll = 0
 
 	local smoke = images.smoke
 	local fire = images.fire
@@ -74,6 +77,14 @@ function update(dt)
 		smokeActive = false
 		player.canMove = false
 	end
+	
+	if love.keyboard.isDown('p') then
+		liftoff = true
+		shipActive = false
+		smokeActive = false
+		player.canMove = false
+	end
+
 
 end
 
@@ -84,7 +95,7 @@ function draw()
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
-		love.graphics.draw(ship, shipx, shipy, 0, 1, 1)
+		love.graphics.draw(ship, 350, 600, 0, 1, 1)
 	end
 	
 	if shipActive == true then
@@ -149,21 +160,25 @@ function boundary()
 	if shipx < 0 then
 		shipx = 0
 		shipxvel = 0
+		--Xscroll = 0
 	end
 
 	if shipx > 1180 then
 		shipx = 1180
 		shipxvel = 0
+	--	Xscroll = 1180
 	end
 
 	if shipy < 0 then
 		shipy = 0
 		shipyvel = 0
+		--Yscroll = 0
 	end
 
 	if shipy > 730 then
 		shipy = 730
 		shipyvel = 0
+	--	Yscroll = 730
 	end
 
 end
@@ -190,6 +205,8 @@ function shipPhysics()
 	if player.onPlanet == false then
 		shipx = shipx + shipxvel
 		shipy = shipy + shipyvel
+	--	Xscroll = shipx + shipxvel
+	--	Yscroll = shipy + shipyvel
 	end
 
 end
@@ -198,26 +215,39 @@ function shipMovement(dt)
 
 	if player.onPlanet == false then
 		if love.keyboard.isDown('d') and player.dead == false then
-			shipxvel = shipxvel + speed * dt
+			 shipxvel = shipxvel + speed * dt
+			 Xscroll = 1
 		end
 
 		if love.keyboard.isDown('a') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
+			 Xscroll = -1
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
 			shipyvel = shipyvel - speed * dt
+			Yscroll = 1
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
 			shipyvel = shipyvel + speed * dt
+				Yscroll = - 1
 		end
+
+		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
+			else
+							 Xscroll = 0
+							 				Yscroll = 0
+			end
 	end
 
 end
 
 function UPDATE_SHIP(dt)
 	
+   space.starX = Xscroll
+    space.starY = Yscroll
+
 	psystem1:update(dt)
 	psystem2:update(dt)
 	update(dt)
