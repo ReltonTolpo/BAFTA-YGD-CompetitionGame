@@ -95,7 +95,7 @@ function draw()
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
-		love.graphics.draw(ship, 350, 600, 0, 1, 1)
+		love.graphics.draw(ship, 500, 600, 0, 1, 1)
 	end
 	
 	if shipActive == true then
@@ -216,22 +216,22 @@ function shipMovement(dt)
 	if player.onPlanet == false then
 		if love.keyboard.isDown('d') and player.dead == false then
 			 shipxvel = shipxvel + speed * dt
-			 Xscroll = 1
+			 Xscroll = 2
 		end
 
 		if love.keyboard.isDown('a') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
-			 Xscroll = -1
+			 Xscroll = -2
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
 			shipyvel = shipyvel - speed * dt
-			Yscroll = 1
+			Yscroll = 2
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
 			shipyvel = shipyvel + speed * dt
-				Yscroll = - 1
+				Yscroll = - 2
 		end
 
 		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
