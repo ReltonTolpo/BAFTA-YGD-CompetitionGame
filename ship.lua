@@ -214,12 +214,12 @@ end
 function shipMovement(dt)
 
 	if player.onPlanet == false then
-		if love.keyboard.isDown('d') and player.dead == false then
+		if love.keyboard.isDown('a') and player.dead == false then
 			 shipxvel = shipxvel + speed * dt
 			 Xscroll = 2
 		end
 
-		if love.keyboard.isDown('a') and player.dead == false then
+		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
 			 Xscroll = -2
 		end
