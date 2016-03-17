@@ -5,8 +5,7 @@ function planet.load()
 
 
 	currentPlanet = 1
-	planetNum = 3 --> we may have to set a default number of planets as the for loop will not accept a variable
-	--planetNumStuff = planetNum + 1
+	planetNum = 3
 
 	planetArray = {{}}
 	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}-- Planet R, Planet G, Planet B, gravity, orbitTime

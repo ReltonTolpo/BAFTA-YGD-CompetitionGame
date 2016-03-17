@@ -240,7 +240,7 @@ function shipMovement(dt)
 							 				Yscroll = 0
 			end
 	end
-
+	
 end
 
 function UPDATE_SHIP(dt)

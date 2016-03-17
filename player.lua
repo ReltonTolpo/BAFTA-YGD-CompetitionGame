@@ -156,6 +156,7 @@ function player.update(dt)
 		sound.walking_sfx:pause()
 	end
 
+	player.currentGravity = planetArray[currentPlanet][4]
 	player.weight = player.currentGravity * player.mass
 
 end
