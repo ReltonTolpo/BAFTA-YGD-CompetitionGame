@@ -36,7 +36,7 @@ function ship.load()
 	psystem1:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
 
 	psystem2 = love.graphics.newParticleSystem(fire, 100)
-	psystem2:setParticleLifetime(2, 2) -- Particles live at least 2s and at most 5s.
+	psystem2:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
 	psystem2:setEmissionRate(20)
 	psystem2:setSizeVariation(0)
 	psystem2:setLinearAcceleration(-20, -5, -20, 5) -- Random movement in all directions.
