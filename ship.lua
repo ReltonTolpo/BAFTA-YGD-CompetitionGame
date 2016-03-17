@@ -247,7 +247,7 @@ end
 
 function UPDATE_SHIP(dt)
 	
-   space.starX = Xscroll
+    space.starX = Xscroll
     space.starY = Yscroll
 
 	psystem1:update(dt)
