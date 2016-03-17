@@ -232,14 +232,15 @@ function shipMovement(dt)
 
 		if love.keyboard.isDown('s') and player.dead == false then
 			shipyvel = shipyvel + speed * dt
-				Yscroll = - 2
+			Yscroll = - 2
 		end
 
 		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
-			else
-							 Xscroll = 0
-							 				Yscroll = 0
-			end
+		
+		else
+			Xscroll = 0
+			Yscroll = 0
+		end
 	end
 	
 end
