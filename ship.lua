@@ -95,6 +95,7 @@ function draw()
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
+			--		 love.graphics.rotate( 70 )
 		love.graphics.draw(ship, 500, 600, 0, 1, 1)
 	end
 	
