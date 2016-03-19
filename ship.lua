@@ -237,6 +237,8 @@ function shipMovement(dt)
 
 		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
 		
+			--TODO Logic Code
+
 		else
 			Xscroll = 0
 			Yscroll = 0
