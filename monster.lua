@@ -62,7 +62,7 @@ function monster.draw()
 	--love.graphics.draw(monsterImage, monster.x, monster.y, 0, 2, 2)
 
 	for l = 1, monster.amount do
-		love.graphics.draw(monsterArray[l][10],monsterArray[l][1] , monsterArray[l][2], 0, 2, 2)  
+	--	love.graphics.draw(monsterArray[l][10],monsterArray[l][1] , monsterArray[l][2], 0, 2, 2)  
 	end
 end
 
