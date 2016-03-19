@@ -20,31 +20,32 @@ end
 
 function monster.update(dt)
 
-	--TODO Logic Code
-		for p = 1, monster.amount do
+	for p = 1, monster.amount do
 		if monsterArray[p][2] > 600 then
-	    	monsterArray[p][2] = 600    	
-	end
+		   	monsterArray[p][2] = 600    	
+		end
 		if love.math.random(1,5) == 1 then -- movement amount
 			monsterArray[p][3] = love.math.random(1,2)
 		end
-		end
+	end
+
 end
 
 function monster.movement(dt)
-		for p = 1, monster.amount do
-	if monsterArray[p][3] == 1 then
-		monsterArray[p][1] = monsterArray[p][1]+ monsterArray[p][7] * dt
-	end
+	
+	for p = 1, monster.amount do
+		if monsterArray[p][3] == 1 then
+			monsterArray[p][1] = monsterArray[p][1]+ monsterArray[p][7] * dt
+		end
 
-	if monster.randomMove == 2 then
-		monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][7] * dt
-	end
+		if monster.randomMove == 2 then
+			monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][7] * dt
+		end
 
-	if monster.randomMove == 1 then
-		monsterArray[p][2] = monsterArray[p][2] + 5 * dt
+		if monster.randomMove == 1 then
+			monsterArray[p][2] = monsterArray[p][2] + 5 * dt
+		end
 	end
-end
 
 end 
 
@@ -64,6 +65,7 @@ function monster.draw()
 	for l = 1, monster.amount do
 	--	love.graphics.draw(monsterArray[l][10],monsterArray[l][1] , monsterArray[l][2], 0, 2, 2)  
 	end
+	
 end
 
 function UPDATE_MONSTER(dt)
