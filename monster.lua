@@ -25,6 +25,7 @@ end
 
 function monster.movement(dt)
 
+
 	if monster.randomMove == 1 then
 		monster.x = monster.x + monster.speed * dt
 	end
