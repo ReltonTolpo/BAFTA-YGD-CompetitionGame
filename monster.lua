@@ -12,12 +12,12 @@ function monster.load()
 	monsterImage = images.darkElf
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(10, 50), love.math.random(1, 5), 1, images.darkElf}
+	monsterArray[1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(1, 1), love.math.random(1, 5), 1, images.darkElf}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(10, 50), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf}
+		monsterArray[#monsterArray + 1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(10, 100), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf}
 		--Monster X 1, Monster Y 2, Random Move 3, Random Jump 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9
 	end
 	
@@ -25,21 +25,31 @@ end
 
 function monster.update(dt)
 
-	for p = 1, monster.amount do
+	for m = 1, monster.amount do
 		if monster.randomNumber == 1 then
-			monsterArray[p][3] = love.math.random(1, 2)
+			monsterArray[m][3] = love.math.random(1, 2)
 		end
-		monster.randomNumber = love.math.random(1, 2)
+		monster.randomNumber = love.math.random(1, 200)
 	end
 	
 end
 
 function monster.boundary(dt)
 
-	for p = 1, monster.amount do
-		if monsterArray[p][2] > 450 then
-			monsterArray[p][2] = 450    	
+	for n = 1, monster.amount do
+
+		if monsterArray[n][2] > 450 then
+			monsterArray[n][2] = 450    	
 		end
+
+		if monsterArray[n][1] < -50 then
+			monsterArray[n][1] = 1150
+		end
+
+		if monsterArray[n][1] > 1200 then
+			monsterArray[n][1] = -30
+		end
+
 	end
 
 end
@@ -48,11 +58,11 @@ function monster.movement(dt)
 	
 	for p = 1, monster.amount do
 		if monsterArray[p][3] == 1 then
-			monsterArray[p][1] = monsterArray[p][1] + monsterArray[p][6] * dt
+			monsterArray[p][1] = monsterArray[p][1] + monsterArray[p][6]
 		end
 
-		if monster.randomMove == 2 then
-			monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][6] * dt
+		if monsterArray[p][3] == 2 then
+			monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][6]
 		end
 
 		if monster.randomMove == 1 then
@@ -60,7 +70,13 @@ function monster.movement(dt)
 		end
 	end
 
-end 
+end
+
+function monster.playerTracker(dt)
+
+	--TODO Logic Code
+
+end
 
 function monster.physics(dt)
 

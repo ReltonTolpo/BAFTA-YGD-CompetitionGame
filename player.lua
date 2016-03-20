@@ -46,13 +46,12 @@ function player.draw()
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = ", 30, 30, 0, 3, 3)
 	love.graphics.print(player.health, 330, 30, 0, 3, 3)
-	--love.graphics.print("Die HERE", 650, 500, 0, 5, 5)
+	love.graphics.print("Die HERE", 650, 500, 0, 5, 5)
 
 	if player.dead == true then
 		love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
 	end
-
 
 	if love.keyboard.isDown('i') then
 		love.graphics.setColor(200, 80, 80)
