@@ -89,7 +89,8 @@ function monster.draw()
 
 	if player.onPlanet == true then
 		for b = 1, monster.amount do
-			love.graphics.draw(monsterArray[b][10], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
+			love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
+			--love.graphics.draw()
 		end
 	end
 	
