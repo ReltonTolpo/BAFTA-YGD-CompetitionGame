@@ -1,5 +1,4 @@
 monster = {}
-require "player"
 require "planet"
 require "images"
 
@@ -88,10 +87,10 @@ end
 
 function monster.draw()
 
-	love.graphics.draw(monsterArray[1][9], monsterArray[1][1], monsterArray[1][2], 0, 2, 2)  
-
-	for l = 1, monster.amount do
-		--love.graphics.draw(monsterArray[l][10], monsterArray[l][1], monsterArray[l][2], 0, 2, 2)  
+	if player.onPlanet == true then
+		for b = 1, monster.amount do
+			love.graphics.draw(monsterArray[b][10], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
+		end
 	end
 	
 end

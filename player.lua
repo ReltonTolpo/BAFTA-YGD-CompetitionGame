@@ -3,6 +3,7 @@ require "space"
 require "planet"
 require "sound"
 require "images"
+require "monster"
 
 function player.load()
 
@@ -46,7 +47,6 @@ function player.draw()
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = ", 30, 30, 0, 3, 3)
 	love.graphics.print(player.health, 330, 30, 0, 3, 3)
-	love.graphics.print("Die HERE", 650, 500, 0, 5, 5)
 
 	if player.dead == true then
 		love.graphics.setColor(200, 80, 80)
@@ -58,7 +58,6 @@ function player.draw()
 		love.graphics.print("You have " .. inventoryArray[1] .. " Gravitons and are carrying a " .. inventoryArray[2], 300, 300, 0, 2, 2)
 		
 	end
-
 
 end
 
@@ -101,8 +100,10 @@ function player.update(dt)
 		player.moving = true
 	end
 
-	if player.x > 600 and player.x < 900 and player.y > 400 then
-		player.health = player.health - 1
+	for i = 1, monster.amount do --Monster deals damage to player here
+		if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
+			player.health = player.health - 1
+		end
 	end
 
 	if player.health < 0 then
