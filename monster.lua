@@ -4,7 +4,7 @@ require "images"
 
 function monster.load()
 
-	monster.amount = love.math.random(1, 1)
+	monster.amount = love.math.random(1, 3)
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
@@ -16,7 +16,7 @@ function monster.load()
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(10, 100), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf}
+		monsterArray[#monsterArray + 1] = {love.math.random(100, 500), love.math.random(0, 1200), 0, 0, love.math.random(5, 20), love.math.random(1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf}
 		--Monster X 1, Monster Y 2, Random Move 3, Random Jump 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9
 	end
 	
@@ -90,7 +90,6 @@ function monster.draw()
 	if player.onPlanet == true then
 		for b = 1, monster.amount do
 			love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
-			--love.graphics.draw()
 		end
 	end
 	

@@ -222,22 +222,22 @@ end
 function shipMovement(dt)
 
 	if player.onPlanet == false then
-		if love.keyboard.isDown('a') and player.dead == false then
+			if love.keyboard.isDown('a') and player.dead == false then
 			 shipxvel = shipxvel + speed * dt
 			 Xscroll = 2
-			 if rotation > -math.pi/2 then
 			 rotation = rotation -0.01
-			 else rotation = rotation -0.01
+			 if rotation < -math.pi/2 then
+			 	rotation = -math.pi/2
 			end
 		end
 
 		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
 			 Xscroll = -2
-			 	if rotation > -math.pi/2 then
 			  rotation = rotation +0.01
-			    else rotation = rotation +0.01
-			end
+			  if rotation > math.pi/2 then
+			  	 rotation = math.pi/2
+			  end
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
@@ -247,6 +247,13 @@ function shipMovement(dt)
 			 rotation = rotation - 0.01
 			else rotation = rotation + 0.01
 			end
+		end
+
+		if rotation > math.pi then
+			rotation = math.pi
+		end
+				if rotation < -math.pi then
+			rotation = -math.pi
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
