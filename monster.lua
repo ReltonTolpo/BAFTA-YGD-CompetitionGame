@@ -26,7 +26,7 @@ end
 function monster.update(dt)
 
 	for p = 1, monster.amount do
-		if monster.randomNumber == 1 then -- movement amount
+		if monster.randomNumber == 1 then
 			monsterArray[p][3] = love.math.random(1, 2)
 		end
 		monster.randomNumber = love.math.random(1, 2)
@@ -36,16 +36,10 @@ end
 
 function monster.boundary(dt)
 
-<<<<<<< HEAD
-
-	if monster.randomMove == 1 then
-		monster.x = monster.x + monster.speed * dt
-=======
 	for p = 1, monster.amount do
 		if monsterArray[p][2] > 450 then
 			monsterArray[p][2] = 450    	
 		end
->>>>>>> origin/master
 	end
 
 end
@@ -90,8 +84,8 @@ function UPDATE_MONSTER(dt)
 
 	monster.update(dt)
 	monster.movement(dt)
-	monster.physics(dt)
 	monster.boundary(dt)
+	monster.physics(dt)
 
 end
 
