@@ -30,6 +30,8 @@ function images.load()
 	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			--Smoke
 	images.fire					= love.graphics.newImage("images/particles/fire.png") 			--Fire
 
+	--↓ Planet images
+	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 			--planet
 end
 
 function images.update()

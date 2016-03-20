@@ -1,39 +1,32 @@
 planet = {}
 require "space"
+require "images"
 
 function planet.load()
-
+	planet = images.planet
+	onPlanet = true
 
 	currentPlanet = 1
-	planetNum = 3
+	planetNum = 30
 
 	planetArray = {{}}
-	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}-- Planet R, Planet G, Planet B, gravity, orbitTime
+	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255)}-- Planet R 1, Planet G 2, Planet B 3, gravity 4, orbitTime 5, x 6,y 7, color 8																		
 
 	for i = 1, planetNum do
-		planetArray[#planetArray + 1] = {love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1)}
+		planetArray[#planetArray + 1] = {love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1),love.math.random(-2400,2400) ,love.math.random(-1500, 1500), love.math.random(0, 255)}
 	end
 
 end
 
 function planet.draw()
 
-	if player.onPlanet == true then
-		love.graphics.setBackgroundColor(planetArray[currentPlanet][1], planetArray[currentPlanet][2], planetArray[currentPlanet][3])
-		love.graphics.setColor(82, 46, 23)
-		love.graphics.rectangle("fill", 0, 560, 1200, 600) --> Dirt/Earth
-		love.graphics.setColor(35, 115, 31)
-		love.graphics.rectangle("fill", 0, 560, 1200, 30) --> Grass
-	elseif player.onPlanet == false then
-		love.graphics.setBackgroundColor(0, 0, 0)
-		space.dayTime = 0
-	end
 
 end
 
+
 function UPDATE_PLANET(dt)
 
-	planet.draw()
+--	planet.draw()
 
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
@@ -57,6 +50,20 @@ end
 
 function DRAW_PLANET()
 
-	planet.draw()
-
+	--planet.draw()
+	if player.onPlanet == true then
+		love.graphics.setBackgroundColor(planetArray[currentPlanet][1], planetArray[currentPlanet][2], planetArray[currentPlanet][3])
+		love.graphics.setColor(82, 46, 23)
+		love.graphics.rectangle("fill", 0, 560, 1200, 600) --> Dirt/Earth
+		love.graphics.setColor(35, 115, 31)
+		love.graphics.rectangle("fill", 0, 560, 1200, 30) --> Grass
+	elseif player.onPlanet == false then
+		love.graphics.setBackgroundColor(0, 0, 0)
+		space.dayTime = 0
+		for i = 1, planetNum do
+			planetArray[i][6] = planetArray[i][6] + space.starX
+						planetArray[i][7] = planetArray[i][7] + space.starY
+		love.graphics.draw(planet,planetArray[i][6] , planetArray[i][7],  planetArray[i][8], 2, 2)
+	end
+	end
 end
