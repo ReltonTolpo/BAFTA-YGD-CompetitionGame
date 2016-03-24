@@ -10,10 +10,10 @@ function planet.load()
 	planetNum = 20
 
 	planetArray = {{}}
-	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-2, 2)}-- Planet R 1, Planet G 2, Planet B 3, gravity 4, orbitTime 5, x 6,y 7, colorr 8, colorg 9, colorb 10, rotation 11, sizex 12, sizey 13, 																	
+	planetArray[1] = {love.math.random(0, 127), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1)}-- Planet R 1, Planet G 2, Planet B 3, gravity 4, orbitTime 5, x 6,y 7, colorr 8, colorg 9, colorb 10, rotation 11, sizex 12, sizey 13, 																	
 
 	for i = 1, planetNum do
-		planetArray[#planetArray + 1] = {love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1),love.math.random(-2400,2400) ,love.math.random(-1500, 1500), love.math.random(0,255 ), love.math.random(0, 255),love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-2, 2) }
+		planetArray[#planetArray + 1] = {love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), love.math.random(1, 50)/15, love.math.random(0.01, 0.1),love.math.random(-2400,2400) ,love.math.random(-1500, 1500), love.math.random(0,255 ), love.math.random(0, 255),love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1) }
 	end
 
 end

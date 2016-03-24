@@ -2,6 +2,7 @@ ship = {}
 require "player"
 require "images"
 require "space"
+require "planet"
 
 function ship.load()
 
@@ -49,60 +50,62 @@ end
 function update(dt)
 
 	n = 0
-	if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false then
-		player.canMove = false
-		player.x = 350
-		player.hero = player.rightPlayer
-	    animation1 = true
-	elseif love.keyboard.isDown('e') and shipActive == true then
-		ship = images.ship
+	if player.onPlanet == true then
+		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false then
+			player.canMove = false
+			player.x = 350
+			player.hero = player.rightPlayer
+		    animation1 = true
+		elseif love.keyboard.isDown('e') and shipActive == true then
+			ship = images.ship
 
-		player.x = 100
-		player.playerExists = true
-		player.doGravity = true
-		player.canMove = true
-		smokeActive = false
-		shipActive = false
-		playerOverShip = false
-		love.timer.sleep(0.1)
-		rampx = 350
-		rampy = 550
-	    shipx = 50
-  	    shipy = 350
-    	liftoff = false
-	end
+			player.x = 100
+			player.playerExists = true
+			player.doGravity = true
+			player.canMove = true
+			smokeActive = false
+			shipActive = false
+			playerOverShip = false
+			love.timer.sleep(0.1)
+			rampx = 350
+			rampy = 550
+		    shipx = 50
+	  	    shipy = 350
+	    	liftoff = false
+		end
 
-	if love.keyboard.isDown('space') and smokeActive == true then
-		liftoff = true
-		shipActive = false
-		smokeActive = false
-		player.canMove = false
+		if love.keyboard.isDown('space') and smokeActive == true then
+			liftoff = true
+			shipActive = false
+			smokeActive = false
+			player.canMove = false
+		end
+		
+		if love.keyboard.isDown('p') then
+			liftoff = true
+			shipActive = false
+			smokeActive = false
+			player.canMove = false
+		end
 	end
-	
-	if love.keyboard.isDown('p') then
-		liftoff = true
-		shipActive = false
-		smokeActive = false
-		player.canMove = false
-	end
-
 
 end
 
 function draw()
-		local width = love.graphics.getWidth()
+
+	local width = love.graphics.getWidth()
 	local height = love.graphics.getHeight()
+
 	love.graphics.translate(width/2, height/2)
-		love.graphics.rotate(rotation)
+	love.graphics.rotate(rotation)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
-			--		 love.graphics.rotate( 70 )
+			--love.graphics.rotate( 70 )
 		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, 0, 1, 1)
-
 	
 	end
 	
@@ -188,7 +191,15 @@ function boundary()
 		shipyvel = 0
 	--	Yscroll = 730
 	end
+	if player.onPlanet == false then
+		for i = 1, planetNum do
+			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12]and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12]then
 
+				--TODO Logic Code
+
+			end
+		end
+	end
 end
 
 function liftOff()

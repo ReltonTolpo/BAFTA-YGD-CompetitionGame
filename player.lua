@@ -149,14 +149,14 @@ function player.update(dt)
 		player.y = player.y + 10
 	end
 
-	if love.keyboard.isDown('c') and player.dead == false then
+	--[[if love.keyboard.isDown('c') and player.dead == false then
 		currentPlanet = currentPlanet + 1
 		love.timer.sleep(0.5)
 	end
 
 	if currentPlanet == 4 then
 		currentPlanet = 1
-	end
+	end --]]
 
 	if player.moving == true and player.canMove == true then
 		if player.y >= player.currentGround - 120 then
