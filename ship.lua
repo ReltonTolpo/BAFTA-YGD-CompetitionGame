@@ -193,13 +193,12 @@ function boundary()
 	end
 	if player.onPlanet == false then
 		for i = 1, planetNum do
-			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12]and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12]then
-
-				--TODO Logic Code
-
+			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
+				print("Debugger")
 			end
 		end
 	end
+
 end
 
 function liftOff()
@@ -213,8 +212,6 @@ function liftOff()
 		player.onPlanet = false
 		player.canMove = false
 		ship = images.shipInSpace
-
-
 	end
 	
 end

@@ -10,13 +10,13 @@ function monster.load()
 	monster.randomNumber = 1
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100)}
+	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), love.math.random(20, 100)}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100)}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9, Monster Health 10
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), love.math.random(20, 100)}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9, Monster Health 10, Monster Max Health 11
 	end
 	
 end
@@ -24,17 +24,21 @@ end
 function monster.update(dt)
 
 	for m = 1, monster.amount do
-		if monster.randomNumber == 1 then
-			monsterArray[m][3] = love.math.random(1, 4)
+		if player.onPlanet == true then
+			if monster.randomNumber == 1 then
+				monsterArray[m][3] = love.math.random(1, 4)
+			end
+			if space.dayTime == 1 then
+				monsterArray[m][2] = -500
+			end
+			if monsterArray[m][10] <= 0 then
+				monsterArray[m][2] = -500
+			end
+			if space.dayTime == 0 then
+				monsterArray[m][2] = 450
+			end
+			monster.randomNumber = love.math.random(1, 200)
 		end
-		if space.dayTime == 1 and player.onPlanet == true then
-			monsterArray[m][10] = monsterArray[m][10] - 1
-			monsterArray[m][2] = -20
-		elseif space.dayTime == 0 and player.onPlanet == true and monsterArray[m][10] < 0 then
-			monsterArray[m][10] = monsterArray[m][10] + 1
-			monsterArray[m][2] = 450
-		end
-		monster.randomNumber = love.math.random(1, 200)
 	end
 	
 end
@@ -46,11 +50,9 @@ function monster.boundary(dt)
 		if monsterArray[n][2] > 450 then
 			monsterArray[n][2] = 450    	
 		end
-
 		if monsterArray[n][1] < -50 then
 			monsterArray[n][1] = 1150
 		end
-
 		if monsterArray[n][1] > 1200 then
 			monsterArray[n][1] = -30
 		end
@@ -118,7 +120,7 @@ end
 function monster.draw()
 
 	for b = 1, monster.amount do
-		if player.onPlanet == true and monsterArray[b][10] > 0 then
+		if player.onPlanet == true and monsterArray[b][10] > 0 and space.dayTime == 0 then
 			love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
 		end
 	end
