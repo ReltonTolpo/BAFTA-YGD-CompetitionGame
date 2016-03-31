@@ -37,9 +37,16 @@ end
 
 function player.draw()
 
-	player.healthColourR = planetArray[currentPlanet][1] - 100
-	player.healthColourG = planetArray[currentPlanet][2] - 100
-	player.healthColourB = planetArray[currentPlanet][3] - 100
+	if space.dayTime == 1 then
+		player.healthColourR = planetArray[currentPlanet][1] - 100
+		player.healthColourG = planetArray[currentPlanet][2] - 100
+		player.healthColourB = planetArray[currentPlanet][3] - 100
+	else
+		player.healthColourR = planetArray[currentPlanet][1] + 100
+		player.healthColourG = planetArray[currentPlanet][2] + 100
+		player.healthColourB = planetArray[currentPlanet][3] + 100
+	end
+	
 
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)

@@ -16,10 +16,6 @@ function space.load()
     space.starY = 0
     local haze = images.haze
 
-
-
-
-
     psystem1 = love.graphics.newParticleSystem(haze, 70)
     psystem1:setParticleLifetime(20, 100) -- Particles live at least 2s and at most 5s.
     psystem1:setEmissionRate(200)
