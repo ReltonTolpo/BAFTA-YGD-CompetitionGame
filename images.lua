@@ -7,13 +7,18 @@ function images.load()
 	images.playerDead 			= love.graphics.newImage("images/player/playerDead.png") 		-- Dead player
 	images.playerSpace 			= love.graphics.newImage("images/player/playerIdleSpace.png") 	-- Player in space
 	images.playerLeft 			= love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
-	images.playerRight 			= love.graphics.newImage("images/player/playerWalkingRight.png") --Player moving right
+	images.playerRight 			= love.graphics.newImage("images/player/playerWalkingRight.png")-- Player moving right
+
+	--↓ Item images
+	images.graviton				= love.graphics.newImage("images/inventory/graviton.png") 			-- Gravitons
+	images.gunBase				= love.graphics.newImage("images/inventory/basicGun.png") 			-- Basic Gun
+	images.ammoBase				= love.graphics.newImage("images/ammo/basicAmmo.png")				-- Basic Ammo
 
 	--↓ Ship images
-	images.ship 		        = love.graphics.newImage("images/ship/shipLand.png")			--Ship without player inside
-	images.playerInShip     	= love.graphics.newImage("images/ship/shipLandPlayer.png")		--Ship with player inside
-	images.playerInShipNoGear	= love.graphics.newImage("images/ship/shipLandPlayerNoGear.png")--Ship with player inside and no landing gears
-	images.shipInSpace			= love.graphics.newImage("images/ship/shipSpace.png")			--Ship in space
+	images.ship 		        = love.graphics.newImage("images/ship/shipLand.png")			-- Ship without player inside
+	images.playerInShip     	= love.graphics.newImage("images/ship/shipLandPlayer.png")		-- Ship with player inside
+	images.playerInShipNoGear	= love.graphics.newImage("images/ship/shipLandPlayerNoGear.png")-- Ship with player inside and no landing gears
+	images.shipInSpace			= love.graphics.newImage("images/ship/shipSpace.png")			-- Ship in space
 
 	--↓ Monster images
 	images.darkElf 				= love.graphics.newImage("images/monster/darkElf/darkElf.png")			--Dark elf monster
@@ -21,16 +26,17 @@ function images.load()
 	images.darkElfLeft			= love.graphics.newImage("images/monster/darkElf/darkElfLeft.png")		--Dark elf monster
 
 	--↓ Weather images
-	images.moon 				= love.graphics.newImage("images/weather/moon.png")				--Moon
-	images.sun 					= love.graphics.newImage("images/weather/sun.png")				--Sun
+	images.moon 				= love.graphics.newImage("images/weather/moon.png")				-- Moon
+	images.sun 					= love.graphics.newImage("images/weather/sun.png")				-- Sun
 
 	--↓ Particle images
-	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			--Smoke
-	images.haze				= love.graphics.newImage("images/particles/haze.png") 			--Haze
-	images.fire					= love.graphics.newImage("images/particles/fire.png") 			--Fire
+	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			-- Smoke
+	images.haze					= love.graphics.newImage("images/particles/haze.png") 			-- Haze
+	images.fire					= love.graphics.newImage("images/particles/fire.png") 			-- Fire
 
 	--↓ Planet images
-	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 			--planet
+	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet
+
 end
 
 function images.update()

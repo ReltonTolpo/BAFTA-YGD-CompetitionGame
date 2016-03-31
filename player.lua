@@ -27,9 +27,15 @@ function player.load()
 	player.doGravity = true
 	player.onPlanet = true
 
+	player.ammoAmount = 30
+	player.ammoX = player.x
+	player.ammoY = player.y
+
 	player.weight = player.currentGravity * player.mass
 
 	hero = images.playerIdle --Starts looking straight
+	currentWeapon = images.gunBase
+	currentAmmo = images.ammoBase
 	
 	inventoryArray = {0, "Sword"} --Number of Gravitons, weapon(1=sword)
 
@@ -156,14 +162,14 @@ function player.update(dt)
 		player.y = player.y + 10
 	end
 
-	--[[if love.keyboard.isDown('c') and player.dead == false then
+	if love.keyboard.isDown('c') and player.dead == false then
 		currentPlanet = currentPlanet + 1
 		love.timer.sleep(0.5)
 	end
 
-	if currentPlanet == 4 then
+	--[[if currentPlanet == 4 then
 		currentPlanet = 1
-	end --]]
+	end]]
 
 	if player.moving == true and player.canMove == true then
 		if player.y >= player.currentGround - 120 then
@@ -177,6 +183,14 @@ function player.update(dt)
 
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.weight = player.currentGravity * player.mass
+
+end
+
+function player.weaponAnime()
+
+	if currentWeapon == images.gunBase and ammoAmount > 0 and love.mouse.isDown(1) then
+		love.graphics.draw(currentAmmo, player.x, player.y, 0, 2, 2)
+	end
 
 end
 
