@@ -194,7 +194,7 @@ function boundary()
 	if player.onPlanet == false then
 		for i = 1, planetNum do
 			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
-				print("Debugger")
+				print("Debugger #2")
 			end
 		end
 	end
@@ -278,9 +278,7 @@ function shipMovement(dt)
 		end
 
 		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
-		
 			--TODO Logic Code
-
 		else
 			Xscroll = 0
 			Yscroll = 0
