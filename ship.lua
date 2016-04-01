@@ -97,7 +97,7 @@ function draw()
 	local height = love.graphics.getHeight()
 
 	love.graphics.translate(width/2, height/2)
-	love.graphics.rotate(rotation)
+	--love.graphics.rotate(rotation)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)
 
@@ -105,7 +105,7 @@ function draw()
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
 			--love.graphics.rotate( 70 )
-		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, 0, 1, 1)
+		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1)
 	
 	end
 	
@@ -230,46 +230,50 @@ end
 function shipMovement(dt)
 
 	if player.onPlanet == false then
-			if love.keyboard.isDown('a') and player.dead == false then
-			 shipxvel = shipxvel + speed * dt
-			 Xscroll = 2
-			 rotation = rotation -0.01
-			 if rotation < -math.pi/2 then
-			 	rotation = -math.pi/2
+		if love.keyboard.isDown('a') and player.dead == false then
+			shipxvel = shipxvel + speed * dt
+			Xscroll = 2
+			rotation = rotation - 0.01
+			if rotation < -math.pi/2 then
+				rotation = -math.pi/2
 			end
 		end
 
 		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
-			 Xscroll = -2
-			  rotation = rotation +0.01
-			  if rotation > math.pi/2 then
-			  	 rotation = math.pi/2
-			  end
+			Xscroll = -2
+			rotation = rotation + 0.01
+			if rotation > math.pi/2 then
+				 rotation = math.pi/2
+			end
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
 			shipyvel = shipyvel - speed * dt
 			Yscroll = 2
+			rotation = 0
 			if rotation > 0 then
-			 rotation = rotation - 0.01
-			else rotation = rotation + 0.01
+				rotation = rotation - 0.01
+			else
+				rotation = rotation + 0.01
 			end
 		end
 
 		if rotation > math.pi then
 			rotation = math.pi
 		end
-				if rotation < -math.pi then
+
+		if rotation < -math.pi then
 			rotation = -math.pi
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
 			shipyvel = shipyvel + speed * dt
 			Yscroll = - 2
-		if rotation > math.pi  then
-			 rotation = rotation - 0.01
-			else rotation = rotation + 0.01
+			if rotation > math.pi  then
+				rotation = rotation - 0.01
+			else
+				rotation = rotation + 0.01
 			end
 		end
 
