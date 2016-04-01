@@ -4,6 +4,7 @@ require "planet"
 require "sound"
 require "images"
 require "monster"
+require "weapon"
 
 function player.load()
 
@@ -52,8 +53,8 @@ function player.draw()
 	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
-	love.graphics.print("Player Health = ", 30, 30, 0, 3, 3)
-	love.graphics.print(player.health, 330, 30, 0, 3, 3)
+	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
+	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 	if player.dead == true then
 		love.graphics.setColor(200, 80, 80)

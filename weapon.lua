@@ -1,11 +1,9 @@
 weapon = {}
 require "space"
 require "planet"
-require "player"
 require "monster"
 require "sound"
 require "images"
-require "ship"
 
 function weapon.load()
 
@@ -13,6 +11,7 @@ function weapon.load()
     weapon.ammoX = player.x
     weapon.ammoY = player.y
     weapon.bulletDirection = "na"
+    weapon.bulletDistance = 300
     weapon.currentAmmo = 1
     weapon.currentWeapon = 1
 
@@ -21,13 +20,44 @@ function weapon.load()
 
 end
 
-function weapon.weaponAnime()
+function weapon.bulletAnime()
 
     if weapon.bulletDirection == "left" then
         if love.mouse.isDown(1) and weapon.ammoAmount > 0 and weapon.currentAmmo == 1 then
             love.graphics.setColor(255, 0, 0)
-            love.graphics.draw(ammoImage, weapon.ammoX, weapon.ammoY, 0, 5, 5)
+            love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
+            for i = 0, weapon.bulletDistance do
+                weapon.ammoX = weapon.ammoX - 10
+            end
         end
+    elseif weapon.bulletDirection == "right" then
+        if love.mouse.isDown(1) and weapon.ammoAmount > 0 and weapon.currentAmmo == 1 then
+            love.graphics.setColor(255, 0, 0)
+            love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
+            for j = 0, weapon.bulletDistance do
+                weapon.ammoX = weapon.ammoX + 10
+            end
+        end
+    end
+
+end
+
+function weapon.heldWeapon()
+
+    if weapon.bulletDirection == "left" then
+        if weapon.currentWeapon == 1 then
+            love.graphics.draw(weaponImage, weapon.ammoX + 50, weapon.ammoY + 50, 0, -5, 5)
+        elseif weapon.currentWeapon == 2 then
+            --TODO LOGIC CODE
+        end
+    elseif weapon.bulletDirection == "right" then
+        if weapon.currentWeapon == 1 then
+            love.graphics.draw(weaponImage, weapon.ammoX + 80, weapon.ammoY + 50, 0, 5, 5)
+        elseif weapon.currentWeapon == 2 then
+            --TODO LOGIC CODE
+        end
+    else
+
     end
 
 end
@@ -62,6 +92,7 @@ end
 function DRAW_WEAPON()
 
     weapon.draw()
-    weapon.weaponAnime()
+    weapon.bulletAnime()
+    weapon.heldWeapon()
 
 end
