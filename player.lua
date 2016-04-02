@@ -131,12 +131,13 @@ function player.update(dt)
 
 		if love.keyboard.isDown('space') then
 			player.health = 100
+			weapon.ammoAmount = 30
 
 			space.load()
+			monster.load()
 			player.load()
 
 			player.dead = false
-			currentPlanet = 1
 		end
 
 	end

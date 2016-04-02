@@ -9,14 +9,16 @@ function monster.load()
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
+	monster.a = true
+
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), love.math.random(20, 100)}
+	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100)}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), love.math.random(20, 100)}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9, Monster Health 10, Monster Max Health 11
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100)}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9, Monster Health 10
 	end
 	
 end
@@ -28,14 +30,18 @@ function monster.update(dt)
 			if monster.randomNumber == 1 then
 				monsterArray[m][3] = love.math.random(1, 4)
 			end
-			if space.dayTime == 1 then
-				monsterArray[m][2] = -500
-			end
 			if monsterArray[m][10] <= 0 then
 				monsterArray[m][2] = -500
 			end
-			if space.dayTime == 0 then
-				monsterArray[m][2] = 450
+			if space.dayTime == 1 then
+				monsterArray[m][2] = -500
+				monster.a = true
+			end
+			if space.dayTime == 0 and monster.a == true then
+				for x = 1, monster.amount do
+					monsterArray[m][2] = 450
+				end
+				monster.a = false
 			end
 			monster.randomNumber = love.math.random(1, 200)
 		end
