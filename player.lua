@@ -14,6 +14,8 @@ function player.load()
 	player.deadX = 50
 	player.deadY = 50
 	player.dead = false
+	player.storedX = 0
+	player.storedY = 0
 	player.xvel = 1
 	player.yvel = 1
 	player.friction = 7
@@ -38,6 +40,8 @@ end
 
 function player.draw()
 
+	downS = love.keyboard.isDown('s')
+
 	if space.dayTime == 1 then
 		player.healthColourR = planetArray[currentPlanet][1] - 100
 		player.healthColourG = planetArray[currentPlanet][2] - 100
@@ -52,7 +56,6 @@ function player.draw()
 	if player.healthColourG < 1 then player.healthColourG = player.healthColourG + 100 end
 	if player.healthColourB < 1 then player.healthColourB = player.healthColourB + 100 end
 	
-
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 
@@ -68,7 +71,6 @@ function player.draw()
 	if love.keyboard.isDown('i') then
 		love.graphics.setColor(200, 80, 80)
 		love.graphics.print("You have " .. inventoryArray[1] .. " Gravitons and are carrying a " .. inventoryArray[2], 300, 300, 0, 2, 2)
-		
 	end
 
 end
@@ -158,8 +160,11 @@ function player.update(dt)
 		player.y = player.y - 10
 	end
 
-	if love.keyboard.isDown('s') and player.y < player.currentGround and player.dead == false then
+	if downS == true and player.dead == false then
 		player.y = player.y + 10
+		player.x = player.storedX
+	else
+		player.storedX = player.x
 	end
 
 	if love.keyboard.isDown('c') and player.dead == false then
@@ -168,7 +173,7 @@ function player.update(dt)
 	end
 
 	if player.moving == true and player.canMove == true then
-		if player.y >= player.currentGround - 120 then
+		if player.y >= player.currentGround - 120 and downS == false then
 			sound.walking_sfx:play()
 		else
 			sound.walking_sfx:pause()
