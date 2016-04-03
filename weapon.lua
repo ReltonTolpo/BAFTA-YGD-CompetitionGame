@@ -16,12 +16,13 @@ function weapon.load()
     weapon.gunDirection = "na"
     weapon.currentWeapon = 1
     weapon.drawAmmo = false
+    weapon.lock = false
 
     weapon.a = true
     weapon.b = true
-    weapon.c = false
-    weapon.d = false
-    weapon.e = false
+
+    weapon.left = true
+    weapon.right = true
 
     weaponImage = images.gunBase
     ammoImage = images.ammoBase
@@ -30,17 +31,13 @@ end
 
 function weapon.bulletAnime()
 
-    if weapon.drawAmmo == true then
-        if weapon.bulletDirection == "left" and weapon.d == false then
-            if love.mouse.isDown(1) and weapon.currentAmmo == 1 then
-                love.graphics.setColor(255, 0, 0)
-                love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
-            end
-        elseif weapon.bulletDirection == "right" and weapon.c == false then
-            if love.mouse.isDown(1) and weapon.currentAmmo == 1 then
-                love.graphics.setColor(255, 0, 0)
-                love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
-            end
+    if love.mouse.isDown(1) or weapon.lock == true then
+        if weapon.bulletDirection == "left" and weapon.left == true then
+            love.graphics.setColor(255, 0, 0)
+            love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
+        elseif weapon.bulletDirection == "right" and weapon.right == true then
+            love.graphics.setColor(255, 0, 0)
+            love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
         end
     end
 
@@ -52,23 +49,45 @@ function weapon.update(dt)
     leftDown = love.keyboard.isDown("a")
     rightDown = love.keyboard.isDown("d")
 
+    --Testing for Left or Right gun
+    if leftDown == true and player.onPlanet == true then
+        weapon.gunDirection = "left"
+    elseif rightDown == true and player.onPlanet == true then
+        weapon.gunDirection = "right"
+    elseif player.onPlanet == true then
+        weapon.gunDirection = "na"
+    end
+
+    --Testing for Left or Right bullet
+    if weapon.gunDirection == "left" and weapon.left == true then
+        weapon.bulletDirection = "left"
+        --weapon.right = true
+    elseif weapon.gunDirection == "right" and weapon.right == true then
+        weapon.bulletDirection = "right"
+        --weapon.left = true
+    elseif weapon.gunDirection == "na" then
+        weapon.bulletDirection = "na"
+    end
+
     --Doing bullet movement
     if weapon.ammoAmount > 0 then
-        if mouseDown == true or weapon.e == true then
+        if mouseDown == true or weapon.lock == true then
             weapon.ammoX = weapon.storedX
             weapon.ammoY = weapon.storedY
-            weapon.e = true
-            if weapon.bulletDirection == "left" --[[and weapon.d == false]] then
+            weapon.lock = true
+            if weapon.bulletDirection == "left" and weapon.left == true then
                 weapon.storedX = weapon.storedX - 5
+                weapon.right = false
                 if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                    weapon.e = false
-                    --weapon.c = false
+                    weapon.lock = false
+                    weapon.right = true
                 end
-            elseif weapon.bulletDirection == "right" --[[and weapon.c == false]] then
+            elseif weapon.bulletDirection == "right" and weapon.right == true then
                 weapon.storedX = weapon.storedX + 5
+                weapon.left = false
                 if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                    weapon.e = false
-                    --weapon.d = false
+                    weapon.lock = false
+                    weapon.left = true
                 end
             end
         else
@@ -81,34 +100,14 @@ function weapon.update(dt)
         weapon.storedY = -500
     end
 
-    --Testing for Left or Right bullet
-    if leftDown == true and player.onPlanet == true --[[and weapon.d == false]] then
-        weapon.bulletDirection = "left"
-        --weapon.c = true
-    elseif rightDown == true and player.onPlanet == true --[[and weapon.c == false]] then
-        weapon.bulletDirection = "right"
-        --weapon.d = true
-    elseif player.onPlanet == true then
-        weapon.bulletDirection = "na"
-    end
-
-    --Testing for Left or Right gun
-    if leftDown == true and player.onPlanet == true then
-        weapon.gunDirection = "left"
-    elseif rightDown == true and player.onPlanet == true then
-        weapon.gunDirection = "right"
-    elseif player.onPlanet == true then
-        weapon.gunDirection = "na"
-    end
-
     --Removing ammo after fire
     if weapon.ammoAmount > 0 then
-        if mouseDown == true and weapon.b == true then
-            weapon.ammoAmount = weapon.ammoAmount - 1
-            weapon.drawAmmo = true
-            weapon.b = false
-        elseif mouseDown == false and weapon.b == false then
-            weapon.drawAmmo = false
+        if mouseDown == true or weapon.lock == true then
+            if weapon.b == true then
+                weapon.ammoAmount = weapon.ammoAmount - 1
+                weapon.b = false
+            end
+        elseif mouseDown == false and weapon.lock == false and weapon.b == false then
             weapon.b = true
         end
     end
@@ -116,15 +115,13 @@ function weapon.update(dt)
     --Dealing damage to monster
     for m = 1, monster.amount do
         if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
-            if weapon.currentWeapon == 1 then
+            if weapon.righturrentWeapon == 1 then
                 monsterArray[m][10] = monsterArray[m][10] - 3
-            elseif weapon.currentWeapon == 2 then
+            elseif weapon.righturrentWeapon == 2 then
                 --TODO LOGIC CODE
             end
         end
     end
-
-    print(weapon.drawAmmo)
 
 end
 

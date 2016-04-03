@@ -47,6 +47,10 @@ function player.draw()
 		player.healthColourG = planetArray[currentPlanet][2] + 100
 		player.healthColourB = planetArray[currentPlanet][3] + 100
 	end
+
+	if player.healthColourR < 1 then player.healthColourR = player.healthColourR + 100 end
+	if player.healthColourG < 1 then player.healthColourG = player.healthColourG + 100 end
+	if player.healthColourB < 1 then player.healthColourB = player.healthColourB + 100 end
 	
 
 	love.graphics.setColor(255, 255, 255)
@@ -162,10 +166,6 @@ function player.update(dt)
 		currentPlanet = currentPlanet + 1
 		love.timer.sleep(0.5)
 	end
-
-	--[[if currentPlanet == 4 then
-		currentPlanet = 1
-	end]]
 
 	if player.moving == true and player.canMove == true then
 		if player.y >= player.currentGround - 120 then
