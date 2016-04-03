@@ -3,7 +3,6 @@ require "space"
 require "planet"
 require "sound"
 require "images"
-require "monster"
 
 function weapon.load()
 
@@ -16,13 +15,16 @@ function weapon.load()
     weapon.gunDirection = "na"
     weapon.currentWeapon = 1
     weapon.drawAmmo = false
-    weapon.lock = false --Used for making the bullet carry on
+    weapon.lock = false
 
     weapon.a = true
     weapon.b = true
 
     weapon.left = true
     weapon.right = true
+
+    weapon.lockLeft = false
+    weapon.lockRight = false
 
     weaponImage = images.gunBase
     ammoImage = images.ammoBase
@@ -32,10 +34,10 @@ end
 function weapon.bulletAnime()
 
     if love.mouse.isDown(1) or weapon.lock == true then
-        if weapon.bulletDirection == "left" and weapon.left == true then
+        if weapon.bulletDirection == "left" or weapon.lockLeft == true then
             love.graphics.setColor(255, 0, 0)
             love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
-        elseif weapon.bulletDirection == "right" and weapon.right == true then
+        elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
             love.graphics.setColor(255, 0, 0)
             love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
         end
@@ -75,19 +77,27 @@ function weapon.update(dt)
             weapon.ammoX = weapon.storedX
             weapon.ammoY = weapon.storedY
             weapon.lock = true
-            if weapon.bulletDirection == "left" and weapon.left == true then
-                weapon.storedX = weapon.storedX - 5
-                weapon.right = false
-                if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                    weapon.lock = false
-                    weapon.right = true
+            if weapon.bulletDirection == "left" or weapon.lockLeft == true then 
+                if weapon.left == true then
+                    weapon.storedX = weapon.storedX - 5
+                    weapon.right = false
+                    weapon.lockLeft = true
+                    if weapon.ammoX > 1200 or weapon.ammoX < 0 then
+                        weapon.lock = false
+                        weapon.right = true
+                        weapon.lockLeft = false
+                    end
                 end
-            elseif weapon.bulletDirection == "right" and weapon.right == true then
-                weapon.storedX = weapon.storedX + 5
-                weapon.left = false
-                if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                    weapon.lock = false
-                    weapon.left = true
+            elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
+                if weapon.right == true then
+                    weapon.storedX = weapon.storedX + 5
+                    weapon.left = false
+                    weapon.lockRight = true
+                    if weapon.ammoX > 1200 or weapon.ammoX < 0 then
+                        weapon.lock = false
+                        weapon.left = true
+                        weapon.lockRight = false
+                    end
                 end
             end
         else
@@ -109,17 +119,6 @@ function weapon.update(dt)
             end
         elseif mouseDown == false and weapon.lock == false and weapon.b == false then
             weapon.b = true
-        end
-    end
-
-    --Dealing damage to monster
-    for m = 1, monster.amount do
-        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
-            if weapon.righturrentWeapon == 1 then
-                monsterArray[m][10] = monsterArray[m][10] - 3
-            elseif weapon.righturrentWeapon == 2 then
-                --TODO LOGIC CODE
-            end
         end
     end
 

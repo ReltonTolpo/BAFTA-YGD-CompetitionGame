@@ -2,6 +2,7 @@ monster = {}
 require "planet"
 require "images"
 require "space"
+require "weapon"
 
 function monster.load()
 
@@ -44,6 +45,15 @@ function monster.update(dt)
 				monster.a = false
 			end
 			monster.randomNumber = love.math.random(1, 200)
+
+			--Dealing damage to monster
+	        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
+	            if weapon.currentWeapon == 1 then
+	                monsterArray[m][10] = monsterArray[m][10] - 3
+	            elseif weapon.currentWeapon == 2 then
+	                --TODO LOGIC CODE
+	            end
+	        end
 		end
 	end
 	
@@ -127,7 +137,12 @@ function monster.draw()
 
 	for b = 1, monster.amount do
 		if player.onPlanet == true and monsterArray[b][10] > 0 and space.dayTime == 0 then
-			love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)  
+			if monsterArray[b][1] >= weapon.ammoX - 60 and monsterArray[b][1] <= weapon.ammoX + 60 and monsterArray[b][2] >= weapon.ammoY - 60 and monsterArray[b][2] <= weapon.ammoY + 70 then
+				love.graphics.setColor(255, 0, 0)
+				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2) 
+			else
+				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
+			end
 		end
 	end
 	
