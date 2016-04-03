@@ -33,13 +33,15 @@ end
 
 function weapon.bulletAnime()
 
-    if love.mouse.isDown(1) or weapon.lock == true then
-        if weapon.bulletDirection == "left" or weapon.lockLeft == true then
-            love.graphics.setColor(255, 0, 0)
-            love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
-        elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
-            love.graphics.setColor(255, 0, 0)
-            love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
+    if player.dead == false then
+        if love.mouse.isDown(1) or weapon.lock == true then
+            if weapon.bulletDirection == "left" or weapon.lockLeft == true then
+                love.graphics.setColor(255, 0, 0)
+                love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 30, 0, 5, 5)
+            elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
+                love.graphics.setColor(255, 0, 0)
+                love.graphics.draw(ammoImage, weapon.ammoX + 100, weapon.ammoY + 30, 0, 5, 5)
+            end
         end
     end
 
@@ -72,7 +74,7 @@ function weapon.update(dt)
     end
 
     --Doing bullet movement
-    if weapon.ammoAmount > 0 then
+    if weapon.ammoAmount > 0 and player.dead == false then
         if mouseDown == true or weapon.lock == true then
             weapon.ammoX = weapon.storedX
             weapon.ammoY = weapon.storedY
@@ -126,20 +128,26 @@ end
 
 function weapon.draw()
 
-    if weapon.gunDirection == "left" then
-        if weapon.currentWeapon == 1 then
-            love.graphics.draw(weaponImage, player.x + 50, player.y + 50, 0, -5, 5)
-        elseif weapon.currentWeapon == 2 then
-            --TODO LOGIC CODE
+    if player.dead == false then
+        if weapon.gunDirection == "left" then
+            if weapon.currentWeapon == 1 then
+                love.graphics.draw(weaponImage, player.x + 50, player.y + 50, 0, -5, 5)
+            elseif weapon.currentWeapon == 2 then
+                --TODO LOGIC CODE
+            end
+        elseif weapon.gunDirection == "right" then
+            if weapon.currentWeapon == 1 then
+                love.graphics.draw(weaponImage, player.x + 80, player.y + 50, 0, 5, 5)
+            elseif weapon.currentWeapon == 2 then
+                --TODO LOGIC CODE
+            end
+        else
+            if weapon.currentWeapon == 1 then
+                love.graphics.draw(weaponImage, player.x + 35, player.y + 90, 4.71239, -2, 2)
+            elseif weapon.currentWeapon == 2 then
+                --TODO LOGIC CODE
+            end
         end
-    elseif weapon.gunDirection == "right" then
-        if weapon.currentWeapon == 1 then
-            love.graphics.draw(weaponImage, player.x + 80, player.y + 50, 0, 5, 5)
-        elseif weapon.currentWeapon == 2 then
-            --TODO LOGIC CODE
-        end
-    else
-
     end
 
 end

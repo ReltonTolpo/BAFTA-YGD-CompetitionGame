@@ -6,7 +6,7 @@ require "weapon"
 
 function monster.load()
 
-	monster.amount = love.math.random(1, 3)
+	monster.amount = love.math.random(1, 10)
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
