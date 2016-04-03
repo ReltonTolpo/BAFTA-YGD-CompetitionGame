@@ -97,16 +97,14 @@ function draw()
 	local height = love.graphics.getHeight()
 
 	love.graphics.translate(width/2, height/2)
-	--love.graphics.rotate(rotation)
+	love.graphics.rotate(rotation)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
-			--love.graphics.rotate( 70 )
-		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1)
-	
+		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, 0, 1, 1)
 	end
 	
 	if shipActive == true then
@@ -194,7 +192,7 @@ function boundary()
 	if player.onPlanet == false then
 		for i = 1, planetNum do
 			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
-				print("Debugger #2")
+				print("Debugger #1")
 			end
 		end
 	end

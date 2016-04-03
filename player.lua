@@ -86,8 +86,6 @@ end
  
 function player.update(dt)
 
-	--planet.onPlanet = player.onPlanet
-
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerRight
@@ -136,7 +134,6 @@ function player.update(dt)
 		player.moving = false
 
 		if love.keyboard.isDown('space') then
-			player.health = 100
 			weapon.ammoAmount = 30
 
 			space.load()

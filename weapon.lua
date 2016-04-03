@@ -128,7 +128,7 @@ end
 
 function weapon.draw()
 
-    if player.dead == false then
+    if player.dead == false and player.onPlanet == true and smokeActive == false and liftoff == false then
         if weapon.gunDirection == "left" then
             if weapon.currentWeapon == 1 then
                 love.graphics.draw(weaponImage, player.x + 50, player.y + 50, 0, -5, 5)
@@ -141,7 +141,7 @@ function weapon.draw()
             elseif weapon.currentWeapon == 2 then
                 --TODO LOGIC CODE
             end
-        else
+        elseif weapon.gunDirection == "na" then
             if weapon.currentWeapon == 1 then
                 love.graphics.draw(weaponImage, player.x + 35, player.y + 90, 4.71239, -2, 2)
             elseif weapon.currentWeapon == 2 then
