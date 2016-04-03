@@ -16,7 +16,7 @@ function weapon.load()
     weapon.gunDirection = "na"
     weapon.currentWeapon = 1
     weapon.drawAmmo = false
-    weapon.lock = false
+    weapon.lock = false --Used for making the bullet carry on
 
     weapon.a = true
     weapon.b = true
