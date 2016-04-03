@@ -7,6 +7,7 @@ require "monster"
 require "sound"
 require "images"
 require "ship"
+require "inventory"
 
 function love.load()
 
@@ -20,6 +21,7 @@ function love.load()
 
 	player.load()
 	weapon.load()
+	inventory.load()
 
 	monster.load()
 	ship.load()
@@ -33,8 +35,10 @@ function love.update(dt)
 
 	UPDATE_SPACE(dt)
 	UPDATE_PLANET(dt)
+
 	UPDATE_PLAYER(dt)
 	UPDATE_WEAPON(dt)
+	UPDATE_INVENTORY(dt)
 
 	UPDATE_MONSTER(dt)
 
@@ -59,4 +63,5 @@ function love.draw()
 		DRAW_PLAYER()
 		DRAW_WEAPON()
 	end
+	DRAW_INVENTORY()
 end
