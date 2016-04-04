@@ -1,4 +1,5 @@
 inventory = {}
+require "socket"
 require "player"
 require "images"
 require "weapon"
@@ -20,7 +21,16 @@ end
 
 function inventory.update(dt)
 
-    inventory.inInv = love.keyboard.isDown('i')
+ if love.keyboard.isDown('i') then
+    if inventory.inInv == true then
+    inventory.inInv = false
+
+elseif inventory.inInv == false then
+    inventory.inInv = true
+end
+sleep(0.4)
+ end
+
 
 end
 
@@ -53,4 +63,8 @@ function DRAW_INVENTORY()
 
     inventory.draw()
 
+end
+
+function sleep(sec)
+    socket.select(nil, nil, sec)
 end
