@@ -29,6 +29,15 @@ function weapon.load()
     weaponImage = images.gunBase
     ammoImage = images.ammoBase
 
+    local smoke = images.smoke
+
+    psystem3 = love.graphics.newParticleSystem(smoke, 70)
+    psystem3:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
+    psystem3:setEmissionRate(200)
+    psystem3:setSizeVariation(1)
+    psystem3:setLinearAcceleration(-20, -10, -20, 10) -- Random movement in all directions.
+    psystem3:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+
 end
 
 function weapon.bulletAnime()
@@ -48,7 +57,7 @@ function weapon.bulletAnime()
 end
 
 function weapon.update(dt)
-
+    psystem3:update(dt)
     mouseDown = love.mouse.isDown(1)
     leftDown = love.keyboard.isDown("a")
     rightDown = love.keyboard.isDown("d")
@@ -127,7 +136,11 @@ function weapon.update(dt)
 end
 
 function weapon.draw()
-
+        --if weapon.ammoAmount > 0 and player.dead == false then
+        --if mouseDown == true or weapon.lock == true then
+        love.graphics.draw(psystem3,ammoX,ammoY)
+--end
+--end
     if player.dead == false and player.onPlanet == true and smokeActive == false and liftoff == false then
         if weapon.gunDirection == "left" then
             if weapon.currentWeapon == 1 then
