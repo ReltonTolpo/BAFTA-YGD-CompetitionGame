@@ -74,10 +74,8 @@ function weapon.update(dt)
     --Testing for Left or Right bullet
     if weapon.gunDirection == "left" and weapon.left == true then
         weapon.bulletDirection = "left"
-        --weapon.right = true
     elseif weapon.gunDirection == "right" and weapon.right == true then
         weapon.bulletDirection = "right"
-        --weapon.left = true
     elseif weapon.gunDirection == "na" then
         weapon.bulletDirection = "na"
     end
@@ -136,11 +134,9 @@ function weapon.update(dt)
 end
 
 function weapon.draw()
-        --if weapon.ammoAmount > 0 and player.dead == false then
-        --if mouseDown == true or weapon.lock == true then
-        love.graphics.draw(psystem3,ammoX,ammoY)
---end
---end
+
+     love.graphics.draw(psystem3, ammoX, ammoY)
+
     if player.dead == false and player.onPlanet == true and smokeActive == false and liftoff == false then
         if weapon.gunDirection == "left" then
             if weapon.currentWeapon == 1 then
