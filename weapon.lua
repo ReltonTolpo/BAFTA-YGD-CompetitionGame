@@ -122,7 +122,7 @@ function weapon.update(dt)
     end
 
     --Removing ammo after fire
-    if weapon.ammoAmount > 0 then
+    if weapon.ammoAmount > 0 and weapon.gunDirection ~= "na" then
         if mouseDown == true or weapon.lock == true then
             if weapon.b == true then
                 weapon.ammoAmount = weapon.ammoAmount - 1
