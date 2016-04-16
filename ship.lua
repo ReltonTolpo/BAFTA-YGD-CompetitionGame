@@ -97,14 +97,14 @@ function draw()
 	local height = love.graphics.getHeight()
 
 	love.graphics.translate(width/2, height/2)
-	love.graphics.rotate(rotation)
+	--love.graphics.rotate(rotation)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
-		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, 0, 1, 1)
+		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1)
 	end
 	
 	if shipActive == true then
@@ -228,58 +228,62 @@ end
 function shipMovement(dt)
 
 	if player.onPlanet == false then
+
+		--xscroll = 2*math.sin(rotation)
+		--yscroll = 2*math.cos(rotation)
+
 		if love.keyboard.isDown('a') and player.dead == false then
 			shipxvel = shipxvel + speed * dt
-			Xscroll = 2
+			--Xscroll = 2
 			rotation = rotation - 0.01
-			if rotation < -math.pi/2 then
-				rotation = -math.pi/2
-			end
+			--if rotation < -math.pi/2 then
+			--	rotation = -math.pi/2
+			--end
 		end
 
 		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
-			Xscroll = -2
+			--Xscroll = -2
 			rotation = rotation + 0.01
-			if rotation > math.pi/2 then
-				 rotation = math.pi/2
-			end
+			--if rotation > math.pi/2 then
+			--	 rotation = math.pi/2
+			--end
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
 			shipyvel = shipyvel - speed * dt
-			Yscroll = 2
+			--Yscroll = 2
+			--rotation = 0
+			--if rotation > 0 then
+			--	rotation = rotation - 0.01
+			--else
+			--	rotation = rotation + 0.01
+			--end
+		end
+
+		if rotation > 2*math.pi then
 			rotation = 0
-			if rotation > 0 then
-				rotation = rotation - 0.01
-			else
-				rotation = rotation + 0.01
-			end
 		end
 
-		if rotation > math.pi then
-			rotation = math.pi
-		end
-
-		if rotation < -math.pi then
-			rotation = -math.pi
+		if rotation < -2*math.pi then
+			rotation = 0
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
 			shipyvel = shipyvel + speed * dt
-			Yscroll = - 2
-			if rotation > math.pi  then
-				rotation = rotation - 0.01
-			else
-				rotation = rotation + 0.01
-			end
+			--Yscroll = - 2
+			--if rotation > math.pi  then
+			--	rotation = rotation - 0.01
+			--else
+			--	rotation = rotation + 0.01
+			--end
 		end
 
 		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
 			--TODO Logic Code
 		else
-			Xscroll = 0
-			Yscroll = 0
+			--Xscroll = 0
+			--Yscroll = 0
 		end
 	end
 	
@@ -287,8 +291,8 @@ end
 
 function UPDATE_SHIP(dt)
 	
-    space.starX = Xscroll
-    space.starY = Yscroll
+    space.starX =  -2*math.sin(rotation)
+    space.starY =  2*math.cos(rotation)
 
 	psystem1:update(dt)
 	psystem2:update(dt)
@@ -303,7 +307,7 @@ function UPDATE_SHIP(dt)
 		rampx = rampx + 0.25
 		rampy = rampy + 0.25
 	 --end
-	    if rampy > 589 and rampx > 389 then
+	    if rampy > 589 and rampx > 389 then 
 		    rampy = 590
 		    rampx = 390
 	    end

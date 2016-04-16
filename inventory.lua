@@ -9,7 +9,7 @@ function inventory.load()
     inventory.inInv = false
     inventory.x = 375
     inventory.y = 100
-    inventory.graviNum = 0
+    inventory.graviNum = weapon.Universalgravinum
 
     inventoryArray = {"Gun"} --weapon, item slot 1, item slot 2
 
@@ -20,7 +20,7 @@ function inventory.load()
 end
 
 function inventory.update(dt)
-
+  inventory.graviNum = inventory.graviNum  + 1
  if love.keyboard.isDown('i') then
     if inventory.inInv == true then
     inventory.inInv = false
@@ -29,6 +29,7 @@ elseif inventory.inInv == false then
     inventory.inInv = true
 end
 sleep(0.4)
+   inventory.graviNum =    inventory.graviNum  +1
  end
 
 

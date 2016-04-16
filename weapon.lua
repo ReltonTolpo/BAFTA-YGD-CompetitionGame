@@ -16,6 +16,7 @@ function weapon.load()
     weapon.currentWeapon = 1
     weapon.drawAmmo = false
     weapon.lock = false
+    weapon.Universalgravinum = 0
 
     weapon.a = true
     weapon.b = true

@@ -25,7 +25,7 @@ function monster.load()
 end
 
 function monster.update(dt)
-
+						weapon.Universalgravinum = weapon.Universalgravinum + 10
 	for m = 1, monster.amount do
 		if player.onPlanet == true then
 			if monster.randomNumber == 1 then
@@ -140,6 +140,8 @@ function monster.draw()
 			if monsterArray[b][1] >= weapon.ammoX - 60 and monsterArray[b][1] <= weapon.ammoX + 60 and monsterArray[b][2] >= weapon.ammoY - 60 and monsterArray[b][2] <= weapon.ammoY + 70 then
 				love.graphics.setColor(255, 0, 0)
 				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2) 
+						weapon.Universalgravinum = weapon.Universalgravinum + 1
+
 			else
 				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
 			end
