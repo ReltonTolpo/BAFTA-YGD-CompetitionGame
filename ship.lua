@@ -21,13 +21,11 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
-	speed = 1
-	boost = 10
-	minSpeed = 0.5
-	--decelleration = 0.01
+	speed = 10
 	Xscroll = 0
     Yscroll = 0
     rotation = 0
+
 	local smoke = images.smoke
 	local fire = images.fire
 
@@ -50,7 +48,6 @@ function ship.load()
 end	
 
 function update(dt)
-
 
 	n = 0
 	if player.onPlanet == true then
@@ -76,25 +73,14 @@ function update(dt)
 	  	    shipy = 350
 	    	liftoff = false
 		end
---Scrapped decelleration code
-		--if speed > minSpeed then
-		--	speed = speed - decelleration
-		--end
 
-				if speed < minSpeed then
-			speed = minSpeed
-		end
 		if love.keyboard.isDown('space') and smokeActive == true then
 			liftoff = true
 			shipActive = false
 			smokeActive = false
 			player.canMove = false
-
 		end
-			if love.keyboard.isDown('w') then
-	speed = speed + boost
-		end
-
+		
 		if love.keyboard.isDown('p') then
 			liftoff = true
 			shipActive = false
@@ -119,14 +105,6 @@ function draw()
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 	elseif player.onPlanet == false then
 		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1)
-
-		--Debug Code:
--- (crashes the game)
-				love.graphics.print(speed, Xscroll , Yscroll)
-				love.graphics.print(Xscroll,  love.graphics.getWidth(), love.graphics.getHeight())
-				love.graphics.print(Yscroll, love.graphics.getWidth(), love.graphics.getHeight())
-
-
 	end
 	
 	if shipActive == true then
@@ -313,8 +291,8 @@ end
 
 function UPDATE_SHIP(dt)
 	
-    space.starX =  -2*math.sin(rotation) * speed
-    space.starY =  2*math.cos(rotation) * speed
+    space.starX =  -2*math.sin(rotation)
+    space.starY =  2*math.cos(rotation)
 
 	psystem1:update(dt)
 	psystem2:update(dt)
