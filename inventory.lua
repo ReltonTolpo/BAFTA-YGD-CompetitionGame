@@ -5,7 +5,8 @@ require "images"
 require "weapon"
 
 function inventory.load()
-
+   printx = 0
+   printy = 0
     inventory.inInv = false
     inventory.x = 375
     inventory.y = 100
@@ -19,6 +20,10 @@ function inventory.load()
 end
 
 function inventory.update(dt)
+
+
+
+
 
     --Changing Items in inventory
     if weapon.currentWeapon == 1 then
@@ -42,6 +47,8 @@ end
 
 function inventory.draw()
 
+   love.graphics.print(printx, printx, printy)
+     love.graphics.print(printy, printx, printy+50)
     if inventory.inInv == true then
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
         if inventory.graviNum > 0 then
@@ -56,7 +63,7 @@ end
 function UPDATE_INVENTORY(dt)
 
     inventory.update(dt)
-
+  --  love.mousepressed()
 end
 
 function DRAW_INVENTORY()
@@ -69,4 +76,24 @@ function sleep(sec)
 
     socket.select(nil, nil, sec)
 
+end
+
+--function love.mousepressed(x, y, button, istouch)
+  -- if button == 1 then -- the primary button
+    --if weapon.currentWeapon == 1 then
+--weapon.currentWeapon = 0
+  --  sleep(0.2)
+--end
+--if weapon.currentWeapon == 0 then
+  --  weapon.currentWeapon = 1
+    --sleep(0.2)
+--end
+  -- end
+--end
+
+function love.mousepressed(x, y, button, istouch)
+   if button == 1 then -- the primary button
+      printx = x
+      printy = y
+   end
 end
