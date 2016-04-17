@@ -9,6 +9,9 @@ function planet.load()
 	currentPlanet = 1
 	planetNum = 20
 
+	shipX1 = 0
+	shipY1 = 0
+
 	planetArray = {{}}
 	planetArray[1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(2, 10), love.math.random(0.01, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1)} 																	
 
@@ -65,8 +68,18 @@ function DRAW_PLANET()
 			love.graphics.draw(planet,planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][12]+planetArray[i][13])
 			-- DEBUG CODE:
 			love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
+						love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
 			string = planetArray[i][6],",",planetArray[i][7]
 			love.graphics.print(string, planetArray[i][6]  , planetArray[i][7]  - 50, 0, 3, 3)
+
+			if (planetArray[i][6] < love.graphics.getWidth()/2) and ((planetArray[i][6] +50) > love.graphics.getWidth()/2) then
+			if (planetArray[i][7] < love.graphics.getHeight()/2) and ((planetArray[i][7] + 50)> love.graphics.getWidth()/2) then
+			currentPlanet = i
+			player.canMove = true
+			player.onPlanet = true
+			end
+			end
+
 
 		end
 	end

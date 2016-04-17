@@ -59,12 +59,16 @@ end
 function space.drawStars()
 
     createStars()
+
     for i, star in ipairs(stars) do
         love.graphics.setColor(255, 255, 255)
+            if player.onPlanet == false then
         star.XPosition = star.XPosition + space.starX
         star.YPosition = star.YPosition + space.starY
-        love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
     end
+        love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
+    
+end
 
 end
 

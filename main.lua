@@ -1,3 +1,4 @@
+
 main = {}
 require "space"
 require "planet"
@@ -8,11 +9,13 @@ require "sound"
 require "images"
 require "ship"
 require "inventory"
+require "menu"
 
 function love.load()
-
+inmenu = true
 	--Loading Classes
-	
+	menu.load()
+	if inmenu == false then
 	sound.load()
 	images.load()
 
@@ -25,11 +28,11 @@ function love.load()
 
 	monster.load()
 	ship.load()
-	
+	end
 end
 
 function love.update(dt)
-	
+	if inmenu == false then
 	UPDATE_SOUND(dt)
 	UPDATE_IMAGES(dt)
 
@@ -43,12 +46,13 @@ function love.update(dt)
 	UPDATE_MONSTER(dt)
 
 	UPDATE_SHIP(dt)
-
+end
 end 
 
 
 function love.draw()
-
+	DRAW_MENU()
+if inmenu == false then
 	DRAW_SPACE()
 	DRAW_PLANET()
 
@@ -64,4 +68,5 @@ function love.draw()
 		DRAW_WEAPON()
 	end
 	DRAW_INVENTORY()
+end
 end
