@@ -235,7 +235,7 @@ function shipMovement(dt)
 		if love.keyboard.isDown('a') and player.dead == false then
 			shipxvel = shipxvel + speed * dt
 			--Xscroll = 2
-			rotation = rotation - 0.01
+			rotation = rotation - 0.1 -- restore to 0.01
 			--if rotation < -math.pi/2 then
 			--	rotation = -math.pi/2
 			--end
@@ -244,7 +244,7 @@ function shipMovement(dt)
 		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
 			--Xscroll = -2
-			rotation = rotation + 0.01
+			rotation = rotation + 0.1  -- restore to 0.01
 			--if rotation > math.pi/2 then
 			--	 rotation = math.pi/2
 			--end
