@@ -20,18 +20,16 @@ function inventory.load()
 end
 
 function inventory.update(dt)
-  inventory.graviNum = inventory.graviNum  + 1
- if love.keyboard.isDown('i') then
-    if inventory.inInv == true then
-    inventory.inInv = false
 
-elseif inventory.inInv == false then
-    inventory.inInv = true
-end
-sleep(0.4)
-   inventory.graviNum =    inventory.graviNum  +1
- end
-
+    if love.keyboard.isDown('i') then
+        if inventory.inInv == true then
+            inventory.inInv = false
+        elseif inventory.inInv == false then
+            inventory.inInv = true
+        end
+        sleep(0.4)
+        inventory.graviNum = inventory.graviNum  +1
+    end
 
 end
 
@@ -39,12 +37,10 @@ function inventory.draw()
 
     if inventory.inInv == true then
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 1, 1)
-
         if inventory.graviNum > 0 then
             love.graphics.draw(graviton, 575, 300, 0, 8, 8)
             love.graphics.print("x" ..inventory.graviNum, 607, 330, 0, 2.5, 2.5)
         end
-
         if weapon.currentWeapon == 1 then
             love.graphics.draw(weapons, 400, 280, 0, 10, 10)
         end
@@ -67,5 +63,7 @@ function DRAW_INVENTORY()
 end
 
 function sleep(sec)
+
     socket.select(nil, nil, sec)
+    
 end

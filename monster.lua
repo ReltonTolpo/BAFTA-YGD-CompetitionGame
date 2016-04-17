@@ -25,7 +25,9 @@ function monster.load()
 end
 
 function monster.update(dt)
-						weapon.Universalgravinum = weapon.Universalgravinum + 10
+
+	weapon.Universalgravinum = weapon.Universalgravinum + 10
+
 	for m = 1, monster.amount do
 		if player.onPlanet == true then
 			if monster.randomNumber == 1 then
@@ -48,11 +50,7 @@ function monster.update(dt)
 
 			--Dealing damage to monster
 	        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
-	            if weapon.currentWeapon == 1 then
-	                monsterArray[m][10] = monsterArray[m][10] - 3
-	            elseif weapon.currentWeapon == 2 then
-	                --TODO LOGIC CODE
-	            end
+	            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 	        end
 		end
 	end
