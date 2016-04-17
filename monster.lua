@@ -13,13 +13,13 @@ function monster.load()
 	monster.a = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Given Drops
 	end
 	
 end
@@ -38,20 +38,32 @@ function monster.update(dt)
 				monsterArray[m][11] = images.flyingOcto
 				monsterArray[m][12] = images.flyingOctoLeft
 				monsterArray[m][13] = images.flyingOctoRight
-				monsterArray[m][2] = 300
+				if monsterArray[m][2] > 330 then
+					monsterArray[m][2] = 330
+				end
 			end
 
 			--Choosing Direction
 			if monster.randomNumber == 1 then
 				monsterArray[m][3] = love.math.random(1, 4)
 			end
+
+			--Killing Monster
 			if monsterArray[m][10] <= 0 then
 				monsterArray[m][2] = -500
+				if monsterArray[m][15] == false then
+					weapon.ammoAmount = weapon.ammoAmount + love.math.random(1, 5)
+					monsterArray[m][15] = true
+				end
 			end
+
+			--Removing Monsters at day
 			if space.dayTime == 1 then
 				monsterArray[m][2] = -500
 				monster.a = true
 			end
+
+			--Bringing Monsters back at night
 			if space.dayTime == 0 and monster.a == true then
 				for x = 1, monster.amount do
 					monsterArray[m][2] = 450
@@ -61,13 +73,21 @@ function monster.update(dt)
 			monster.randomNumber = love.math.random(1, 200)
 
 			--Dealing damage to monster
-	        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
-	            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
-	            monsterArray[m][14] = true
-	            --love.timer.sleep(0.01)
-	        else
-	        	monsterArray[m][14] = false
-	        end
+			if monsterArray[m][7] == 1 then
+		        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
+		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
+		            monsterArray[m][14] = true
+		        else
+		        	monsterArray[m][14] = false
+		        end
+		    elseif monsterArray[m][7] == 2 then
+		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 80 and monsterArray[m][2] <= weapon.ammoY + 100 then
+		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
+		            monsterArray[m][14] = true
+		        else
+		        	monsterArray[m][14] = false
+		        end
+		    end
 		end
 	end
 	

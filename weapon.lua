@@ -72,7 +72,7 @@ function weapon.update(dt)
         sizeX = 4
         weaponImage = images.gunBase
     elseif weapon.currentWeapon == 2 then
-        weapon.bulletDamage = 3
+        weapon.bulletDamage = 5
         weapon.bulletSpeed = 20
         weaponImage = images.machineGun
         sizeX = 3
