@@ -29,6 +29,7 @@ function player.load()
 	player.canMove = true
 	player.doGravity = true
 	player.onPlanet = true
+	player.beenHit = false
 
 	player.weight = player.currentGravity * player.mass
 
@@ -54,8 +55,13 @@ function player.draw()
 	if player.healthColourG < 1 then player.healthColourG = player.healthColourG + 100 end
 	if player.healthColourB < 1 then player.healthColourB = player.healthColourB + 100 end
 	
-	love.graphics.setColor(255, 255, 255)
-	love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+	if player.beenHit == true then
+		love.graphics.setColor(255, 0, 0)
+		love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+	elseif player.beenHit == false then
+		love.graphics.setColor(255, 255, 255)
+		love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+	end
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
@@ -110,6 +116,9 @@ function player.update(dt)
 	for i = 1, monster.amount do --Monster deals damage to player here
 		if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
 			player.health = player.health - 1
+			player.beenHit = true
+		else
+			player.beenHit = false
 		end
 	end
 
@@ -159,6 +168,7 @@ function player.update(dt)
 
 	if love.keyboard.isDown('c') and player.dead == false then
 		currentPlanet = currentPlanet + 1
+		monster.load()
 		love.timer.sleep(0.5)
 	end
 

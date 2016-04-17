@@ -13,23 +13,35 @@ function monster.load()
 	monster.a = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100)}
+	monsterArray[1] = {love.math.random(0, 1200), 300, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100)}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Image 9, Monster Health 10
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 300, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14
 	end
 	
 end
 
 function monster.update(dt)
 
-	weapon.Universalgravinum = weapon.Universalgravinum + 10
-
 	for m = 1, monster.amount do
 		if player.onPlanet == true then
+
+			--Drawing Monster Stats
+			if monsterArray[m][7] == 1 then
+				monsterArray[m][11] = images.darkElf
+				monsterArray[m][12] = images.darkElfLeft
+				monsterArray[m][13] = images.darkElfRight
+			elseif monsterArray[m][7] == 2 then
+				monsterArray[m][11] = images.flyingOcto
+				monsterArray[m][12] = images.flyingOctoLeft
+				monsterArray[m][13] = images.flyingOctoRight
+				monsterArray[m][2] = 300
+			end
+
+			--Choosing Direction
 			if monster.randomNumber == 1 then
 				monsterArray[m][3] = love.math.random(1, 4)
 			end
@@ -51,6 +63,10 @@ function monster.update(dt)
 			--Dealing damage to monster
 	        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
 	            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
+	            monsterArray[m][14] = true
+	            --love.timer.sleep(0.01)
+	        else
+	        	monsterArray[m][14] = false
 	        end
 		end
 	end
@@ -81,16 +97,16 @@ function monster.movement(dt)
 		if monsterArray[p][4] ~= 1 then
 			if monsterArray[p][3] == 1 then
 				monsterArray[p][1] = monsterArray[p][1] + monsterArray[p][6]
-				monsterArray[p][9] = images.darkElfRight
+				monsterArray[p][9] = monsterArray[p][13]
 			end
 
 			if monsterArray[p][3] == 2 then
 				monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][6]
-				monsterArray[p][9] = images.darkElfLeft
+				monsterArray[p][9] = monsterArray[p][12]
 			end
 			
 			if monsterArray[p][3] ~= 2 and monsterArray[p][3] ~= 1 and monsterArray[p][4] ~= 1 then
-				monsterArray[p][9] = images.darkElf
+				monsterArray[p][9] = monsterArray[p][11]
 			end
 		end
 		if monsterArray[p][3] == 4 and monsterArray[p][2] > 300 then
@@ -107,12 +123,12 @@ function monster.playerTracker(dt)
 		if monsterArray[h][4] == 1 then
 			if monsterArray[h][1] > player.x then
 				monsterArray[h][1] = monsterArray[h][1] - monsterArray[h][6]
-				monsterArray[h][9] = images.darkElfLeft
+				monsterArray[h][9] = monsterArray[h][12]
 			end
 
 			if monsterArray[h][1] < player.x then
 				monsterArray[h][1] = monsterArray[h][1] + monsterArray[h][6]
-				monsterArray[h][9] = images.darkElfRight
+				monsterArray[h][9] = monsterArray[h][13]
 			end
 		end
 
@@ -134,13 +150,14 @@ end
 function monster.draw()
 
 	for b = 1, monster.amount do
+		--Draw Monster
 		if player.onPlanet == true and monsterArray[b][10] > 0 and space.dayTime == 0 then
-			if monsterArray[b][1] >= weapon.ammoX - 60 and monsterArray[b][1] <= weapon.ammoX + 60 and monsterArray[b][2] >= weapon.ammoY - 60 and monsterArray[b][2] <= weapon.ammoY + 70 then
+			if monsterArray[b][14] == true then
 				love.graphics.setColor(255, 0, 0)
-				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2) 
-						weapon.Universalgravinum = weapon.Universalgravinum + 1
-
+				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
+				love.timer.sleep(0.03)
 			else
+				love.graphics.setColor(75, 200, 75)
 				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
 			end
 		end

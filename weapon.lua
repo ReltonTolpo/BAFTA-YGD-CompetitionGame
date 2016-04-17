@@ -18,7 +18,6 @@ function weapon.load()
     weapon.lock = false
     weapon.bulletDamage = 10
     weapon.bulletSpeed = 5
-    weapon.Universalgravinum = 0
 
     weapon.a = true
     weapon.b = true
@@ -68,12 +67,12 @@ function weapon.update(dt)
 
     --Setting things depending on weapon
     if weapon.currentWeapon == 1 then
-        weapon.bulletDamage = 30
+        weapon.bulletDamage = 5
         weapon.bulletSpeed = 5
         sizeX = 4
         weaponImage = images.gunBase
     elseif weapon.currentWeapon == 2 then
-        weapon.bulletDamage = 10
+        weapon.bulletDamage = 3
         weapon.bulletSpeed = 20
         weaponImage = images.machineGun
         sizeX = 3
