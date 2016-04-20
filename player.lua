@@ -30,6 +30,7 @@ function player.load()
 	player.doGravity = true
 	player.onPlanet = true
 	player.beenHit = false
+	player.direction = "stationary"
 
 	player.weight = player.currentGravity * player.mass
 
@@ -89,6 +90,7 @@ function player.update(dt)
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerRight
 
+		player.direction = "right"
 		player.moving = true
 	end
 
@@ -96,6 +98,7 @@ function player.update(dt)
 		player.xvel = player.xvel - player.speed * dt
 		hero = images.playerLeft
 
+		player.direction = "left"
 		player.moving = true
 	end
 
@@ -103,6 +106,7 @@ function player.update(dt)
 		player.xvel = player.xvel + player.altspeed * dt
 		hero = images.playerRight
 
+		player.direction = "right"
 		player.moving = true
 	end
 
@@ -110,9 +114,14 @@ function player.update(dt)
 		player.xvel = player.xvel - player.altspeed * dt
 		hero = images.playerLeft
 
+		player.direction = "left"
 		player.moving = true
 	end
 
+	if player.moving ~= true then
+		player.direction = "stationary"
+	end
+	
 	for i = 1, monster.amount do --Monster deals damage to player here
 		if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
 			player.health = player.health - 1
