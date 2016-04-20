@@ -11,6 +11,7 @@ function inventory.load()
     inventory.x = 375
     inventory.y = 100
     inventory.graviNum = 0
+    inventory.graviton = images.graviton
 
     inventoryArray = {images.graviton, images.gunBase}
     --Graviton, Weapon, Jetpack,
@@ -20,10 +21,6 @@ function inventory.load()
 end
 
 function inventory.update(dt)
-
-
-
-
 
     --Changing Items in inventory
     if weapon.currentWeapon == 1 then
@@ -47,15 +44,22 @@ end
 
 function inventory.draw()
 
-   love.graphics.print(printx, printx, printy)
-     love.graphics.print(printy, printx, printy+50)
+    love.graphics.setColor(255,255,255)
+  	love.graphics.print(printx, printx, printy)
+    love.graphics.print(printy, printx, printy+50)
+    love.graphics.print("You have "..inventory.graviNum.." gravitons", 200, 200, 0, 2, 2)
+
+	if love.keyboard.isDown("f1") and love.keyboard.isDown("escape") then
+    	inventory.graviNum = inventory.graviNum + 1
+    end
+
     if inventory.inInv == true then
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
         if inventory.graviNum > 0 then
-            love.graphics.draw(graviton, 575, 300, 0, 8, 8)
-            love.graphics.print("x" ..inventory.graviNum, 607, 330, 0, 2.5, 2.5)
+            love.graphics.draw(inventory.graviton, 575, 300, 0, 8, 8)
+        	love.graphics.print(inventory.graviNum, 607, 330, 0, 2.5, 2.5)
         end
-        love.graphics.draw(slot1, 400, 280, 0, 10, 10)
+   	love.graphics.draw(slot1, 400, 280, 0, 10, 10)
     end
 
 end
