@@ -10,13 +10,13 @@ function images.load()
 	images.playerRight 			= love.graphics.newImage("images/player/playerWalkingRight.png")-- Player moving right
 
 	--↓ Item images
-	images.graviton				= love.graphics.newImage("images/items/graviton.png")	 			-- Gravitons
-	images.gunBase				= love.graphics.newImage("images/items/basicGun.png") 				-- Basic Gun
-	images.machineGun				= love.graphics.newImage("images/items/machineGun.png") 		-- Machine Gun
-	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")				-- Basic Ammo
+	images.graviton				= love.graphics.newImage("images/items/graviton.png")	 		-- Gravitons
+	images.gunBase				= love.graphics.newImage("images/items/basicGun.png") 			-- Basic Gun
+	images.machineGun			= love.graphics.newImage("images/items/machineGun.png") 		-- Machine Gun
+	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")			-- Basic Ammo
 
 	--↓ GUI images
-	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")				-- Basic Ammo
+	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")			-- Inventory
 
 	--↓ Ship images
 	images.ship 		        = love.graphics.newImage("images/ship/shipLand.png")			-- Ship without player inside
