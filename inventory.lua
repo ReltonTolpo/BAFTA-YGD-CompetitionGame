@@ -57,11 +57,6 @@ function inventory.draw()
     love.graphics.setColor(255,255,255)
   	love.graphics.print(printx, printx, printy)
     love.graphics.print(printy, printx, printy+50)
-    love.graphics.print("You have "..inventory.graviNum.." gravitons", 200, 200, 0, 2, 2)
-
-	if love.keyboard.isDown("f1") and love.keyboard.isDown("escape") then
-    	inventory.graviNum = inventory.graviNum + 1
-    end
 
     if inventory.inInv == true then
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
