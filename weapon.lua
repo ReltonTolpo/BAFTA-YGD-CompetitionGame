@@ -68,7 +68,16 @@ function weapon.update(dt)
     weapon.canFire = player.onPlanet
 
     --Testing for Left or Right gun
-    if player.direction == "still" and player.onPlanet == true then
+
+    if leftDown == true and player.onPlanet == true then
+        weapon.gunDirection = "left"
+    elseif rightDown == true and player.onPlanet == true then
+        weapon.gunDirection = "right"
+    elseif player.onPlanet == true then
+        weapon.gunDirection = "na"
+    end
+
+    --[[if player.direction == "still" and player.onPlanet == true then
         if weapon.mouseX < weapon.playerX+64 then
             weapon.gunDirection = "left"
         elseif weapon.mouseX > weapon.playerX+64 then
@@ -89,7 +98,7 @@ function weapon.update(dt)
             weapon.gunDirection = "na"
         end
 
-    end    
+    end]]
 
 
     psystem3:update(dt)
