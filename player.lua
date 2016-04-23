@@ -30,7 +30,7 @@ function player.load()
 	player.doGravity = true
 	player.onPlanet = true
 	player.beenHit = false
-	player.direction = "still"
+	player.direction = "stationary"
 
 	player.weight = player.currentGravity * player.mass
 
@@ -119,7 +119,7 @@ function player.update(dt)
 	end
 
 	if player.moving ~= true then
-		player.direction = "still"
+		player.direction = "stationary"
 	end
 	
 	for i = 1, monster.amount do --Monster deals damage to player here

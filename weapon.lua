@@ -100,7 +100,6 @@ function weapon.update(dt)
 
     end]]
 
-
     psystem3:update(dt)
     mouseDown = love.mouse.isDown(1)
     leftDown = love.keyboard.isDown("a")
@@ -117,6 +116,28 @@ function weapon.update(dt)
         weapon.bulletSpeed = 20
         weaponImage = images.machineGun
         sizeX = 3
+    end
+
+
+    --Testing for Left or Right gun
+    if player.direction == "left" or "still" then
+        if weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
+        --if leftDown == true and player.onPlanet == true then
+            weapon.gunDirection = "left"
+        elseif weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
+            weapon.gunDirection = "na"
+        end
+    elseif player.direction == "right" or "still" and player.direction ~= "left" then
+        if weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
+        --if rightDown == true and player.onPlanet == true then
+            weapon.gunDirection = "right"
+        elseif weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
+            weapon.gunDirection = "na"
+        end
+    else
+        if player.onPlanet == true then
+            weapon.gunDirection = "na"
+        end
     end
 
     --Testing for Left or Right bullet
