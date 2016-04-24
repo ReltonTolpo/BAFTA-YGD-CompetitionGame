@@ -27,7 +27,7 @@ end
 function space.draw()
 
     love.graphics.setBackgroundColor(0, 0, 0)
-
+    love.graphics.draw(psystem1,starX,starY)
     if(space.dayTime==0 and player.onPlanet == true)then
         space.drawStars()
         love.graphics.draw(images.moon, space.weatherX, space.weatherY, 0, 2, 2)
