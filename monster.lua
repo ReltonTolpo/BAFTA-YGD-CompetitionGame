@@ -13,7 +13,7 @@ function monster.load()
 	monster.a = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 0, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 5), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
@@ -81,7 +81,7 @@ function monster.update(dt)
 		        	monsterArray[m][14] = false
 		        end
 		    elseif monsterArray[m][7] == 2 then
-		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 80 and monsterArray[m][2] <= weapon.ammoY + 100 then
+		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 80 and monsterArray[m][2] <= weapon.ammoY + 130 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
 		        else

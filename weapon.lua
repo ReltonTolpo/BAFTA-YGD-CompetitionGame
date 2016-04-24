@@ -18,7 +18,7 @@ function weapon.load()
     weapon.lock = false
     weapon.bulletDamage = 10
     weapon.bulletSpeed = 5
-
+    weapon.firstFire = true
 
     weapon.a = true
     weapon.b = true
@@ -108,12 +108,12 @@ function weapon.update(dt)
     --Setting things depending on weapon
     if weapon.currentWeapon == 1 then
         weapon.bulletDamage = 5
-        weapon.bulletSpeed = 5
+        weapon.bulletSpeed = 4
         sizeX = 4
         weaponImage = images.gunBase
     elseif weapon.currentWeapon == 2 then
-        weapon.bulletDamage = 5
-        weapon.bulletSpeed = 20
+        weapon.bulletDamage = 3
+        weapon.bulletSpeed = 7
         weaponImage = images.machineGun
         sizeX = 3
     end
@@ -134,6 +134,12 @@ function weapon.update(dt)
             weapon.ammoY = weapon.storedY
             weapon.lock = true
             weapon.drawAmmo = true
+            if weapon.firstFire == true then
+                weapon.lock = false
+                weapon.firstFire = false
+                weapon.mouseDown = false
+                print(weapon.mouseDown)
+            end
             if weapon.bulletDirection == "left" or weapon.lockLeft == true then 
                 if weapon.left == true then
                     weapon.storedX = weapon.storedX - weapon.bulletSpeed

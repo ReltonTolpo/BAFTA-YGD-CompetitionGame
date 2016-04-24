@@ -5,9 +5,7 @@ function images.load()
 	--↓ Player images 
 	images.playerIdle 			= love.graphics.newImage("images/player/playerIdle.png") 		-- Still player
 	images.playerDead 			= love.graphics.newImage("images/player/playerDead.png") 		-- Dead player
-	images.playerSpace 			= love.graphics.newImage("images/player/playerIdleSpace.png") 	-- Player in space
-	images.playerLeft 			= love.graphics.newImage("images/player/playerWalkingLeft.png")	-- Player moving left
-	images.playerRight 			= love.graphics.newImage("images/player/playerWalkingRight.png")-- Player moving right
+	images.playerWalk 			= love.graphics.newImage("images/player/playerWalking.png")	-- Player moving left
 
 	--↓ Item images
 	images.graviton				= love.graphics.newImage("images/items/graviton.png")	 			-- Gravitons

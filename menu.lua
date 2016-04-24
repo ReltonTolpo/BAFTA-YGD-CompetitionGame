@@ -50,8 +50,6 @@ function menu.update(dt)
 
     --TODO Logic Code
 
-
-    
 end
 
 function menu.draw()
@@ -81,7 +79,9 @@ function DRAW_MENU()
 end
 
 function love.mousepressed(x, y, button, istouch)
+
     if button == 1 and x > 600 and x < 800 and y > 300 and y < 360 then
         inmenu = false
     end
-    end
+
+end

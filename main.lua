@@ -18,42 +18,41 @@ x = 0
 
 	menu.load()
 	if inmenu == false then
+		sound.load()
+		images.load()
 
-	sound.load()
-	images.load()
+		space.load()
+		planet.load()
 
-	space.load()
-	planet.load()
+		player.load()
+		inventory.load()
 
-	player.load()
-	weapon.load()
-	inventory.load()
-
-	monster.load()
-	ship.load()
-end
+		monster.load()
+		ship.load()
+		weapon.load()
+	end
 	
 end
 
 function love.update(dt)
 
-		if inmenu == false then
-				x = x +1
-					if x == 1 then
-	sound.load()
-	images.load()
+	if inmenu == false then
+		x = x +1
+		if x == 1 then
+			sound.load()
+			images.load()
 
-	space.load()
-	planet.load()
+			space.load()
+			planet.load()
 
-	player.load()
-	weapon.load()
-	inventory.load()
+			player.load()
+			weapon.load()
+			inventory.load()
 
-	monster.load()
-	ship.load()
-		
-			end
+			monster.load()
+			ship.load()
+			weapon.load()
+		end
 	UPDATE_SOUND(dt)
 	UPDATE_IMAGES(dt)
 
@@ -67,10 +66,6 @@ function love.update(dt)
 	UPDATE_INVENTORY(dt)
 
 	UPDATE_MONSTER(dt)
-
-
-
-
 	end
 end
 
@@ -78,24 +73,25 @@ end
 
 
 function love.draw()
-	if inmenu == true then
-	DRAW_MENU()
-end
-if inmenu == false then
-	DRAW_SPACE()
-	DRAW_PLANET()
 
-	DRAW_MONSTER()
-   
-	if playerOverShip == false then
-		DRAW_PLAYER()
-		DRAW_WEAPON()
-		DRAW_SHIP()
-	elseif playerOverShip == true then  
-		DRAW_SHIP()
-		DRAW_PLAYER()
+	if inmenu == true then
+		DRAW_MENU()
+	end
+	if inmenu == false then
+		DRAW_SPACE()
+		DRAW_PLANET()
+
+		DRAW_MONSTER()
+	   
+		if playerOverShip == false then
+			DRAW_PLAYER()
+			DRAW_SHIP()
+		elseif playerOverShip == true then  
+			DRAW_SHIP()
+			DRAW_PLAYER()
+		end
+		DRAW_INVENTORY()
 		DRAW_WEAPON()
 	end
-	DRAW_INVENTORY()
-end
+
 end

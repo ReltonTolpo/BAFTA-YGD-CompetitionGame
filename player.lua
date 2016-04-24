@@ -58,10 +58,18 @@ function player.draw()
 	
 	if player.beenHit == true then
 		love.graphics.setColor(255, 0, 0)
-		love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+		if player.direction == "right" then
+			love.graphics.draw(hero, player.x + 130, player.y, 0, -2, 2)
+		else
+			love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+		end
 	elseif player.beenHit == false then
 		love.graphics.setColor(255, 255, 255)
-		love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+		if player.direction == "right" then
+			love.graphics.draw(hero, player.x + 130, player.y, 0, -2, 2)
+		else
+			love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+		end
 	end
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
@@ -88,7 +96,7 @@ function player.update(dt)
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
-		hero = images.playerRight
+		hero = images.playerWalk
 
 		player.direction = "right"
 		player.moving = true
@@ -96,7 +104,7 @@ function player.update(dt)
 
 	if love.keyboard.isDown('a') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.speed * dt
-		hero = images.playerLeft
+		hero = images.playerWalk
 
 		player.direction = "left"
 		player.moving = true
@@ -104,7 +112,7 @@ function player.update(dt)
 
 	if love.keyboard.isDown('d') and love.keyboard.isDown('lalt') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.altspeed * dt
-		hero = images.playerRight
+		hero = images.playerWalk
 
 		player.direction = "right"
 		player.moving = true
@@ -112,7 +120,7 @@ function player.update(dt)
 
 	if love.keyboard.isDown('a') and love.keyboard.isDown('lalt') and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.altspeed * dt
-		hero = images.playerLeft
+		hero = images.playerWalk
 
 		player.direction = "left"
 		player.moving = true
