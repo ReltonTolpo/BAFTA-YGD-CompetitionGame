@@ -112,31 +112,6 @@ function weapon.update(dt)
         sizeX = 3
     end
 
-
-    --Testing for Left or Right gun
-    --[[if player.direction == "left" and player.onPlanet == true then
-        if weapon.mouseX < weapon.playerX+64 then
-        --if leftDown == true and player.onPlanet == true then
-            weapon.gunDirection = "left"
-        elseif weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
-            weapon.gunDirection = "na"
-        end
-    elseif player.direction == "right" and player.onPlanet == true then
-        if weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
-        --if rightDown == true and player.onPlanet == true then
-            weapon.gunDirection = "right"
-        elseif weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
-            weapon.gunDirection = "na"
-        end
-    elseif player.direction == "stationary" and player.onPlanet == true then
-        if weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
-        weapon.gunDirection = "left"
-        elseif weapon.mouseX > weapon.playerX+64 then
-        --if rightDown == true and player.onPlanet == true then
-        weapon.gunDirection = "right"
-        end
-    end]]
-
     --Testing for Left or Right bullet
     if weapon.gunDirection == "left" and weapon.left == true then
         weapon.bulletDirection = "left"
@@ -208,8 +183,8 @@ end
 
 function weapon.draw()
 
-    love.graphics.print(weapon.playerX, 250,250,0,2,2)
-    love.graphics.print(weapon.mouseX, 250,275,0,2,2)
+    --love.graphics.print(weapon.playerX, 250,250,0,2,2)
+    --love.graphics.print(weapon.mouseX, 250,275,0,2,2)
 
      love.graphics.draw(psystem3, ammoX, ammoY)
 
