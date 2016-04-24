@@ -66,18 +66,15 @@ function weapon.update(dt)
     weapon.playerX = player.x
     weapon.mouseX = love.mouse.getX()
     weapon.canFire = player.onPlanet
+        --if rightDown == true and player.onPlanet == true then
+        --if leftDown == true and player.onPlanet == true then
 
     --Testing for Left or Right gun
 
-    if leftDown == true and player.onPlanet == true then
-        weapon.gunDirection = "left"
-    elseif rightDown == true and player.onPlanet == true then
-        weapon.gunDirection = "right"
-    elseif player.onPlanet == true then
+        --Testing for Left or Right gun
+    if player.onPlanet == false then
         weapon.gunDirection = "na"
-    end
-
-    --[[if player.direction == "still" and player.onPlanet == true then
+    elseif player.direction == "still" and player.onPlanet == true then
         if weapon.mouseX < weapon.playerX+64 then
             weapon.gunDirection = "left"
         elseif weapon.mouseX > weapon.playerX+64 then
@@ -85,20 +82,17 @@ function weapon.update(dt)
         end
     elseif player.direction == "left" and player.onPlanet == true then
         if weapon.mouseX < weapon.playerX+64 then
-        --if leftDown == true and player.onPlanet == true then
             weapon.gunDirection = "left"
         elseif weapon.mouseX > weapon.playerX+64 then
             weapon.gunDirection = "na"
         end
     elseif player.direction == "right" and player.onPlanet == true then
         if weapon.mouseX > weapon.playerX+64 then
-        --if rightDown == true and player.onPlanet == true then
             weapon.gunDirection = "right"
         elseif weapon.mouseX < weapon.playerX+64 then
             weapon.gunDirection = "na"
         end
-
-    end]]
+    end    
 
     psystem3:update(dt)
     mouseDown = love.mouse.isDown(1)
@@ -120,25 +114,28 @@ function weapon.update(dt)
 
 
     --Testing for Left or Right gun
-    if player.direction == "left" or "still" then
-        if weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
+    --[[if player.direction == "left" and player.onPlanet == true then
+        if weapon.mouseX < weapon.playerX+64 then
         --if leftDown == true and player.onPlanet == true then
             weapon.gunDirection = "left"
         elseif weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
             weapon.gunDirection = "na"
         end
-    elseif player.direction == "right" or "still" and player.direction ~= "left" then
+    elseif player.direction == "right" and player.onPlanet == true then
         if weapon.mouseX > weapon.playerX+64 and player.onPlanet == true then
         --if rightDown == true and player.onPlanet == true then
             weapon.gunDirection = "right"
         elseif weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
             weapon.gunDirection = "na"
         end
-    else
-        if player.onPlanet == true then
-            weapon.gunDirection = "na"
+    elseif player.direction == "stationary" and player.onPlanet == true then
+        if weapon.mouseX < weapon.playerX+64 and player.onPlanet == true then
+        weapon.gunDirection = "left"
+        elseif weapon.mouseX > weapon.playerX+64 then
+        --if rightDown == true and player.onPlanet == true then
+        weapon.gunDirection = "right"
         end
-    end
+    end]]
 
     --Testing for Left or Right bullet
     if weapon.gunDirection == "left" and weapon.left == true then
