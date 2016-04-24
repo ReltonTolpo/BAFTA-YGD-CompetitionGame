@@ -12,8 +12,13 @@ require "menu"
 
 function love.load()
 
+x = 0
 	--Loading Classes
-	
+	inmenu = true
+
+	menu.load()
+	if inmenu == false then
+
 	sound.load()
 	images.load()
 
@@ -26,11 +31,29 @@ function love.load()
 
 	monster.load()
 	ship.load()
+end
 	
 end
 
 function love.update(dt)
-	
+
+		if inmenu == false then
+				x = x +1
+					if x == 1 then
+	sound.load()
+	images.load()
+
+	space.load()
+	planet.load()
+
+	player.load()
+	weapon.load()
+	inventory.load()
+
+	monster.load()
+	ship.load()
+		
+			end
 	UPDATE_SOUND(dt)
 	UPDATE_IMAGES(dt)
 
@@ -46,11 +69,19 @@ function love.update(dt)
 	UPDATE_MONSTER(dt)
 
 
-end 
+
+
+	end
+end
+
+--end 
 
 
 function love.draw()
-
+	if inmenu == true then
+	DRAW_MENU()
+end
+if inmenu == false then
 	DRAW_SPACE()
 	DRAW_PLANET()
 
@@ -66,4 +97,5 @@ function love.draw()
 		DRAW_WEAPON()
 	end
 	DRAW_INVENTORY()
+end
 end
