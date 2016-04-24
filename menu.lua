@@ -60,6 +60,10 @@ function menu.draw()
       love.graphics.rectangle("fill", 600, 300, 200, 60 )
               love.graphics.setColor(0, 0, 0)
       love.graphics.print("Press to start the game", 600 , 300, 0, 1, 3)
+
+ 
+              love.graphics.setColor(255, 255, 255)
+      love.graphics.print("WASD to move. Space to jump. E to enter ship or planet. Lclick to shoot. I for inventory.", 600 , 600, 0, 1, 3)
 end
 
 function UPDATE_MENU(dt)

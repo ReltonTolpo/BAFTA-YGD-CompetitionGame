@@ -11,7 +11,7 @@ require "inventory"
 require "menu"
 
 function love.load()
-
+playerOverShip = true
 x = 0
 	--Loading Classes
 	inmenu = true
