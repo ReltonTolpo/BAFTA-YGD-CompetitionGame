@@ -159,6 +159,10 @@ function monster.playerTracker(dt)
 
 end
 
+function monster.bossBase(dt)
+
+end
+
 function monster.physics(dt)
 
 	for j = 1, monster.amount do
