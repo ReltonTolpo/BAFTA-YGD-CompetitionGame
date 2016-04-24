@@ -21,6 +21,8 @@ end
 
 function UPDATE_PLANET(dt)
 
+						 onPlanet = true
+						 currentPlanet = 1
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
 		if space.weatherX>500 then 
@@ -67,6 +69,15 @@ function DRAW_PLANET()
 			love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
 			love.graphics.print(planetArray[i][6], planetArray[i][6]  , planetArray[i][7]  - 50, 0, 3, 3)
 						love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
+
+
+	local width = love.graphics.getWidth()
+	local height = love.graphics.getHeight()
+
+						if planetArray[i][6] > 615 - 32 and planetArray[i][6] < 615 + 32 and planetArray[i][7] > 409 -32 and planetArray[i][7] < 409 + 32 then
+						 onPlanet = true
+						 currentPlanet = 1
+						end
 
 		end
 	end
