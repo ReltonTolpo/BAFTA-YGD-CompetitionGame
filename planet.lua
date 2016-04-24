@@ -66,8 +66,7 @@ function DRAW_PLANET()
 			-- DEBUG CODE:
 			love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
 			love.graphics.print(planetArray[i][6], planetArray[i][6]  , planetArray[i][7]  - 50, 0, 3, 3)
-						love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
-
+			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
 		end
 	end
 	
