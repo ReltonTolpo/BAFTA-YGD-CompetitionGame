@@ -11,7 +11,7 @@ function planet.load()
 	planetNum = 20
 
 	planetArray = {{}}
-	planetArray[1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(2, 10), love.math.random(0.01, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1)} 																	
+	planetArray[1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(2, 10), love.math.random(0.05, 0.1), love.math.random(-2400,2400),love.math.random(-1500, 1500), love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1)} 																	
 
 	for i = 1, planetNum do
 		planetArray[#planetArray + 1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(2, 10), love.math.random(0.01, 0.1),love.math.random(-2400,2400) ,love.math.random(-1500, 1500), love.math.random(0,255 ), love.math.random(0, 255),love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(-4, 10),  love.math.random(-1, 1)}
