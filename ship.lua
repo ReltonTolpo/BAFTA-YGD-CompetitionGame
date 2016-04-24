@@ -28,7 +28,6 @@ function ship.load()
 
 	local smoke = images.smoke
 	local fire = images.fire
-
  
 	psystem1 = love.graphics.newParticleSystem(smoke, 70)
 	psystem1:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
@@ -192,7 +191,6 @@ function boundary()
 	if player.onPlanet == false then
 		for i = 1, planetNum do
 			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
-				print("Debugger #1")
 			end
 		end
 	end

@@ -8,6 +8,7 @@ require "sound"
 require "images"
 require "ship"
 require "inventory"
+require "menu"
 
 function love.load()
 
@@ -33,7 +34,9 @@ function love.update(dt)
 	UPDATE_SOUND(dt)
 	UPDATE_IMAGES(dt)
 
+	UPDATE_SHIP(dt)
 	UPDATE_SPACE(dt)
+
 	UPDATE_PLANET(dt)
 
 	UPDATE_PLAYER(dt)
@@ -42,7 +45,6 @@ function love.update(dt)
 
 	UPDATE_MONSTER(dt)
 
-	UPDATE_SHIP(dt)
 
 end 
 

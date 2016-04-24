@@ -3,6 +3,7 @@ require "space"
 require "images"
 
 function planet.load()
+
 	planet = images.planet
 	onPlanet = true
 
@@ -21,6 +22,8 @@ end
 
 function UPDATE_PLANET(dt)
 
+	onPlanet = true
+	currentPlanet = 1
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
 		if space.weatherX>500 then 
@@ -62,11 +65,29 @@ function DRAW_PLANET()
 			planetArray[i][7] = planetArray[i][7] + space.starY
 			planetArray[i][11] = planetArray[i][11] + 0.01 --planetArray[i][5] - 0.5
 			love.graphics.setColor(planetArray[i][1], planetArray[i][2], planetArray[i][3])
-			love.graphics.draw(planet,planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][12]+planetArray[i][13],30,30)
+			love.graphics.draw(planet, planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][12]+planetArray[i][13],30,30)
 			-- DEBUG CODE:
 			love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
 			love.graphics.print(planetArray[i][6], planetArray[i][6]  , planetArray[i][7]  - 50, 0, 3, 3)
 			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
+			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
+
+			local width = love.graphics.getWidth()
+			local height = love.graphics.getHeight()
+
+			if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") then
+				player.onPlanet = true
+				player.playerExists = true
+				currentPlanet = i
+				ship = images.ship
+				shipx = 50
+				shipy = 350
+				player.x = 600
+				player.y = 200
+				player.canMove = true
+				print("DEBUG 9000")
+			end
+
 		end
 	end
 	
