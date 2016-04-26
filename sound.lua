@@ -4,6 +4,7 @@ function sound.load()
 
 	--Import sounds here
 	sound.bg_music = love.audio.newSource("/Sounds/BackgroundMusic-Planet.wav")
+	sound.bg_music_space = love.audio.newSource("/Sounds/ambientSpace.wav")
 	sound.walking_sfx = love.audio.newSource("/Sounds/Walking.wav")
 
 	sound.loopBackground = true --Will backround music loop
