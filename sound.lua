@@ -14,9 +14,6 @@ function sound.load()
 	
 	sound.bg_music:setVolume(0.2)
 	sound.bg_music_space:setVolume(0.2)
-	
-	sound.bg_music:play()
-
 end
 
 function sound.update()
