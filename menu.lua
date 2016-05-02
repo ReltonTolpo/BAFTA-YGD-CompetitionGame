@@ -55,13 +55,13 @@ end
 function menu.draw()
 
     --DONE Logic Code
-      love.graphics.rectangle("fill", 600, 300, 200, 60 )
-              love.graphics.setColor(0, 0, 0)
-      love.graphics.print("Press to start the game", 600 , 300, 0, 1, 3)
-
+    love.graphics.rectangle("fill", 480, 300, 200, 60 )
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.print("Press to Start", 495, 307, 0, 2, 3)
  
-              love.graphics.setColor(255, 255, 255)
-      love.graphics.print("WASD to move. Space to jump. E to enter ship or planet. Lclick to shoot. I for inventory.", 600 , 600, 0, 1, 3)
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.print("WASD to move. Space to jump. E to enter ship or planet. LClick to shoot. I for inventory.", 65, 600, 0, 2, 3)
+
 end
 
 function UPDATE_MENU(dt)
@@ -80,7 +80,7 @@ end
 
 function love.mousepressed(x, y, button, istouch)
 
-    if button == 1 and x > 600 and x < 800 and y > 300 and y < 360 then
+    if button == 1 and x > 480 and x < 680 and y > 300 and y < 360 then
         inmenu = false
     end
 

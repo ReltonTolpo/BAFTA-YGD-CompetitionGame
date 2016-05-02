@@ -13,17 +13,16 @@ function weapon.load()
     weapon.storedY = 0
     weapon.bulletDirection = "na"
     weapon.gunDirection = "na"
-    weapon.currentWeapon = 2
+    weapon.currentWeapon = 1
     weapon.drawAmmo = false
     weapon.lock = false
     weapon.bulletDamage = 10
     weapon.bulletSpeed = 5
     weapon.firstFire = true
+    weapon.ready = false
 
     weapon.a = true
     weapon.b = true
-
-
 
     weapon.left = true
     weapon.right = true
@@ -66,8 +65,6 @@ function weapon.update(dt)
     weapon.playerX = player.x
     weapon.mouseX = love.mouse.getX()
     weapon.canFire = player.onPlanet
-        --if rightDown == true and player.onPlanet == true then
-        --if leftDown == true and player.onPlanet == true then
 
     --Testing for Left or Right gun
     if leftDown == true and player.onPlanet == true then
@@ -107,13 +104,13 @@ function weapon.update(dt)
 
     --Setting things depending on weapon
     if weapon.currentWeapon == 1 then
-        weapon.bulletDamage = 5
-        weapon.bulletSpeed = 4
+        weapon.bulletDamage = 6
+        weapon.bulletSpeed = 15
         sizeX = 4
         weaponImage = images.gunBase
     elseif weapon.currentWeapon == 2 then
         weapon.bulletDamage = 3
-        weapon.bulletSpeed = 7
+        weapon.bulletSpeed = 25
         weaponImage = images.machineGun
         sizeX = 3
     end
@@ -132,15 +129,9 @@ function weapon.update(dt)
         if mouseDown == true or weapon.lock == true then
             weapon.ammoX = weapon.storedX
             weapon.ammoY = weapon.storedY
-            weapon.lock = true
             weapon.drawAmmo = true
-            if weapon.firstFire == true then
-                weapon.lock = false
-                weapon.firstFire = false
-                weapon.mouseDown = false
-                print(weapon.mouseDown)
-            end
-            if weapon.bulletDirection == "left" or weapon.lockLeft == true then 
+            if weapon.bulletDirection == "left" or weapon.lockLeft == true then
+                weapon.lock = true
                 if weapon.left == true then
                     weapon.storedX = weapon.storedX - weapon.bulletSpeed
                     weapon.right = false
@@ -155,6 +146,7 @@ function weapon.update(dt)
                     end
                 end
             elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
+                weapon.lock = true
                 if weapon.right == true then
                     weapon.storedX = weapon.storedX + weapon.bulletSpeed
                     weapon.left = false
@@ -195,10 +187,7 @@ end
 
 function weapon.draw()
 
-    --love.graphics.print(weapon.playerX, 250,250,0,2,2)
-    --love.graphics.print(weapon.mouseX, 250,275,0,2,2)
-
-     love.graphics.draw(psystem3, ammoX, ammoY)
+    love.graphics.draw(psystem3, ammoX, ammoY)
 
     if player.dead == false and player.onPlanet == true and smokeActive == false and liftoff == false then
         if weapon.gunDirection == "left" then

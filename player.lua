@@ -202,10 +202,10 @@ function player.update(dt)
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.weight = player.currentGravity * player.mass
 	
-	if player.onPlanet = true then
+	if player.onPlanet == true then
 		sound.bg_music:play()
 		sound.bg_music_space:pause()
-	elseif player.onPlanet = false then
+	elseif player.onPlanet == false then
 		sound.bg_music_space:play()
 		sound.bg_music:pause()		
 	end
