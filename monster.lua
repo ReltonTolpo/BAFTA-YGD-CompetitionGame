@@ -10,16 +10,18 @@ function monster.load()
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
-	monster.a = true
+	monster.dayNight = true
+
+	monster.bossExtras = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false, false, 2}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Given Drops 15
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false, false, 2}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Given Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
 end
@@ -58,17 +60,15 @@ function monster.update(dt)
 			end
 
 			--Removing Monsters at day
-			if space.dayTime == 1 then
+			if space.dayTime == 1 and monsterArray[m][16] == false then
 				monsterArray[m][2] = -500
-				monster.a = true
+				monster.dayNight = true
 			end
 
 			--Bringing Monsters back at night
-			if space.dayTime == 0 and monster.a == true then
-				for x = 1, monster.amount do
-					monsterArray[m][2] = 450
-				end
-				monster.a = false
+			if space.dayTime == 0 and monster.a == true and monsterArray[m][16] == false then
+				monsterArray[m][2] = 450
+				monster.dayNight = false
 			end
 			monster.randomNumber = love.math.random(1, 200)
 
@@ -81,7 +81,7 @@ function monster.update(dt)
 		        	monsterArray[m][14] = false
 		        end
 		    elseif monsterArray[m][7] == 2 then
-		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 80 and monsterArray[m][2] <= weapon.ammoY + 130 then
+		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 100 and monsterArray[m][2] <= weapon.ammoY + 200 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
 		        else
@@ -161,6 +161,27 @@ end
 
 function monster.bossBase(dt)
 
+	for k = 1, monster.amount do
+		if planetArray[currentPlanet][14] == true then
+			monsterArray[1][16] = true
+			monsterArray[1][17] = 6
+		end
+		if monsterArray[k][10] <= 0 and monsterArray[k][16] == true then
+			love.graphics.setColor(255, 255, 255)
+			planetArray[currentPlanet][14] = false
+			monsterArray[k][16] = false
+			monsterArray[k][10] = love.math.random(20, 50)
+			inventory.graviNum = inventory.graviNum + 1
+			monsterArray[k][17] = 2
+			monster.bossExtras = true
+		end
+		if monsterArray[k][16] == true and monster.bossExtras == true then
+			monsterArray[k][10] = love.math.random(100, 200)
+
+			monster.bossExtras = false
+		end
+	end
+
 end
 
 function monster.physics(dt)
@@ -175,14 +196,25 @@ function monster.draw()
 
 	for b = 1, monster.amount do
 		--Draw Monster
-		if player.onPlanet == true and monsterArray[b][10] > 0 and space.dayTime == 0 then
-			if monsterArray[b][14] == true then
-				love.graphics.setColor(255, 0, 0)
-				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
-				love.timer.sleep(0.03)
-			else
-				love.graphics.setColor(75, 200, 75)
-				love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, 2, 2)
+		if player.onPlanet == true and monsterArray[b][10] > 0 then
+			if monsterArray[b][16] == true then
+				if monsterArray[b][14] == true then
+					love.graphics.setColor(255, 0, 0)
+					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
+					love.timer.sleep(0.03)
+				else
+					love.graphics.setColor(75, 200, 75)
+					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
+				end
+			elseif monsterArray[b][16] == false and space.dayTime == 0 then
+				if monsterArray[b][14] == true then
+					love.graphics.setColor(255, 0, 0)
+					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
+					love.timer.sleep(0.03)
+				else
+					love.graphics.setColor(75, 200, 75)
+					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
+				end
 			end
 		end
 	end
@@ -196,6 +228,7 @@ function UPDATE_MONSTER(dt)
 	monster.playerTracker(dt)
 	monster.movement(dt)
 	monster.boundary(dt)
+	monster.bossBase(dt)
 
 end
 

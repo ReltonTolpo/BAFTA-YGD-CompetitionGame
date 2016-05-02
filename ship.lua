@@ -3,6 +3,7 @@ require "player"
 require "images"
 require "space"
 require "planet"
+require "weapon"
 
 function ship.load()
 
@@ -42,8 +43,6 @@ function ship.load()
 	psystem2:setSizeVariation(0)
 	psystem2:setLinearAcceleration(-20, -5, -20, 5) -- Random movement in all directions.
 	psystem2:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
-
-
 end	
 
 function update(dt)
@@ -85,6 +84,10 @@ function update(dt)
 			shipActive = false
 			smokeActive = false
 			player.canMove = false
+		end
+
+		if shipActive == true and weapon.ammoAmount < 30 then
+			weapon.ammoAmount = weapon.ammoAmount + 1
 		end
 	end
 

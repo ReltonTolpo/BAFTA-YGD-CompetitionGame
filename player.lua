@@ -131,11 +131,20 @@ function player.update(dt)
 	end
 	
 	for i = 1, monster.amount do --Monster deals damage to player here
-		if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
-			player.health = player.health - 1
-			player.beenHit = true
-		else
-			player.beenHit = false
+		if monsterArray[i][16] == false then
+			if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
+				player.health = player.health - 1
+				player.beenHit = true
+			else
+				player.beenHit = false
+			end
+		elseif monsterArray[i][16] == true then
+			if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
+				player.health = player.health - 1
+				player.beenHit = true
+			else
+				player.beenHit = false
+			end
 		end
 	end
 
@@ -234,6 +243,7 @@ function player.jetpack()
 	if player.jetpack == true then
 	end
 end
+
 function UPDATE_PLAYER(dt)
 
 	player.physics(dt)
