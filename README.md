@@ -1,6 +1,6 @@
 # BAFTA-YGD-CompetitionGame
-Used in the BAFTA YDG Competition 2014
+Used in the BAFTA YDG Competition 2016
 
-Very good game
+Space Game, has no name yet!
 
 Over 1300 lines of code
