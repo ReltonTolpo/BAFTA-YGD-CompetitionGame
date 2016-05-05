@@ -7,7 +7,8 @@ require "monster"
 require "weapon"
 
 function player.load()
-	player.jetpack = true
+
+	player.hasJetpack = false
 	player.health = 100
 	player.x = 50
 	player.y = 50
@@ -265,8 +266,11 @@ function player.boundary()
 end
 
 function player.jetpack()
-	if player.jetpack == true then
+
+	if player.hasJetpack == true then
+
 	end
+
 end
 
 function UPDATE_PLAYER(dt)
@@ -278,6 +282,7 @@ function UPDATE_PLAYER(dt)
 	end
 
 	player.boundary()
+	player.jetpack()
 
 end
 

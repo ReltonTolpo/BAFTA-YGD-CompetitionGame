@@ -15,13 +15,13 @@ function monster.load()
 	monster.bossExtras = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false, false, 2}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, love.math.random(0, 10), false, 2}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, false, false, 2}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Given Drops 15, Monster is boss 16, Monster Size 17
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, love.math.random(0, 10), false, 2}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
 end
@@ -162,20 +162,27 @@ end
 function monster.bossBase(dt)
 
 	for k = 1, monster.amount do
-		if planetArray[currentPlanet][14] == true then
+		if planetArray[currentPlanet][14] == true then --Creates boss
 			monsterArray[1][16] = true
 			monsterArray[1][17] = 6
 		end
-		if monsterArray[k][10] <= 0 and monsterArray[k][16] == true then
+		if monsterArray[k][10] <= 0 and monsterArray[k][16] == true then --Kills boss
 			love.graphics.setColor(255, 255, 255)
 			planetArray[currentPlanet][14] = false
 			monsterArray[k][16] = false
 			monsterArray[k][10] = love.math.random(20, 50)
 			inventory.graviNum = inventory.graviNum + 1
 			monsterArray[k][17] = 2
+
+			if monsterArray[k][15] == 1 then
+				weapon.currentWeapon = 2
+			elseif monsterArray[k][15] == 2 then
+				player.hasJetpack = true
+			end
+
 			monster.bossExtras = true
 		end
-		if monsterArray[k][16] == true and monster.bossExtras == true then
+		if monsterArray[k][16] == true and monster.bossExtras == true then --Adds boss extras
 			monsterArray[k][10] = love.math.random(100, 200)
 
 			monster.bossExtras = false

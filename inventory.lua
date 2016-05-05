@@ -56,7 +56,7 @@ function inventory.draw()
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
         if inventory.graviNum > 0 then
             love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)
-        	love.graphics.print(inventory.graviNum, 607, 330, 0, 2.5, 2.5)
+        	love.graphics.print("x"..inventory.graviNum, 607, 330, 0, 2.5, 2.5)
         end
    	    love.graphics.draw(inventoryImages[2], 400, 280, 0, 10, 10)
     end
@@ -81,22 +81,22 @@ function sleep(sec)
 
 end
 
---function love.mousepressed(x, y, button, istouch)
-  -- if button == 1 then -- the primary button
-    --if weapon.currentWeapon == 1 then
---weapon.currentWeapon = 0
-  --  sleep(0.2)
---end
---if weapon.currentWeapon == 0 then
-  --  weapon.currentWeapon = 1
-    --sleep(0.2)
---end
-  -- end
---end
+--[[function love.mousepressed(x, y, button, istouch)
+    if button == 1 then -- the primary button
+        if weapon.currentWeapon == 1 then
+            weapon.currentWeapon = 0
+            sleep(0.2)
+        end
+        if weapon.currentWeapon == 0 then
+            weapon.currentWeapon = 1
+            sleep(0.2)
+        end
+    end
+end
 
 function love.mousepressed(x, y, button, istouch)
    if button == 1 then -- the primary button
       printx = x
       printy = y
    end
-end
+end]]
