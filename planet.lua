@@ -63,11 +63,11 @@ function DRAW_PLANET()
 			planetArray[i][11] = planetArray[i][11] + 0.01 --planetArray[i][5] - 0.5
 			love.graphics.setColor(planetArray[i][1], planetArray[i][2], planetArray[i][3])
 			love.graphics.draw(planet, planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][12]+planetArray[i][13],30,30)
-			-- DEBUG CODE:
+			--[[DEBUG CODE:
 			love.graphics.rectangle("fill",  planetArray[i][6],  planetArray[i][7], planetArray[i][12] , planetArray[i][12]+planetArray[i][13]) 
 			love.graphics.print(planetArray[i][6], planetArray[i][6]  , planetArray[i][7]  - 50, 0, 3, 3)
 			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
-			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)
+			love.graphics.print(planetArray[i][7], planetArray[i][6]  , planetArray[i][7]+25  - 50, 0, 3, 3)]]
 
 			local width = love.graphics.getWidth()
 			local height = love.graphics.getHeight()

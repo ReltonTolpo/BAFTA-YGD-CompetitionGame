@@ -72,14 +72,18 @@ function player.draw()
 		end
 	end
 
-	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
-	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
-	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
-
 	if player.dead == true then
 		love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
 	end
+
+end
+
+function player.drawInfo()
+
+	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
+	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
+	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 end
 
@@ -132,18 +136,36 @@ function player.update(dt)
 	
 	for i = 1, monster.amount do --Monster deals damage to player here
 		if monsterArray[i][16] == false then
-			if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
-				player.health = player.health - 1
-				player.beenHit = true
-			else
-				player.beenHit = false
+			if monsterArray[i][7] == 1 then
+				if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
+					player.health = player.health - 1
+					player.beenHit = true
+				else
+					player.beenHit = false
+				end
+			elseif monsterArray[i][7] == 2 then
+				if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
+					player.health = player.health - 1
+					player.beenHit = true
+				else
+					player.beenHit = false
+				end
 			end
 		elseif monsterArray[i][16] == true then
-			if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
-				player.health = player.health - 1
-				player.beenHit = true
-			else
-				player.beenHit = false
+			if monsterArray[i][7] == 1 then
+				if player.x >= monsterArray[i][1] - 40 and player.x <= monsterArray[i][1] + 40 and player. y >= monsterArray[i][2] - 30 and player.y <= monsterArray[i][2] + 30 then
+					player.health = player.health - 2
+					player.beenHit = true
+				else
+					player.beenHit = false
+				end
+			elseif monsterArray[i][7] == 2 then
+				if player.x >= monsterArray[i][1] - 40 and player.x <= monsterArray[i][1] + 40 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
+					player.health = player.health - 2
+					player.beenHit = true
+				else
+					player.beenHit = false
+				end
 			end
 		end
 	end
@@ -167,6 +189,9 @@ function player.update(dt)
 			space.load()
 			monster.load()
 			player.load()
+			inventory.load()
+
+			currentPlanet = 1
 
 			player.dead = false
 		end
@@ -260,6 +285,9 @@ function DRAW_PLAYER()
 
 	if player.playerExists == true then
 		player.draw()
+	end
+	if player.onPlanet == true then
+		player.drawInfo()
 	end
 
 end

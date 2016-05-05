@@ -53,10 +53,10 @@ function monster.update(dt)
 			--Killing Monster
 			if monsterArray[m][10] <= 0 then
 				monsterArray[m][2] = -500
-				if monsterArray[m][15] == false then
+				--[[if monsterArray[m][15] == false then
 					weapon.ammoAmount = weapon.ammoAmount + love.math.random(1, 5)
 					monsterArray[m][15] = true
-				end
+				end]]
 			end
 
 			--Removing Monsters at day
@@ -114,7 +114,7 @@ end
 function monster.movement(dt)
 	
 	for p = 1, monster.amount do
-		if monsterArray[p][4] ~= 1 then
+		if monsterArray[p][4] ~= 1 and monsterArray[1][16] == false then
 			if monsterArray[p][3] == 1 then
 				monsterArray[p][1] = monsterArray[p][1] + monsterArray[p][6]
 				monsterArray[p][9] = monsterArray[p][13]
@@ -140,7 +140,7 @@ end
 function monster.playerTracker(dt)
 
 	for h = 1, monster.amount do
-		if monsterArray[h][4] == 1 then
+		if monsterArray[h][4] == 1 and monsterArray[h][1] == false then
 			if monsterArray[h][1] > player.x then
 				monsterArray[h][1] = monsterArray[h][1] - monsterArray[h][6]
 				monsterArray[h][9] = monsterArray[h][12]
@@ -179,6 +179,23 @@ function monster.bossBase(dt)
 			monsterArray[k][10] = love.math.random(100, 200)
 
 			monster.bossExtras = false
+		end
+	end
+
+end
+
+function monster.bossTracker(dt)
+
+	for d = 1, monster.amount do
+		if monsterArray[1][16] == true then
+			if monsterArray[d][1] > player.x then
+				monsterArray[d][1] = monsterArray[d][1] - 1
+				monsterArray[d][9] = monsterArray[d][12]
+			end
+			if monsterArray[d][1] < player.x then
+				monsterArray[d][1] = monsterArray[d][1] + 1
+				monsterArray[d][9] = monsterArray[d][13]
+			end
 		end
 	end
 
@@ -229,6 +246,7 @@ function UPDATE_MONSTER(dt)
 	monster.movement(dt)
 	monster.boundary(dt)
 	monster.bossBase(dt)
+	monster.bossTracker(dt)
 
 end
 

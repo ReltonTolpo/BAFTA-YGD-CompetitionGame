@@ -5,16 +5,14 @@ require "images"
 require "weapon"
 
 function inventory.load()
-   printx = 0
-   printy = 0
+
     inventory.inInv = false
     inventory.x = 375
     inventory.y = 100
     inventory.graviNum = 0
-    inventory.graviton = images.graviton
     inventory.locked = false
 
-    inventoryArray = {images.graviton, images.gunBase}
+    inventoryImages = {images.graviton, images.gunBase}
     --Graviton, Weapon, Jetpack,
 
     basicGUI = images.inventory
@@ -54,17 +52,13 @@ end
 
 function inventory.draw()
 
-    love.graphics.setColor(255,255,255)
-  	love.graphics.print(printx, printx, printy)
-    love.graphics.print(printy, printx, printy+50)
-
     if inventory.inInv == true then
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
         if inventory.graviNum > 0 then
-            love.graphics.draw(inventory.graviton, 575, 300, 0, 8, 8)
+            love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)
         	love.graphics.print(inventory.graviNum, 607, 330, 0, 2.5, 2.5)
         end
-   	love.graphics.draw(slot1, 400, 280, 0, 10, 10)
+   	    love.graphics.draw(inventoryImages[2], 400, 280, 0, 10, 10)
     end
 
 end

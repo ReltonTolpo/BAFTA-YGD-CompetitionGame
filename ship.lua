@@ -49,7 +49,7 @@ function update(dt)
 
 	n = 0
 	if player.onPlanet == true then
-		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false then
+		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false then
 			player.canMove = false
 			player.x = 350
 			player.hero = player.rightPlayer
@@ -134,7 +134,7 @@ end
 function playerIntoShip() --Animations for player getting into ship
 
 	if animation1 == true then
-		player.x = player.x + 0.5
+		player.x = player.x + 3
 		if player.x > 450 then			   
 		 	animation1 = false
 		   	animation2 = true
@@ -144,7 +144,7 @@ function playerIntoShip() --Animations for player getting into ship
 
 	if animation2 == true then
 		playerOverShip = true
-		player.x = player.x - 0.5
+		player.x = player.x - 3
 		if player.x < 350 then
 		    animation2 = false
     		animation4 = true
@@ -154,9 +154,9 @@ function playerIntoShip() --Animations for player getting into ship
 
 	if animation3 == true then
 		player.doGravity = false
-		player.x = player.x - 0.5
-		player.y = player.y - 5
-		if player.x < 300 then
+		player.x = player.x - 1
+		player.y = player.y - 10
+		if player.x < 300 and player.y > 400 then
 			player.playerExists = false
 		   	ship = images.playerInShip
 		   	animation3 = false
