@@ -24,11 +24,9 @@ function images.load()
 
 	--↓ Monster images
 	images.darkElf 				= love.graphics.newImage("images/monster/darkElf/darkElf.png")			--Dark elf monster
-	images.darkElfRight			= love.graphics.newImage("images/monster/darkElf/darkElfRight.png")		--Dark elf monster
-	images.darkElfLeft			= love.graphics.newImage("images/monster/darkElf/darkElfLeft.png")		--Dark elf monster
+	images.darkElfMove			= love.graphics.newImage("images/monster/darkElf/darkElfMove.png")		--Dark elf monster
 	images.flyingOcto 			= love.graphics.newImage("images/monster/flyingOcto/flyingOcto.png")		--Dark elf monster
-	images.flyingOctoRight		= love.graphics.newImage("images/monster/flyingOcto/flyingOctoRight.png")	--Dark elf monster
-	images.flyingOctoLeft		= love.graphics.newImage("images/monster/flyingOcto/flyingOctoLeft.png")	--Dark elf monster
+	images.flyingOctoMove		= love.graphics.newImage("images/monster/flyingOcto/flyingOctoMove.png")	--Dark elf monster
 
 	--↓ Weather images
 	images.moon 				= love.graphics.newImage("images/weather/moon.png")				-- Moon

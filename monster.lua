@@ -15,13 +15,13 @@ function monster.load()
 	monster.bossExtras = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, love.math.random(0, 10), false, 2}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfLeft, images.darkElfRight, false, love.math.random(0, 10), false, 2}
-		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Left 12, Monster Image Right 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
 end
@@ -34,12 +34,10 @@ function monster.update(dt)
 			--Drawing Monster Stats
 			if monsterArray[m][7] == 1 then
 				monsterArray[m][11] = images.darkElf
-				monsterArray[m][12] = images.darkElfLeft
-				monsterArray[m][13] = images.darkElfRight
+				monsterArray[m][12] = images.darkElfMove
 			elseif monsterArray[m][7] == 2 then
 				monsterArray[m][11] = images.flyingOcto
-				monsterArray[m][12] = images.flyingOctoLeft
-				monsterArray[m][13] = images.flyingOctoRight
+				monsterArray[m][12] = images.flyingOctoMove
 				if monsterArray[m][2] > 330 then
 					monsterArray[m][2] = 330
 				end
@@ -53,10 +51,6 @@ function monster.update(dt)
 			--Killing Monster
 			if monsterArray[m][10] <= 0 then
 				monsterArray[m][2] = -500
-				--[[if monsterArray[m][15] == false then
-					weapon.ammoAmount = weapon.ammoAmount + love.math.random(1, 5)
-					monsterArray[m][15] = true
-				end]]
 			end
 
 			--Removing Monsters at day
@@ -117,12 +111,14 @@ function monster.movement(dt)
 		if monsterArray[p][4] ~= 1 and monsterArray[1][16] == false then
 			if monsterArray[p][3] == 1 then
 				monsterArray[p][1] = monsterArray[p][1] + monsterArray[p][6]
-				monsterArray[p][9] = monsterArray[p][13]
+				monsterArray[p][9] = monsterArray[p][12]
+				monsterArray[p][13] = "right"
 			end
 
 			if monsterArray[p][3] == 2 then
 				monsterArray[p][1] = monsterArray[p][1] - monsterArray[p][6]
 				monsterArray[p][9] = monsterArray[p][12]
+				monsterArray[p][13] = "left"
 			end
 			
 			if monsterArray[p][3] ~= 2 and monsterArray[p][3] ~= 1 and monsterArray[p][4] ~= 1 then
@@ -132,6 +128,9 @@ function monster.movement(dt)
 		if monsterArray[p][3] == 4 and monsterArray[p][2] > 300 then
 			monsterArray[p][2] = monsterArray[p][2] - 10
 			monsterArray[p][3] = 3
+		end
+		if monsterArray[p][13] ~= "left" and monsterArray[p][13] ~= "right" then
+			monsterArray[p][13] = "still"
 		end
 	end
 
@@ -144,11 +143,13 @@ function monster.playerTracker(dt)
 			if monsterArray[h][1] > player.x then
 				monsterArray[h][1] = monsterArray[h][1] - monsterArray[h][6]
 				monsterArray[h][9] = monsterArray[h][12]
+				monsterArray[h][13] = "left"
 			end
 
 			if monsterArray[h][1] < player.x then
 				monsterArray[h][1] = monsterArray[h][1] + monsterArray[h][6]
-				monsterArray[h][9] = monsterArray[h][13]
+				monsterArray[h][9] = monsterArray[h][12]
+				monsterArray[h][13] = "right"
 			end
 		end
 
@@ -198,10 +199,12 @@ function monster.bossTracker(dt)
 			if monsterArray[d][1] > player.x then
 				monsterArray[d][1] = monsterArray[d][1] - 1
 				monsterArray[d][9] = monsterArray[d][12]
+				monsterArray[d][13] = "left"
 			end
 			if monsterArray[d][1] < player.x then
 				monsterArray[d][1] = monsterArray[d][1] + 1
-				monsterArray[d][9] = monsterArray[d][13]
+				monsterArray[d][9] = monsterArray[d][12]
+				monsterArray[d][13] = "right"
 			end
 		end
 	end
@@ -219,25 +222,46 @@ end
 function monster.draw()
 
 	for b = 1, monster.amount do
-		--Draw Monster
 		if player.onPlanet == true and monsterArray[b][10] > 0 then
-			if monsterArray[b][16] == true then
-				if monsterArray[b][14] == true then
-					love.graphics.setColor(255, 0, 0)
-					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
-					love.timer.sleep(0.03)
-				else
-					love.graphics.setColor(75, 200, 75)
-					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
+			if monsterArray[b][13] == "left" or monsterArray[b][13] == "still" then
+				if monsterArray[b][16] == true then
+					if monsterArray[b][14] == true then
+						love.graphics.setColor(255, 0, 0)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
+						love.timer.sleep(0.03)
+					else
+						love.graphics.setColor(75, 200, 75)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2] - 250, 0, monsterArray[b][17], monsterArray[b][17])
+					end
+				elseif monsterArray[b][16] == false and space.dayTime == 0 then
+					if monsterArray[b][14] == true then
+						love.graphics.setColor(255, 0, 0)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
+						love.timer.sleep(0.03)
+					else
+						love.graphics.setColor(75, 200, 75)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
+					end
 				end
-			elseif monsterArray[b][16] == false and space.dayTime == 0 then
-				if monsterArray[b][14] == true then
-					love.graphics.setColor(255, 0, 0)
-					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
-					love.timer.sleep(0.03)
-				else
-					love.graphics.setColor(75, 200, 75)
-					love.graphics.draw(monsterArray[b][9], monsterArray[b][1], monsterArray[b][2], 0, monsterArray[b][17], monsterArray[b][17])
+			elseif monsterArray[b][13] == "right" then
+				if monsterArray[b][16] == true then
+					if monsterArray[b][14] == true then
+						love.graphics.setColor(255, 0, 0)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1] + 330, monsterArray[b][2] - 250, 0, -monsterArray[b][17], monsterArray[b][17])
+						love.timer.sleep(0.03)
+					else
+						love.graphics.setColor(75, 200, 75)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1] + 330, monsterArray[b][2] - 250, 0, -monsterArray[b][17], monsterArray[b][17])
+					end
+				elseif monsterArray[b][16] == false and space.dayTime == 0 then
+					if monsterArray[b][14] == true then
+						love.graphics.setColor(255, 0, 0)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1] + 145, monsterArray[b][2], 0, -monsterArray[b][17], monsterArray[b][17])
+						love.timer.sleep(0.03)
+					else
+						love.graphics.setColor(75, 200, 75)
+						love.graphics.draw(monsterArray[b][9], monsterArray[b][1] + 145, monsterArray[b][2], 0, -monsterArray[b][17], monsterArray[b][17])
+					end
 				end
 			end
 		end

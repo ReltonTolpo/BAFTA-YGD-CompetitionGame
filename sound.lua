@@ -17,6 +17,12 @@ function sound.load()
 
 end
 
+function sound.update()
+
+	--TODO LOGIC CODE
+
+end
+
 function UPDATE_SOUND(dt)
 
 	sound.update()
