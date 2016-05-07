@@ -31,6 +31,7 @@ function images.load()
 	--↓ Weather images
 	images.moon 				= love.graphics.newImage("images/weather/moon.png")				-- Moon
 	images.sun 					= love.graphics.newImage("images/weather/sun.png")				-- Sun
+	images.wormhole				= love.graphics.newImage("images/weather/wormhole.png")
 
 	--↓ Particle images
 	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			-- Smoke
