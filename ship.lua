@@ -220,8 +220,6 @@ function shipPhysics()
 	if player.onPlanet == false then
 		shipx = shipx + shipxvel
 		shipy = shipy + shipyvel
-	--	Xscroll = shipx + shipxvel
-	--	Yscroll = shipy + shipyvel
 	end
 
 end
@@ -230,61 +228,32 @@ function shipMovement(dt)
 
 	if player.onPlanet == false then
 
-		--xscroll = 2*math.sin(rotation)
-		--yscroll = 2*math.cos(rotation)
-
 		if love.keyboard.isDown('a') and player.dead == false then
 			shipxvel = shipxvel + speed * dt
-			--Xscroll = 2
 			rotation = rotation - 0.1 -- restore to 0.01
-			--if rotation < -math.pi/2 then
-			--	rotation = -math.pi/2
-			--end
 		end
 
 		if love.keyboard.isDown('d') and player.dead == false then
 			shipxvel = shipxvel - speed * dt
-			--Xscroll = -2
 			rotation = rotation + 0.1  -- restore to 0.01
-			--if rotation > math.pi/2 then
-			--	 rotation = math.pi/2
-			--end
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
+			speed = speed + 1
 			shipyvel = shipyvel - speed * dt
-			--Yscroll = 2
-			--rotation = 0
-			--if rotation > 0 then
-			--	rotation = rotation - 0.01
-			--else
-			--	rotation = rotation + 0.01
-			--end
-		end
-
-		if rotation > 2*math.pi then
-			rotation = 0
-		end
-
-		if rotation < -2*math.pi then
-			rotation = 0
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
+			speed = speed - 1
 			shipyvel = shipyvel + speed * dt
-			--Yscroll = - 2
-			--if rotation > math.pi  then
-			--	rotation = rotation - 0.01
-			--else
-			--	rotation = rotation + 0.01
-			--end
 		end
 
-		if love.keyboard.isDown('s') or love.keyboard.isDown('w') or love.keyboard.isDown('a') or love.keyboard.isDown('d') then
-			--TODO Logic Code
-		else
-			--Xscroll = 0
-			--Yscroll = 0
+		if rotation > 2 * math.pi then
+			rotation = 0
+		end
+
+		if rotation < -2 * math.pi then
+			rotation = 0
 		end
 	end
 	
@@ -304,10 +273,8 @@ function UPDATE_SHIP(dt)
 	shipPhysics(dt)
 	shipMovement(dt)
 	if shipActive == true then
-	--if animation4 == true then
 		rampx = rampx + 0.25
 		rampy = rampy + 0.25
-	 --end
 	    if rampy > 589 and rampx > 389 then 
 		    rampy = 590
 		    rampx = 390
