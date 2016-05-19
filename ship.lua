@@ -91,6 +91,8 @@ function update(dt)
 		if shipvel < 1 then
 			shipvel = 0
 		end
+
+		function math.round(shipvel, deci) deci = 10^(deci or 0) return math.floor(shipvel*deci+.5)/deci end
 	end
 
 end
