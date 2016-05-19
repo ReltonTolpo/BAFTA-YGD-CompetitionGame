@@ -8,7 +8,7 @@ function space.load()
     space.starSize = 10
     space.starXPosition = 100
     space.starYPosition = 100
-    space.dayTime = 0
+    space.dayTime = 1
     space.weatherX = 0
     space.weatherY = 150
     space.orbitSpeed = love.math.random(0.01, 0.1)
