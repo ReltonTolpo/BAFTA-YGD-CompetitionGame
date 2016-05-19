@@ -220,7 +220,8 @@ end
 function shipPhysics()
 
 	if player.onPlanet == false then
-		shipx = shipx + shipvel
+		space.starX = -shipvel*math.sin(rotation)
+    	space.starY = shipvel*math.cos(rotation)
 	end
 
 end
@@ -257,9 +258,6 @@ function shipMovement(dt)
 end
 
 function UPDATE_SHIP(dt)
-	
-    space.starX = -shipvel*math.sin(rotation)
-    space.starY = shipvel*math.cos(rotation)
 
 	psystem1:update(dt)
 	psystem2:update(dt)
@@ -269,6 +267,7 @@ function UPDATE_SHIP(dt)
 	liftOff()
 	shipPhysics(dt)
 	shipMovement(dt)
+
 	if shipActive == true then
 		rampx = rampx + 0.25
 		rampy = rampy + 0.25
