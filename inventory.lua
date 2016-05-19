@@ -47,7 +47,7 @@ end
 function inventory.draw()
 
     if inventory.inInv == true then
-        love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 7.8125, 7.8125)
+        love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 1.953125, 1.953125)
         if inventory.graviNum > 0 then
             love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)
         	love.graphics.print("x"..inventory.graviNum, 607, 330, 0, 2.5, 2.5)

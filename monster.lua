@@ -173,9 +173,7 @@ function monster.bossBase(dt)
 			love.graphics.setColor(255, 255, 255)
 			planetArray[currentPlanet][14] = false
 			monsterArray[k][16] = false
-			monsterArray[k][10] = love.math.random(20, 50)
 			inventory.graviNum = inventory.graviNum + 1
-			monsterArray[k][17] = 2
 
 			if monsterArray[k][15] == 1 then
 				weapon.currentWeapon = 2
@@ -197,7 +195,7 @@ end
 function monster.bossTracker(dt)
 
 	for d = 1, monster.amount do
-		if monsterArray[1][16] == true then
+		if monsterArray[1][16] == true and planetArray[currentPlanet][14] == true then
 			if monsterArray[d][1] > player.x then
 				monsterArray[d][1] = monsterArray[d][1] - 1
 				monsterArray[d][9] = monsterArray[d][12]
