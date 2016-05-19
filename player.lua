@@ -225,25 +225,18 @@ function player.update(dt)
 	end
 
 	if player.moving == true and player.canMove == true then
-		if player.y >= player.currentGround - 120 and downS == false then
+		if player.onPlanet == true then
 			sound.walking_sfx:play()
 		else
 			sound.walking_sfx:pause()
 		end
-	elseif player.moving == false or player.active == false then
+	elseif player.moving == false or player.active == false or player.onPlanet == false then
 		sound.walking_sfx:pause()
 	end
 
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.weight = player.currentGravity * player.mass
-	
-	if player.onPlanet == true then
-		sound.bg_music:play()
-		sound.bg_music_space:pause()
-	elseif player.onPlanet == false then
-		sound.bg_music_space:play()
-		sound.bg_music:pause()		
-	end
+
 end
 
 function player.boundary()

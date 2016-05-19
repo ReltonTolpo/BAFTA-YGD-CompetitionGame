@@ -11,8 +11,7 @@ function ship.load()
 	ship = images.ship
 	rampx = 350
 	rampy = 550
-	shipxvel = 0
-	shipyvel = 0
+	shipvel = 2
 	animation4 = true
 	animation1 = false
     animation2 = false
@@ -22,7 +21,7 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
-	speed = 10
+	speed = 0.01
 	Xscroll = 0
     Yscroll = 0
     rotation = 0
@@ -56,7 +55,6 @@ function update(dt)
 		    animation1 = true
 		elseif love.keyboard.isDown('e') and shipActive == true then
 			ship = images.ship
-
 			player.x = 100
 			player.playerExists = true
 			player.doGravity = true
@@ -89,6 +87,10 @@ function update(dt)
 		if shipActive == true and weapon.ammoAmount < 30 then
 			weapon.ammoAmount = weapon.ammoAmount + 1
 		end
+
+		if shipvel < 1 then
+			shipvel = 0
+		end
 	end
 
 end
@@ -99,30 +101,30 @@ function draw()
 	local height = love.graphics.getHeight()
 
 	love.graphics.translate(width/2, height/2)
-	--love.graphics.rotate(rotation)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
+		shipvel = 2
 	elseif player.onPlanet == false then
-		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1,30,30)
+		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1, 30, 30)
+		love.graphics.print("Speed = "..shipvel, 520, 50, 0, 2, 2)
 	end
-	
+	 
 	if shipActive == true then
-
 		love.graphics.setColor(0, 0, 0,255)
-	    love.graphics.line(350,550,rampx,rampy)
+	    love.graphics.line(350, 550, rampx, rampy)
 	end
 
 	if liftoff == true then
-		love.graphics.draw(psystem2,shipx+160,shipy+140)
-  	    love.graphics.draw(psystem2,shipx+160,shipy+145)
+		love.graphics.draw(psystem2, shipx+160, shipy+140)
+  	    love.graphics.draw(psystem2, shipx+160, shipy+145)
   	    ship = images.playerInShipNoGear
 	end
 
 	if smokeActive == true then
-		-- Draw the particle system at the center of the game window.
+		--Draw the particle system at the center of the game window.
 		love.graphics.draw(psystem1,shipx+170,shipy+140)
 		love.graphics.draw(psystem1,shipx+150,shipy+140)
     	love.graphics.setColor(200, 80, 80)
@@ -168,7 +170,7 @@ end
 
 function boundary()
 
-	if shipx < 0 then
+	--[[if shipx < 0 then
 		shipx = 0
 		shipxvel = 0
 		--Xscroll = 0
@@ -196,7 +198,7 @@ function boundary()
 			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
 			end
 		end
-	end
+	end]]
 
 end
 
@@ -218,8 +220,7 @@ end
 function shipPhysics()
 
 	if player.onPlanet == false then
-		shipx = shipx + shipxvel
-		shipy = shipy + shipyvel
+		shipx = shipx + shipvel
 	end
 
 end
@@ -229,23 +230,19 @@ function shipMovement(dt)
 	if player.onPlanet == false then
 
 		if love.keyboard.isDown('a') and player.dead == false then
-			shipxvel = shipxvel + speed * dt
 			rotation = rotation - 0.1 -- restore to 0.01
 		end
 
 		if love.keyboard.isDown('d') and player.dead == false then
-			shipxvel = shipxvel - speed * dt
 			rotation = rotation + 0.1  -- restore to 0.01
 		end
 
 		if love.keyboard.isDown('w') and player.dead == false then
-			speed = speed + 1
-			shipyvel = shipyvel - speed * dt
+			shipvel = shipvel + speed
 		end
 
 		if love.keyboard.isDown('s') and player.dead == false then
-			speed = speed - 1
-			shipyvel = shipyvel + speed * dt
+			shipvel = shipvel - speed
 		end
 
 		if rotation > 2 * math.pi then
@@ -261,8 +258,8 @@ end
 
 function UPDATE_SHIP(dt)
 	
-    space.starX =  -2*math.sin(rotation)
-    space.starY =  2*math.cos(rotation)
+    space.starX = -shipvel*math.sin(rotation)
+    space.starY = shipvel*math.cos(rotation)
 
 	psystem1:update(dt)
 	psystem2:update(dt)

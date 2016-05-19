@@ -11,14 +11,15 @@ require "inventory"
 require "menu"
 
 function love.load()
-playerOverShip = true
-x = 0
+
+	playerOverShip = true
+	x = 0
+
 	--Loading Classes
 	inmenu = true
 
 	menu.load()
 	if inmenu == false then
-		sound.load()
 		images.load()
 
 		space.load()
@@ -39,7 +40,6 @@ function love.update(dt)
 	if inmenu == false then
 		x = x +1
 		if x == 1 then
-			sound.load()
 			images.load()
 
 			space.load()
@@ -53,24 +53,22 @@ function love.update(dt)
 			ship.load()
 			weapon.load()
 		end
-	UPDATE_SOUND(dt)
-	UPDATE_IMAGES(dt)
+		UPDATE_SOUND(dt)
+		UPDATE_IMAGES(dt)
 
-	UPDATE_SHIP(dt)
-	UPDATE_SPACE(dt)
+		UPDATE_SHIP(dt)
+		UPDATE_SPACE(dt)
 
-	UPDATE_PLANET(dt)
+		UPDATE_PLANET(dt)
 
-	UPDATE_PLAYER(dt)
-	UPDATE_WEAPON(dt)
-	UPDATE_INVENTORY(dt)
+		UPDATE_PLAYER(dt)
+		UPDATE_WEAPON(dt)
+		UPDATE_INVENTORY(dt)
 
-	UPDATE_MONSTER(dt)
+		UPDATE_MONSTER(dt)
 	end
+
 end
-
---end 
-
 
 function love.draw()
 

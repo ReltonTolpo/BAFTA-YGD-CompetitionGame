@@ -3,6 +3,7 @@ require "socket"
 require "player"
 require "images"
 require "weapon"
+require "space"
 
 function inventory.load()
 
@@ -21,14 +22,6 @@ end
 
 function inventory.update(dt)
 
-	if player.onPlanet == false then
-		inventory.inInv = false
-		inventory.locked = true
-	else
-		inventory.locked = false
-	end
-
-
     --Changing Items in inventory
     if weapon.currentWeapon == 1 then
         slot1 = images.gunBase
@@ -45,9 +38,10 @@ function inventory.update(dt)
 	        elseif inventory.inInv == false then
 	            inventory.inInv = true
 	        end
-	        sleep(0.2)
+            sleep(0.2)
 	    end
 	end
+
 end
 
 function inventory.draw()

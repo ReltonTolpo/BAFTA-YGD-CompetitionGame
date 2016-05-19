@@ -38,7 +38,7 @@ function space.draw()
         love.graphics.draw(images.sun, space.weatherX, space.weatherY, 0, 10, 10)
     elseif(player.onPlanet == false)then
         space.drawStars()
-            love.graphics.draw(psystem1,starX,starY)
+        love.graphics.draw(psystem1,starX,starY)
     end
 
 end
@@ -74,12 +74,12 @@ end
 
 function space.wormhole()
 
-    if inventory.graviNum == 1 and player.onPlanet == false then
+    if inventory.graviNum <= 1 and player.onPlanet == false then
 
         space.wormRotate = space.wormRotate + 5
         space.wormSize = space.wormSize + 1
 
-        love.graphics.draw(images.wormhole, 0, 0, space.wormRotate, space.wormSize, space.wormSize) 
+        love.graphics.draw(images.wormhole, love.graphics.getWidth()/2, love.graphics.getHeight()/2, space.wormRotate, space.wormSize, space.wormSize) 
 
     end
 

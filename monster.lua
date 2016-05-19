@@ -71,6 +71,7 @@ function monster.update(dt)
 		        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
+		            monsterArray[m][4] = 1
 		        else
 		        	monsterArray[m][14] = false
 		        end
@@ -78,6 +79,7 @@ function monster.update(dt)
 		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 100 and monsterArray[m][2] <= weapon.ammoY + 200 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
+		            monsterArray[m][4] = 1
 		        else
 		        	monsterArray[m][14] = false
 		        end
@@ -139,7 +141,7 @@ end
 function monster.playerTracker(dt)
 
 	for h = 1, monster.amount do
-		if monsterArray[h][4] == 1 and monsterArray[h][1] == false then
+		if monsterArray[h][4] == 1 then
 			if monsterArray[h][1] > player.x then
 				monsterArray[h][1] = monsterArray[h][1] - monsterArray[h][6]
 				monsterArray[h][9] = monsterArray[h][12]

@@ -9,6 +9,7 @@ require "ship"
 
 function menu.load()
 
+    sound.load()
     space.starSize = 10
     space.starXPosition = 100
     space.starYPosition = 100
