@@ -86,7 +86,7 @@ function player.tag(x,y,text,a)
 	 end
 
 	if counter > 2000 and counter < 2500 then
-	hintString = "Your mission is to kill all 10 \n evil alien bosses and recover \n their gravitons to restore \n your home planet to its former \n glory!!"
+	hintString = "Your mission is to kill all 4 \n evil alien bosses and recover \n their gravitons to restore \n your home planet to its former \n glory!!"
 	showhint = true
 	 end
 
