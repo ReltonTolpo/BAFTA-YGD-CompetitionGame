@@ -29,8 +29,8 @@ function love.load()
 		inventory.load()
 
 		monster.load()
-		ship.load()
 		weapon.load()
+		ship.load()
 	end
 	
 end
@@ -50,8 +50,8 @@ function love.update(dt)
 			inventory.load()
 
 			monster.load()
-			ship.load()
 			weapon.load()
+			ship.load()
 		end
 		UPDATE_SOUND(dt)
 		UPDATE_IMAGES(dt)
@@ -74,8 +74,7 @@ function love.draw()
 
 	if inmenu == true then
 		DRAW_MENU()
-	end
-	if inmenu == false then
+	elseif inmenu == false then
 		DRAW_SPACE()
 		DRAW_PLANET()
 
@@ -83,13 +82,14 @@ function love.draw()
 	   
 		if playerOverShip == false then
 			DRAW_PLAYER()
+			DRAW_WEAPON()
 			DRAW_SHIP()
 		elseif playerOverShip == true then  
 			DRAW_SHIP()
 			DRAW_PLAYER()
+			DRAW_WEAPON()
 		end
 		DRAW_INVENTORY()
-		DRAW_WEAPON()
 	end
 
 end

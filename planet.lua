@@ -53,6 +53,7 @@ end
 function DRAW_PLANET()
 
 	if player.onPlanet == true then
+
 		if space.dayTime == 1 then
 			love.graphics.setBackgroundColor(planetArray[currentPlanet][1], planetArray[currentPlanet][2], planetArray[currentPlanet][3])
 		else
@@ -77,6 +78,7 @@ function DRAW_PLANET()
 
 			if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") then
 				player.onPlanet = true
+				playerOverShip = false
 				player.playerExists = true
 				currentPlanet = i
 				ship = images.ship

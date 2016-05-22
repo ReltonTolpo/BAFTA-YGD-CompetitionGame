@@ -218,11 +218,11 @@ function player.update(dt)
 		player.storedX = player.x
 	end
 
-	if love.keyboard.isDown('c') and player.dead == false then
+	--[[if love.keyboard.isDown('c') and player.dead == false then
 		currentPlanet = currentPlanet + 1
 		monster.load()
 		love.timer.sleep(0.5)
-	end
+	end]]
 
 	if player.moving == true and player.canMove == true then
 		if player.onPlanet == true then
