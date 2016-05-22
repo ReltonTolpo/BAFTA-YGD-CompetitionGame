@@ -8,10 +8,14 @@ require "weapon"
 
 function player.load()
 
+	counter = 0
+    showhint = true
+    hintString = "ERROR"
 	player.hasJetpack = false
 	player.health = 100
 	player.x = 50
 	player.y = 50
+	player.alpha = 255
 	player.deadX = 50
 	player.deadY = 50
 	player.dead = false
@@ -36,12 +40,67 @@ function player.load()
 	player.weight = player.currentGravity * player.mass
 
 	hero = images.playerIdle --Starts looking straight
-	
+
+
+
 end
+
+function sleep(sec)
+
+    socket.select(nil, nil, sec)
+
+end
+
+
 
 function player.draw()
 
+
+
+function player.tag(x,y,text,a)
+		love.graphics.setColor(207,190,4,a)
+    love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
+        love.graphics.line(x-200, y-200, x, y)
+        love.graphics.setColor(0,0,0,a)
+            love.graphics.print(text, x-200, y-200, 0, 1, 1)
+
+	end
+
 	downS = love.keyboard.isDown('s')
+
+
+
+	showhint = false
+	hintString = "ERROR"
+	if counter < 300 then
+	hintString = "Welcome to The Gravity Game!"
+	showhint = true
+	 end
+	 if counter > 500 and counter < 1000 then
+	hintString = "Use A and D to move me \n around. \n Space to jump and S to crouch \n (means you don't move whilst \n turning)."
+	showhint = true
+	 end
+	if counter > 1200 and counter < 1800 then
+	hintString = "You are currently standing on \n your home planet.\n Its gravitons have been stolen \n by \n alien creatures, making its \n gravity extreemly unstable and \n no longer suitable to support \n human life!"
+	showhint = true
+	 end
+
+	if counter > 2000 and counter < 2500 then
+	hintString = "Your mission is to kill all 10 \n evil alien bosses and recover \n their gravitons to restore \n your home planet to its former \n glory!!"
+	showhint = true
+	 end
+
+
+	if counter > 2600 and counter < 3000 then
+	hintString = "PLZ add to tutorial!!!!!"
+	showhint = true
+	 end
+
+if showhint == true then
+	player.tag(player.x,player.y,hintString,player.alpha)
+	end
+
+
 
 	if space.dayTime == 1 then
 		player.healthColourR = planetArray[currentPlanet][1] - 100
@@ -84,6 +143,7 @@ function player.drawInfo()
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
+	--	love.graphics.print("Current Tick = " ..counter, 30, 100, 0, 3, 3)
 	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 end
@@ -98,7 +158,7 @@ function player.physics(dt)
 end
  
 function player.update(dt)
-
+counter = counter + 1
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerWalk

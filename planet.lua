@@ -17,6 +17,7 @@ function planet.load()
 		--Planet R 1, Planet G 2, Planet B 3, gravity 4, orbitTime 5, Space X 6, Space Y 7, Space R 8, Space G 9, Space B 10, rotation 11, sizex 12, sizey 13, Has Boss 14
 	end
 
+planetArray[1][4] = 1
 end
 
 function UPDATE_PLANET(dt)
