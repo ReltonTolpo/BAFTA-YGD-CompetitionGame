@@ -38,7 +38,7 @@ function space.draw()
         love.graphics.draw(images.sun, space.weatherX, space.weatherY, 0, 10, 10)
     elseif(player.onPlanet == false)then
         space.drawStars()
-        love.graphics.draw(psystem1,starX,starY)
+        --love.graphics.draw(psystem1,starX,starY)
     end
 
 end
