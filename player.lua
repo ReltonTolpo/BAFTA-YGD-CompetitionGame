@@ -90,7 +90,21 @@ function player.tag(x,y,text,a)
 	showhint = true
 	 end
 
+	if counter > 2700 and counter < 3300 then
+	hintString = "As you can see, it is\n  currently day on your\n home planet. \n When it turns night, \n all the evil creatures \n come out and attack you. \n You have to defend yourself \n with your gun and \n limited ammo!"
+	showhint = true
+ 	end
+ 
+ 	if counter > 3500 and counter < 4000 then
+	hintString = "You fire by clicking \n whilst using A and D \n to aim. \n Some monsters reqire \n you to jump in order for \n your bullets to hit \n them."
+	showhint = true
+	 end
 
+	if counter > 4200 and counter < 4700 then
+	hintString = "Go ahead! \n \n Walk up to the spaceship \n and press E to enter it. \n E does many things \n like enterig the ship \n and landing on planets."
+	showhint = true
+ 	end
+ 
 	if counter > 2600 and counter < 3000 then
 	hintString = "PLZ add to tutorial!!!!!"
 	showhint = true
