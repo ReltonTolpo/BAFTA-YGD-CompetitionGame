@@ -308,6 +308,10 @@ counter = counter + 1
 		sound.walking_sfx:pause()
 	end
 
+	if player.onPlanet == false then
+		sound.walking_sfx:pause()
+	end
+
 	player.currentGravity = planetArray[currentPlanet][4]
 	player.weight = player.currentGravity * player.mass
 
