@@ -114,75 +114,76 @@ function weapon.update(dt)
         weaponImage = images.machineGun
         sizeX = 3
     end
-
+    if player.onPlanet == true then
     --Testing for Left or Right bullet
-    if weapon.gunDirection == "left" and weapon.left == true then
-        weapon.bulletDirection = "left"
-    elseif weapon.gunDirection == "right" and weapon.right == true then
-        weapon.bulletDirection = "right"
-    elseif weapon.gunDirection == "na" then
-        weapon.bulletDirection = "na"
-    end
+        if weapon.gunDirection == "left" and weapon.left == true then
+            weapon.bulletDirection = "left"
+        elseif weapon.gunDirection == "right" and weapon.right == true then
+            weapon.bulletDirection = "right"
+        elseif weapon.gunDirection == "na" then
+            weapon.bulletDirection = "na"
+        end
 
-    --Doing bullet movement
-    if weapon.ammoAmount > 0 and player.dead == false then
-        if mouseDown == true or weapon.lock == true then
-            weapon.ammoX = weapon.storedX
-            weapon.ammoY = weapon.storedY
-            weapon.drawAmmo = true
-            if weapon.bulletDirection == "left" or weapon.lockLeft == true then
-                weapon.lock = true
-                if weapon.left == true then
-                    weapon.storedX = weapon.storedX - weapon.bulletSpeed
-                    weapon.right = false
-                    weapon.lockLeft = true
-                    if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                        weapon.lock = false
-                        weapon.right = true
-                        weapon.lockLeft = false
-                        weapon.drawAmmo = false
-                        weapon.ammoX = player.x
-                        weapon.ammoY = player.y
+        --Doing bullet movement
+        if weapon.ammoAmount > 0 and player.dead == false then
+            if mouseDown == true or weapon.lock == true then
+                weapon.ammoX = weapon.storedX
+                weapon.ammoY = weapon.storedY
+                weapon.drawAmmo = true
+                if weapon.bulletDirection == "left" or weapon.lockLeft == true then
+                    weapon.lock = true
+                    if weapon.left == true then
+                        weapon.storedX = weapon.storedX - weapon.bulletSpeed
+                        weapon.right = false
+                        weapon.lockLeft = true
+                        if weapon.ammoX > 1200 or weapon.ammoX < 0 then
+                            weapon.lock = false
+                            weapon.right = true
+                            weapon.lockLeft = false
+                            weapon.drawAmmo = false
+                            weapon.ammoX = player.x
+                            weapon.ammoY = player.y
+                        end
+                    end
+                elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
+                    weapon.lock = true
+                    if weapon.right == true then
+                        weapon.storedX = weapon.storedX + weapon.bulletSpeed
+                        weapon.left = false
+                        weapon.lockRight = true
+                        if weapon.ammoX > 1200 or weapon.ammoX < 0 then
+                            weapon.lock = false
+                            weapon.left = true
+                            weapon.lockRight = false
+                            weapon.drawAmmo = false
+                            weapon.ammoX = player.x
+                            weapon.ammoY = player.y
+                        end
                     end
                 end
-            elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
-                weapon.lock = true
-                if weapon.right == true then
-                    weapon.storedX = weapon.storedX + weapon.bulletSpeed
-                    weapon.left = false
-                    weapon.lockRight = true
-                    if weapon.ammoX > 1200 or weapon.ammoX < 0 then
-                        weapon.lock = false
-                        weapon.left = true
-                        weapon.lockRight = false
-                        weapon.drawAmmo = false
-                        weapon.ammoX = player.x
-                        weapon.ammoY = player.y
-                    end
-                end
+            else
+                weapon.storedX = player.x
+                weapon.storedY = player.y
+                weapon.ammoY = -500
             end
         else
-            weapon.storedX = player.x
-            weapon.storedY = player.y
             weapon.ammoY = -500
+            weapon.storedY = -500
         end
-    else
-        weapon.ammoY = -500
-        weapon.storedY = -500
-    end
 
-    --Removing ammo after fire
-    if weapon.ammoAmount > 0 and weapon.gunDirection ~= "na" then
-        if mouseDown == true or weapon.lock == true then
-            if weapon.b == true then
-                weapon.ammoAmount = weapon.ammoAmount - 1
-                weapon.b = false
+        --Removing ammo after fire
+        if weapon.ammoAmount > 0 and weapon.gunDirection ~= "na" then
+            if mouseDown == true or weapon.lock == true then
+                if weapon.b == true then
+                    weapon.ammoAmount = weapon.ammoAmount - 1
+                    weapon.b = false
+                end
+            elseif mouseDown == false and weapon.lock == false and weapon.b == false then
+                weapon.b = true
             end
-        elseif mouseDown == false and weapon.lock == false and weapon.b == false then
-            weapon.b = true
         end
-    end
 
+    end
 end
 
 function weapon.draw()
