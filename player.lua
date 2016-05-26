@@ -10,6 +10,7 @@ function player.load()
 
 	player.counter = 0
 	player.counterUp = true
+	player.tutorialOn = false
     showhint = true
     hintString = "ERROR"
 
@@ -111,69 +112,71 @@ function player.tutorial()
 	showhint = false
 	hintString = "ERROR"
 
-	if player.counter < 300 then
-		hintString = "Welcome to Graviton Galaxy!"
-		showhint = true
-	end
+	if player.tutorialOn == true then
+		if player.counter < 300 then
+			hintString = "Welcome to Graviton Galaxy!"
+			showhint = true
+		end
 
-	if player.counter > 500 and player.counter < 1200 then
-		hintString = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
-		showhint = true
-	end
+		if player.counter > 500 and player.counter < 1200 then
+			hintString = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
+			showhint = true
+		end
 
-	if player.counter > 1400 and player.counter < 2200 then
-		hintString = "You are currently standing on \na safe planet. My home \nplanet has had its gravitons \nstolen by alien creatures, \nmaking its gravity extremely \nunstable and no longer suitable \nto support human life!"
-		showhint = true
-	end
+		if player.counter > 1400 and player.counter < 2200 then
+			hintString = "You are currently standing on \na safe planet. My home \nplanet has had its gravitons \nstolen by alien creatures, \nmaking its gravity extremely \nunstable and no longer suitable \nto support human life!"
+			showhint = true
+		end
 
-	if player.counter > 2200 and player.counter < 3100 then
-		hintString = "Your mission is to kill 5 \nevil alien bosses and recover \ntheir gravitons to help me \nrestore my home planet to its \nformer glory!!"
-		showhint = true
-	end
+		if player.counter > 2200 and player.counter < 3100 then
+			hintString = "Your mission is to kill 5 \nevil alien bosses and recover \ntheir gravitons to help me \nrestore my home planet to its \nformer glory!!"
+			showhint = true
+		end
 
-	if player.counter > 3100 and player.counter < 3900 then
-		hintString = "Once you have killed these \nterrible 5, a portal \nwill open to my home \nplanet for you to \njump through, and supply \nthe gravitons."
-		showhint = true
-	end
+		if player.counter > 3100 and player.counter < 3900 then
+			hintString = "Once you have killed these \nterrible 5, a portal \nwill open to my home \nplanet for you to \njump through, and supply \nthe gravitons."
+			showhint = true
+		end
 
-	if player.counter > 3900 and player.counter < 4500 then
-		hintString = "As you can see, it is \ncurrently day on this \nplanet. When it turns night, \nall the evil creatures \ncome out and attack you. \nYou have to defend yourself \nwith your gun and \nlimited ammo!"
-		showhint = true
- 	end
- 
- 	if player.counter > 4500 and player.counter < 5000 then
-		hintString = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
-		showhint = true
-	end
+		if player.counter > 3900 and player.counter < 4500 then
+			hintString = "As you can see, it is \ncurrently day on this \nplanet. When it turns night, \nall the evil creatures \ncome out and attack you. \nYou have to defend yourself \nwith your gun and \nlimited ammo!"
+			showhint = true
+	 	end
+	 
+	 	if player.counter > 4500 and player.counter < 5000 then
+			hintString = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+			showhint = true
+		end
 
-	if player.counter > 5000 and player.counter < 5500 then
-		hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
-		showhint = true
- 	end
+		if player.counter > 5000 and player.counter < 5500 then
+			hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+			showhint = true
+	 	end
 
- 	if player.onPlanet == false  and player.firstTimeInSpace == true then
-		hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
-		showhint = true
-		player.firstTimeInSpace = false
- 	end
+	 	if player.onPlanet == false  and player.firstTimeInSpace == true then
+			hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
+			showhint = true
+			player.firstTimeInSpace = false
+	 	end
 
- 	if player.counter > 4000 and player.counter < 4500 and player.onPlanet == true then
- 		player.counterUp = false
- 	end
+	 	if player.counter > 4000 and player.counter < 4500 and player.onPlanet == true then
+	 		player.counterUp = false
+	 	end
 
- 	if player.onPlanet == false and player.counterUp == false and player.counter > 4800 and player.counter < 4900 then
- 		player.counterUp = true
- 	end
+	 	if player.onPlanet == false and player.counterUp == false and player.counter > 4800 and player.counter < 4900 then
+	 		player.counterUp = true
+	 	end
 
- 	print(player.counterUp)
+	 	print(player.counterUp)
 
- 	if player.counter > 5300 and player.counter < 6000 and player.onPlanet == false then
- 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
- 		showhint = true
- 	end
+	 	if player.counter > 5300 and player.counter < 6000 and player.onPlanet == false then
+	 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
+	 		showhint = true
+	 	end
 
-	if showhint == true then
-		player.tag(player.x, player.y, hintString, player.alpha)
+		if showhint == true then
+			player.tag(player.x, player.y, hintString, player.alpha)
+		end
 	end
 
 end
