@@ -74,7 +74,7 @@ end
 
 function space.wormhole()
 
-    if inventory.graviNum <= 1 and player.onPlanet == false then
+    if inventory.graviNum >= 1 and player.onPlanet == false then
 
         space.wormRotate = space.wormRotate + 5
         space.wormSize = space.wormSize + 1
