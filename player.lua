@@ -195,7 +195,7 @@ function player.physics(dt)
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
 end
- 
+
 function player.update(dt)
 
 	if player.counterUp == true then
