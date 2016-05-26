@@ -8,12 +8,14 @@ require "weapon"
 
 function player.load()
 
-	counter = 0
+	player.counter = 0
+	player.counterUp = true
     showhint = true
     hintString = "ERROR"
+
 	player.hasJetpack = false
 	player.health = 100
-	player.x = 50
+	player.x = 500
 	player.y = 50
 	player.alpha = 255
 	player.deadX = 50
@@ -38,6 +40,7 @@ function player.load()
 	player.direction = "still"
 
 	player.weight = player.currentGravity * player.mass
+	player.tickspeed = 3
 
 	hero = images.playerIdle --Starts looking straight
 
@@ -53,68 +56,7 @@ end
 
 function player.draw()
 
-	function player.tag(x,y,text,a)
-
-		love.graphics.setColor(207,190,4,a)
-	    love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
-	    love.graphics.line(x-200, y-200, x, y)
-	    love.graphics.setColor(0,0,0,a)
-	    love.graphics.print(text, x-200, y-200, 0, 1, 1)
-
-	end
-
 	downS = love.keyboard.isDown('s')
-
-	showhint = false
-	hintString = "ERROR"
-
-	--Tutorial
-
-	if counter < 300 then
-		hintString = "Welcome to Graviton Galaxy!"
-		showhint = true
-	end
-
-	if counter > 500 and counter < 1000 then
-		hintString = "Use A and D to move me \naround. \n\nSpace to jump and S to crouch \n(means you don't move whilst \nturning)."
-		showhint = true
-	end
-
-	if counter > 1200 and counter < 1800 then
-		hintString = "I am currently standing on \na safe planet. My home \nplanet has had its gravitons \nstolen by alien creatures, \nmaking its gravity extremely \nunstable and no longer suitable \nto support human life!"
-		showhint = true
-	end
-
-	if counter > 2000 and counter < 2500 then
-		hintString = "Your mission is to kill 5 \nevil alien bosses and recover \ntheir gravitons to help me \nrestore my home planet to its \nformer glory!!"
-		showhint = true
-	end
-
-	if counter > 2600 and counter < 3300 then
-		hintString = "Once you have killed these \nterrible 5, a portal \nwill open to my home \nplanet for you to \ngive my people gravitons."
-		showhint = true
-	end
-
-	if counter > 3300 and counter < 3800 then
-		hintString = "As you can see, it is \ncurrently day on this \nplanet. When it turns night, \nall the evil creatures \ncome out and attack you. \nYou have to defend yourself \nwith your gun and \nlimited ammo!"
-		showhint = true
- 	end
- 
- 	if counter > 3800 and counter < 4300 then
-		hintString = "You fire by clicking \nwhilst using A and D \nto aim. \nSome monsters reqire \nyou to jump in order for \nyour bullets to hit \nthem. \nYou can collect more ammo \nfrom your ship."
-		showhint = true
-	end
-
-	if counter > 4300 and counter < 4800 then
-		hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
-		showhint = true
- 	end
-
-	if showhint == true then
-		player.tag(player.x,player.y,hintString,player.alpha)
-	end
-
-	--Drawing Other
 
 	if space.dayTime == 1 then
 		player.healthColourR = planetArray[currentPlanet][1] - 100
@@ -153,11 +95,92 @@ function player.draw()
 
 end
 
+function player.tutorial()
+	
+	function player.tag(x,y,text,a)
+
+		love.graphics.setColor(207, 190, 4, a)
+	    love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
+	    love.graphics.line(x-200, y-200, x, y)
+	    love.graphics.setColor(0, 0, 0, a)
+	    love.graphics.print(text, x-200, y-200, 0, 1, 1)
+
+	end
+
+	showhint = false
+	hintString = "ERROR"
+
+	if player.counter < 300 then
+		hintString = "Welcome to Graviton Galaxy!"
+		showhint = true
+	end
+
+	if player.counter > 500 and player.counter < 1000 then
+		hintString = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
+		showhint = true
+	end
+
+	if player.counter > 1200 and player.counter < 1800 then
+		hintString = "You are currently standing on \na safe planet. My home \nplanet has had its gravitons \nstolen by alien creatures, \nmaking its gravity extremely \nunstable and no longer suitable \nto support human life!"
+		showhint = true
+	end
+
+	if player.counter > 2000 and player.counter < 2500 then
+		hintString = "Your mission is to kill 5 \nevil alien bosses and recover \ntheir gravitons to help me \nrestore my home planet to its \nformer glory!!"
+		showhint = true
+	end
+
+	if player.counter > 2600 and player.counter < 3300 then
+		hintString = "Once you have killed these \nterrible 5, a portal \nwill open to my home \nplanet for you to \njump through, and supply \nthe gravitons."
+		showhint = true
+	end
+
+	if player.counter > 3300 and player.counter < 3800 then
+		hintString = "As you can see, it is \ncurrently day on this \nplanet. When it turns night, \nall the evil creatures \ncome out and attack you. \nYou have to defend yourself \nwith your gun and \nlimited ammo!"
+		showhint = true
+ 	end
+ 
+ 	if player.counter > 3800 and player.counter < 4300 then
+		hintString = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+		showhint = true
+	end
+
+	if player.counter > 4300 and player.counter < 4800 then
+		hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+		showhint = true
+ 	end
+
+ 	if player.counter > 4800 and player.counter < 5300 and player.onPlanet == false then
+		hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
+		showhint = true
+ 	end
+
+ 	if player.counter > 4800 and player.counter < 4900 and player.onPlanet == true then
+ 		player.counterUp = false
+ 	end
+
+ 	if player.onPlanet == false and player.counterUp == false and player.counter > 4800 and player.counter < 4900 then
+ 		player.counterUp = true
+ 	end
+
+ 	print(player.counterUp)
+
+ 	if player.counter > 5300 and player.counter < 6000 and player.onPlanet == false then
+ 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
+ 		showhint = true
+ 	end
+
+	if showhint == true then
+		player.tag(player.x, player.y, hintString, player.alpha)
+	end
+
+end
+
 function player.drawInfo()
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
-	--love.graphics.print("Current Tick = " ..counter, 30, 100, 0, 3, 3)
+	--love.graphics.print("Current Tick = " ..player.counter, 30, 100, 0, 3, 3)
 	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 end
@@ -172,7 +195,11 @@ function player.physics(dt)
 end
  
 function player.update(dt)
-counter = counter + 1
+
+	if player.counterUp == true then
+		player.counter = player.counter + player.tickspeed
+	end
+
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerWalk
@@ -292,12 +319,6 @@ counter = counter + 1
 		player.storedX = player.x
 	end
 
-	--[[if love.keyboard.isDown('c') and player.dead == false then
-		currentPlanet = currentPlanet + 1
-		monster.load()
-		love.timer.sleep(0.5)
-	end]]
-
 	if player.moving == true and player.canMove == true then
 		if player.onPlanet == true then
 			sound.walking_sfx:play()
@@ -365,5 +386,6 @@ function DRAW_PLAYER()
 	if player.onPlanet == true then
 		player.drawInfo()
 	end
+	player.tutorial()
 
 end
