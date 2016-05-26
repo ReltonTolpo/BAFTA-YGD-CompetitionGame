@@ -82,12 +82,6 @@ function update(dt)
 			player.canMove = false
 		end
 		
-		if love.keyboard.isDown('p') then
-			liftoff = true
-			shipActive = false
-			smokeActive = false
-			player.canMove = false
-		end
 
 		if shipActive == true and weapon.ammoAmount < 30 then
 			weapon.ammoAmount = weapon.ammoAmount + 1
