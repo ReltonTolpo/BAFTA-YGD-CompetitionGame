@@ -7,14 +7,13 @@ require "monster"
 require "weapon"
 
 function player.load()
-		local fire = images.fire
-
+	
+	local fire = images.fire
 	psystem30 = love.graphics.newParticleSystem(fire, 100)
 	psystem30:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
 	psystem30:setEmissionRate(20)
 	psystem30:setSizeVariation(0)
 	psystem30:setLinearAcceleration(-4, 0, 4, 50) -- Random movement in all directions.
-	--psystem30:setColors(255, 0, 0, 0, 0, 0, 0, 255 ) -- Fade to transparency.
 
 	player.counter = 0
 	player.counterUp = true
@@ -22,8 +21,9 @@ function player.load()
     showhint = true
     hintString = "ERROR"
 
-player.shipalpha = 255
-	player.hasJetpack = false -- set to false when done
+	player.shipalpha = 255
+	player.hasJetpack = false
+
 	player.health = 100
 	player.x = 500
 	player.y = 50
@@ -65,20 +65,21 @@ function sleep(sec)
 
 end
 
-
-
 function player.draw()
+
 	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
-		player.y = player.y - player.y/10 + 2
+		player.y = player.y - 2
 		love.graphics.setColor(255,255,255)
-		  	    love.graphics.draw(psystem30, player.x + 40, player.y + 70)
-		  	    		  	    love.graphics.draw(psystem30, player.x + 70, player.y + 70)
-		  	    --	player.doGravity2 = false
-		  	    player.doJump = false
+		love.graphics.draw(psystem30, player.x + 40, player.y + 70)
+		love.graphics.draw(psystem30, player.x + 70, player.y + 70)
+		player.doGravity2 = false
+		player.doJump = false
+	else
+		player.doGravity2 = true
 	end
 
 	if player.hasJetpack == true then 
-	love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
+		love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
 	end
 
 	downS = love.keyboard.isDown('s')
@@ -100,15 +101,15 @@ function player.draw()
 	if player.beenHit == true then
 		love.graphics.setColor(255, 0, 0)
 		if player.direction == "right" then
-			    jetpack = images.jetpackRight
+			jetpack = images.jetpackRight
 			love.graphics.draw(hero, player.x + 130, player.y, 0, -2, 2)
 		else
 			if player.direction == "left" then
 				jetpack = images.jetpackLeft
 			else
 				jetpack = images.jetpack
-			love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
-end
+				love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+			end
 		end
 	elseif player.beenHit == false then
 		love.graphics.setColor(255, 255, 255)
@@ -214,7 +215,6 @@ function player.drawInfo()
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
-	--love.graphics.print("Current Tick = " ..player.counter, 30, 100, 0, 3, 3)
 	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 end
@@ -223,9 +223,9 @@ function player.physics(dt)
 
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
-if player.doGravity2 == true then
-	player.yvel = player.yvel + player.weight --Gravity applied here this is just so I can add an extra comment
-end
+	if player.doGravity2 == true then
+		player.yvel = player.yvel + player.weight --Gravity applied here this is just so I can add an extra comment
+	end
 
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
@@ -354,9 +354,11 @@ function player.update(dt)
 		player.y = player.y - 10
 	end
 
-	if downS == true and player.dead == false then
+	if downS == true and player.dead == false and player.hasJetpack == false then
 		player.y = player.y + 10
 		player.x = player.storedX
+	elseif downS == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+		player.y = player.y + 2
 	else
 		player.storedX = player.x
 	end

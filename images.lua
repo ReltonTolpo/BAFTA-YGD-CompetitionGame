@@ -12,9 +12,7 @@ function images.load()
 	images.gunBase				= love.graphics.newImage("images/items/basicGun.png") 				-- Basic Gun
 	images.machineGun			= love.graphics.newImage("images/items/machineGun.png") 			-- Machine Gun
 	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")				-- Basic Ammo
-	images.jetpack				= love.graphics.newImage("images/items/jetpack.png")				    -- AMAZINGLY AMAZING JETPACK INC. [sponsored by Danny&co.]
-	images.jetpackLeft			= love.graphics.newImage("images/items/jetpackLeft.png")
-	images.jetpackRight			= love.graphics.newImage("images/items/jetpackRight.png")
+	images.jetpack				= love.graphics.newImage("images/items/jetpack.png")				-- AMAZINGLY AMAZING JETPACK INC. [sponsored by Danny&co.]
 
 	--↓ GUI images
 	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")				-- Basic Ammo
@@ -42,9 +40,15 @@ function images.load()
 	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			-- Smoke
 	images.haze					= love.graphics.newImage("images/particles/haze.png") 			-- Haze
 	images.fire					= love.graphics.newImage("images/particles/fire.png") 			-- Fire
+	images.firework				= love.graphics.newImage("images/particles/firework.png") 			-- Fireworks
 
 	--↓ Planet images
-	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet
+	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet image
+
+	--↓ Planet11 images
+	images.gary					= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
+	images.averagePerson		= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
+	images.house				= love.graphics.newImage("images/planet11/house.png")			-- NPC house
 
 	--↓ Flag
 	images.flag					= love.graphics.newImage("images/planet/flag.png")				-- Flag
