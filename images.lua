@@ -38,7 +38,6 @@ function images.load()
 
 	--↓ Particle images
 	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			-- Smoke
-	images.haze					= love.graphics.newImage("images/particles/haze.png") 			-- Haze
 	images.fire					= love.graphics.newImage("images/particles/fire.png") 			-- Fire
 	images.firework				= love.graphics.newImage("images/particles/firework.png") 			-- Fireworks
 
