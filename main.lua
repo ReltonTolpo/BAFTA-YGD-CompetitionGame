@@ -9,6 +9,7 @@ require "images"
 require "ship"
 require "inventory"
 require "menu"
+require "endgame"
 
 function love.load()
 
@@ -24,6 +25,7 @@ function love.load()
 
 		space.load()
 		planet.load()
+		endgame.load()
 
 		player.load()
 		inventory.load()
@@ -44,6 +46,7 @@ function love.update(dt)
 
 			space.load()
 			planet.load()
+			endgame.load()
 
 			player.load()
 			weapon.load()
@@ -58,6 +61,7 @@ function love.update(dt)
 
 		UPDATE_SHIP(dt)
 		UPDATE_SPACE(dt)
+		UPDATE_ENDGAME(dt)
 
 		UPDATE_PLANET(dt)
 
@@ -77,6 +81,7 @@ function love.draw()
 	elseif inmenu == false then
 		DRAW_SPACE()
 		DRAW_PLANET()
+		DRAW_ENDGAME()
 
 		DRAW_MONSTER()
 	   

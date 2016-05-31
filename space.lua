@@ -14,10 +14,6 @@ function space.load()
     space.orbitSpeed = love.math.random(0.01, 0.1)
     space.starX = 0
     space.starY = 0
-    space.wormSize = 1
-    space.wormRotate = 0
-    space.wormX = 575
-    space.wormY = 350
     local haze = images.haze
 
     psystem1 = love.graphics.newParticleSystem(haze, 70)
@@ -26,6 +22,7 @@ function space.load()
     psystem1:setSizeVariation(1)
     psystem1:setLinearAcceleration(-20, -20, -20, 20) -- Random movement in all directions.
     psystem1:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+    
 end
 
 function space.draw()
@@ -73,24 +70,6 @@ function space.drawStars()
 
 end
 
-function space.wormhole()
-
-    if inventory.graviNum >= 0 and player.onPlanet == false then
-
-        space.wormRotate = space.wormRotate + 0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
-        space.wormSize = space.wormSize + 0.0000001
-        space.wormX = 575
-        space.wormY = 350
-
-        love.graphics.draw(images.wormhole, space.wormX, space.wormY, space.wormRotate, space.wormSize, space.wormSize) 
-
-        space.starX = -shipvel*math.sin(rotation)
-        space.starY = shipvel*math.cos(rotation)
-
-    end
-
-end
-
 function UPDATE_SPACE(dt)
 
     --TODO LOGIC CODE
@@ -101,6 +80,5 @@ end
 function DRAW_SPACE()
 
     space.draw()
-    space.wormhole()
 
 end
