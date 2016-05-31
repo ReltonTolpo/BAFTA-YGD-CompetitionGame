@@ -11,6 +11,7 @@ function ship.load()
 	ship = images.ship
 	rampx = 350
 	rampy = 550
+	shipalpha = 255
 	shipvel = 2
 	animation4 = true
 	animation1 = false
@@ -120,7 +121,7 @@ function draw()
 ]]
 	love.graphics.translate(width/2, height/2)
 	love.graphics.translate(-width/2, -height/2)
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(255, 255, 255,shipAlpha)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
