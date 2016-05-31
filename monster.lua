@@ -28,6 +28,15 @@ end
 
 function monster.update(dt)
 
+	if player.onPlanet == false then
+
+		for o = 1, monster.amount do
+			monsterArray[o] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[o][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+			--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+		end
+
+	end
+
 	monster.currentGravity = planetArray[currentPlanet][4]
 
 	for m = 1, monster.amount do
@@ -61,8 +70,6 @@ function monster.update(dt)
 			if monsterArray[m][10] <= 0 then
 				monsterArray[m][2] = -500
 			end
-
-
 
 			--Removing Monsters at day
 			if space.dayTime == 1 and monsterArray[m][16] == false then

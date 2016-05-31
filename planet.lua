@@ -92,12 +92,7 @@ function DRAW_PLANET()
 				love.graphics.setColor(planetArray[i][1], planetArray[i][2], planetArray[i][3])
 			end
 
-			love.graphics.draw(planet, planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][13], 32, 32, 0.2, 0.2)--planetArray[i][16], planetArray[i][17])
-
-		
-
-			--love.graphics.draw(planet, planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][13], 32, 32, 0.2, 0.2)--planetArray[i][16], planetArray[i][17])
-
+			love.graphics.draw(planet, planetArray[i][6], planetArray[i][7], planetArray[i][11], planetArray[i][12], planetArray[i][13], 32, 32, 0.2, 0.2)--planetArray[i][16], planetArray[i][17]
 
 			local width = love.graphics.getWidth()
 			local height = love.graphics.getHeight()
@@ -114,6 +109,11 @@ function DRAW_PLANET()
 				player.y = 200
 				player.canMove = true
 				planetArray[i][15] = true
+
+				for i = 1, monster.amount do
+					monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+					--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+				end
 			end
 		end
 
