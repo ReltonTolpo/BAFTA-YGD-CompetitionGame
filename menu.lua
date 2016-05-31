@@ -49,25 +49,26 @@ end
 
 function menu.update(dt)
 
-    --TODO Logic Code
+    
 
 end
 
 function menu.draw()
 
+    sound.bg_music_space:play()
     if colourOver == true then
         love.graphics.setColor(100, 100, 230)
         love.graphics.rectangle("fill", 480, 300, 200, 60 )
-        print("Hi")
     else
         love.graphics.setColor(255, 255, 255)
         love.graphics.rectangle("fill", 480, 300, 200, 60 )
     end
     love.graphics.setColor(0, 0, 0)
-    love.graphics.print("Press to Start", 495, 307, 0, 2, 3)
+    love.graphics.print("Click to Start", 495, 307, 0, 2, 3)
  
     love.graphics.setColor(255, 255, 255)
-    love.graphics.print("WASD to move. Space to jump. E to enter ship or planet. LClick to shoot. I for inventory.", 65, 600, 0, 2, 3)
+    love.graphics.printf("Graviton Galaxy", 0, 60, 75, "center", 0, 3, 3, -155)
+    love.graphics.printf("Created by Benjamin Broadbent, Danny Harris and Ori Taylor", 65, 600, 1000, "center")
 
 end
 
