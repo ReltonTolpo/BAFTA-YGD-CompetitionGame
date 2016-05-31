@@ -10,7 +10,7 @@ function player.load()
 
 	player.counter = 0
 	player.counterUp = true
-	player.tutorialOn = true
+	player.tutorialOn = false
     showhint = true
     hintString = "ERROR"
 
@@ -201,8 +201,12 @@ end
 
 function player.update(dt)
 
-	if player.counterUp == true then
+	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
+	end
+
+	if player.tutorialOn == false then
+		player.counter = 6000
 	end
 
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
