@@ -45,7 +45,7 @@ function player.load()
 	player.moving = false
 	player.playerExists = true
 	player.canMove = true
-	player.doGravity = true
+	player.doGravity2 = true
 	player.onPlanet = true
 	player.beenHit = false
 	player.direction = "still"
@@ -72,7 +72,7 @@ function player.draw()
 		love.graphics.setColor(255,255,255)
 		  	    love.graphics.draw(psystem30, player.x + 40, player.y + 70)
 		  	    		  	    love.graphics.draw(psystem30, player.x + 70, player.y + 70)
-		  	    --	player.doGravity = false
+		  	    --	player.doGravity2 = false
 		  	    player.doJump = false
 	end
 
@@ -222,7 +222,7 @@ function player.physics(dt)
 
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
-if player.doGravity == true then
+if player.doGravity2 == true then
 	player.yvel = player.yvel + player.weight --Gravity applied here
 end
 
