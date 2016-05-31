@@ -13,8 +13,8 @@ function endgame.load()
     endgame.wormY = 350
     endgame.drawWormhole = false
 endgame.endgame = false
-
-    psystem8 = love.graphics.newParticleSystem(smoke, 70)
+local fireworks = images.firework
+    psystem8 = love.graphics.newParticleSystem(fireworks, 70)
     psystem8:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
     psystem8:setEmissionRate(200)
     psystem8:setSizeVariation(1)
@@ -61,5 +61,5 @@ end
 function DRAW_ENDGAME()
 
 	endgame.wormhole()
-    love.graphics.draw(psystem8,jeffx,jeffy)
+    love.graphics.draw(psystem8,500,500)
 end
