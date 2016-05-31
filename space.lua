@@ -16,6 +16,8 @@ function space.load()
     space.starY = 0
     space.wormSize = 1
     space.wormRotate = 0
+    space.wormX = 575
+    space.wormY = 350
     local haze = images.haze
 
     psystem1 = love.graphics.newParticleSystem(haze, 70)
@@ -73,12 +75,17 @@ end
 
 function space.wormhole()
 
-    if inventory.graviNum >= 1 and player.onPlanet == false then
+    if inventory.graviNum >= 0 and player.onPlanet == false then
 
-        space.wormRotate = space.wormRotate + 5
-        space.wormSize = space.wormSize + 1
+        space.wormRotate = space.wormRotate + 0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
+        space.wormSize = space.wormSize + 0.0000001
+        space.wormX = 575
+        space.wormY = 350
 
-        love.graphics.draw(images.wormhole, love.graphics.getWidth()/2, love.graphics.getHeight()/2, space.wormRotate, space.wormSize, space.wormSize) 
+        love.graphics.draw(images.wormhole, space.wormX, space.wormY, space.wormRotate, space.wormSize, space.wormSize) 
+
+        space.starX = -shipvel*math.sin(rotation)
+        space.starY = shipvel*math.cos(rotation)
 
     end
 

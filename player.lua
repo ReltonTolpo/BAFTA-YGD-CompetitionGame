@@ -10,7 +10,7 @@ function player.load()
 
 	player.counter = 0
 	player.counterUp = true
-	player.tutorialOn = true
+	player.tutorialOn = false
     showhint = true
     hintString = "ERROR"
 
