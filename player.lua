@@ -223,7 +223,7 @@ function player.physics(dt)
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
 if player.doGravity2 == true then
-	player.yvel = player.yvel + player.weight --Gravity applied here
+	player.yvel = player.yvel + player.weight --Gravity applied here this is just so I can add an extra comment
 end
 
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
