@@ -76,6 +76,11 @@ function endgame.animation()
 
         love.graphics.setColor(255,255,255,255)
         love.graphics.draw(images.gary, garyx, garyy, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 400, 450, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 600, 450, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 1000, 450, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 200, 450, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 0, 450, 0, 2, 2)
 
         if endgame.counter < 500 then
             endgame.hintString = "Welcome to Earth! Or, a gravitiless Earth..."

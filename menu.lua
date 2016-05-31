@@ -81,7 +81,7 @@ end
 
 function love.mousepressed(x, y, button, istouch)
 
-    if button == 1 and x > 470 and x < 690 and y > 300 and y < 360 then
+    if button == 1 and x > 470 and x < 690 and y > 300 and y < 360 and inmenu == true then
         inmenu = false
 
         images.load()
@@ -99,7 +99,7 @@ function love.mousepressed(x, y, button, istouch)
         player.tutorialOn = false
     end
 
-    if button == 1 and x > 470 and x < 690 and y > 363 and y < 423 then
+    if button == 1 and x > 470 and x < 690 and y > 363 and y < 423 and inmenu == true then
         inmenu = false
         
         images.load()
