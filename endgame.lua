@@ -13,6 +13,13 @@ function endgame.load()
     endgame.wormY = 350
     endgame.drawWormhole = true
     endgame.endgame = false
+    local fireworks = images.firework
+    psystem8 = love.graphics.newParticleSystem(fireworks, 70)
+    psystem8:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
+    psystem8:setEmissionRate(200)
+    psystem8:setSizeVariation(1)
+    psystem8:setLinearAcceleration(-20, -10, -20, 10) -- Random movement in all directions.
+    psystem8:setColors(love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255, love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 0) -- Fade to transparency.
 
 end
 
@@ -57,12 +64,13 @@ function endgame.animation()
 end
 
 function UPDATE_ENDGAME(dt)
-
+    psystem8:update(dt)
 end
 
 function DRAW_ENDGAME()
 
 	endgame.wormhole()
     endgame.animation()
-
+    love.graphics.draw(psystem8,500,500)
+    
 end
