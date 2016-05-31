@@ -31,6 +31,7 @@ end
 function endgame.wormhole()
      
     if inventory.graviNum >=  0 and player.onPlanet == false and endgame.drawWormhole == true then
+    
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
         player.shipalpha = player.shipalpha - 1
@@ -63,7 +64,7 @@ function endgame.animation()
     function garytag(x,y,text,a)
 
         if endgame.endgame == true then
-            love.graphics.setColor(207, 190, 4, a)
+            love.graphics.setColor(220, 20, 20, a)
             love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
             love.graphics.line(x-200, y-200, x, y)
             love.graphics.setColor(0, 0, 0, a)
@@ -83,10 +84,10 @@ function endgame.animation()
         love.graphics.draw(images.averagePerson, 0, 450, 0, 2, 2)
 
         if endgame.counter < 500 then
-            endgame.hintString = "Welcome to Earth! Or, a gravitiless Earth..."
+            endgame.hintString = "Welcome to Earth!\nOr, a gravitiless Earth..."
         end
         if endgame.counter > 500 and endgame.counter < 1000 then
-            endgame.hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
+            endgame.hintString = "Please deposit \nyour precious\nGRAVITONS to \nrestore the \nplanet's gravity!"
         end
 
         endgame.counter = endgame.counter + 1
