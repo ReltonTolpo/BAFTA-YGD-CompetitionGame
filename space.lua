@@ -38,7 +38,6 @@ function space.draw()
         love.graphics.draw(images.sun, space.weatherX, space.weatherY, 0, 10, 10)
     elseif(player.onPlanet == false)then
         space.drawStars()
-        --love.graphics.draw(psystem1,starX,starY)
     end
 
 end
@@ -89,12 +88,12 @@ function UPDATE_SPACE(dt)
 
     --TODO LOGIC CODE
     psystem1:update(dt)
-    space.wormhole()
 
 end
 
 function DRAW_SPACE()
 
     space.draw()
+    space.wormhole()
 
 end
