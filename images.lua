@@ -42,7 +42,12 @@ function images.load()
 	images.fire					= love.graphics.newImage("images/particles/fire.png") 			-- Fire
 
 	--↓ Planet images
-	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet
+	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet image
+
+	--↓ Planet11 images
+	images.gary					= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
+	images.averagePerson		= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
+	images.house				= love.graphics.newImage("images/planet11/house.png")			-- NPC house
 
 end
 
