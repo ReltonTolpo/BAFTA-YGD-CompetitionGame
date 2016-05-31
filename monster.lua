@@ -62,6 +62,8 @@ function monster.update(dt)
 				monsterArray[m][2] = -500
 			end
 
+
+
 			--Removing Monsters at day
 			if space.dayTime == 1 and monsterArray[m][16] == false then
 				monsterArray[m][2] = -500
@@ -93,6 +95,10 @@ function monster.update(dt)
 		        	monsterArray[m][14] = false
 		        end
 		    end
+
+		    if monsterArray[m][10] <= 0 then
+				sound.death:play()
+			end
 		end
 	end
 	
@@ -229,7 +235,6 @@ function monster.physics(dt)
 end
 
 function monster.draw()
-
 	for b = 1, monster.amount do
 		if player.onPlanet == true and monsterArray[b][10] > 0 then
 			if monsterArray[b][13] == "left" or monsterArray[b][13] == "still" then

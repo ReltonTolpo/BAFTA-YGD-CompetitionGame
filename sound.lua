@@ -7,6 +7,7 @@ function sound.load()
 	sound.bg_music_space = love.audio.newSource("/Sounds/ambientSpace.wav")
 	sound.walking_sfx = love.audio.newSource("/Sounds/Walking.wav")
 	sound.shot = love.audio.newSource("/Sounds/Shot.wav")
+	sound.death = love.audio.newSource("/Sounds/death.wav")
 
 	sound.loopBackground = true --Will backround music loop
 
