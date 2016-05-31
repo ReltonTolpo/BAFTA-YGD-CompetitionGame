@@ -57,12 +57,6 @@ function menu.drawStars()
 
 end
 
-function menu.update(dt)
-
-    
-
-end
-
 function menu.draw()
 
     --love.graphics.print(acceleration, 200, 200)
@@ -73,11 +67,13 @@ function menu.draw()
         love.graphics.rectangle("fill", 480, 300, 200, 60 )
     else
         love.graphics.setColor(255, 255, 255)
-        love.graphics.rectangle("fill", 480, 300, 200, 60 )
+        love.graphics.rectangle("fill", 470, 300, 220, 60)
+        love.graphics.rectangle("fill", 470, 363, 220, 60)
     end
     love.graphics.setColor(0, 0, 0)
-    love.graphics.print("Click to Start", 495, 307, 0, 2, 3)
- 
+    love.graphics.print("Play", 550, 307, 0, 2, 3)
+    love.graphics.print("Play with Tutorial", 480, 370, 0, 2, 3)
+
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf("Graviton Galaxy", 0, 60, 75, "center", 0, 3, 3, -155)
     love.graphics.printf("Created by Benjamin Broadbent, Danny Harris and Ori Taylor", 65, 600, 1000, "center")
@@ -86,14 +82,40 @@ end
 
 function love.mousepressed(x, y, button, istouch)
 
-    if button == 1 and x > 480 and x < 680 and y > 300 and y < 360 then
-        inmenu = false
+    if button == 1 and x > 470 and x < 690 and y > 300 and y < 360 and inmenu == true then
+        images.load()
+        space.load()
+        planet.load()
+        endgame.load()
+        inventory.load()
+        weapon.load()
+        inventory.load()
+        monster.load()
+        weapon.load()
+        ship.load()
+        player.load()
+
+        player.tutorialOn = false
     end
 
-    --[[if button ~= 1 and x > 480 and x < 680 and y > 300 and y < 360 then
-        colourOver = true
-    end]]
+    if button == 1 and x > 470 and x < 690 and y > 363 and y < 423 and inmenu == true then
+        inmenu = false
+        
+        images.load()
+        space.load()
+        planet.load()
+        endgame.load()
+        inventory.load()
+        weapon.load()
+        inventory.load()
+        monster.load()
+        weapon.load()
+        ship.load()
+        player.load()
 
+        player.tutorialOn = true
+    end
+    
 end
 
 function UPDATE_MENU(dt)
