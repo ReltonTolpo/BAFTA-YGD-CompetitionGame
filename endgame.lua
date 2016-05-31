@@ -16,7 +16,7 @@ function endgame.load()
     garyy = 450
     endgame.endgame = false
     endgame.counter = 0
-    hintString = "Welcome home\n adventurer!"
+    endgame.hintString = "Welcome home\n adventurer!"
 
   local fireworks = images.firework
     psystem81 = love.graphics.newParticleSystem(fireworks, 70)
@@ -78,10 +78,10 @@ function endgame.animation()
         love.graphics.draw(images.gary, garyx, garyy, 0, 2, 2)
 
         if endgame.counter < 500 then
-            hintString = "Welcome to Earth!"
+            endgame.hintString = "Welcome to Earth! Or, a gravitiless Earth..."
         end
         if endgame.counter > 500 and endgame.counter < 1000 then
-            hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
+            endgame.hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
         end
 
         endgame.counter = endgame.counter + 1
@@ -104,6 +104,6 @@ function DRAW_ENDGAME()
 
     if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70, garyy) end
     
-    garytag(garyx, garyy, hintString, player.alpha)
+    garytag(garyx, garyy, endgame.hintString, player.alpha)
 
 end
