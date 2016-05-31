@@ -17,7 +17,7 @@ end
 
 function endgame.wormhole()
 
-    if inventory.graviNum >= 0 and player.onPlanet == false and endgame.drawWormhole == true then
+    if inventory.graviNum >= 5 and player.onPlanet == false and endgame.drawWormhole == true then
 
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01

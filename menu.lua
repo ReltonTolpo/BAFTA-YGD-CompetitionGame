@@ -65,7 +65,7 @@ end
 
 function menu.draw()
 
-    love.graphics.print(acceleration, 200, 200)
+    --love.graphics.print(acceleration, 200, 200)
 
     sound.bg_music_space:play()
     if colourOver == true then

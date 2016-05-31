@@ -46,6 +46,9 @@ function images.load()
 	--↓ Planet images
 	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet
 
+	--↓ Flag
+	images.flag					= love.graphics.newImage("images/planet/flag.png")				-- Flag
+
 end
 
 function images.update()
