@@ -10,13 +10,8 @@ function player.load()
 
 	player.counter = 0
 	player.counterUp = true
-<<<<<<< HEAD
 	player.tutorialOn = true
-    showhint = true -- fixing oris thing 
-=======
-	player.tutorialOn = false
     showhint = true
->>>>>>> origin/master
     hintString = "ERROR"
 
 	player.hasJetpack = true -- set to false when done
