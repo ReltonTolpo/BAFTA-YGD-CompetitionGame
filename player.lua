@@ -278,7 +278,7 @@ function player.update(dt)
 				else
 					player.beenHit = false
 				end
-			elseif monsterArray[i][7] == 2 then
+			elseif monsterArray[i][7] == 2 or monsterArray[i][7] == 3 then
 				if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
 					player.health = player.health - 1
 					player.beenHit = true
@@ -294,7 +294,7 @@ function player.update(dt)
 				else
 					player.beenHit = false
 				end
-			elseif monsterArray[i][7] == 2 then
+			elseif monsterArray[i][7] == 2 or monsterArray[i][7] == 3 then
 				if player.x >= monsterArray[i][1] - 40 and player.x <= monsterArray[i][1] + 40 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
 					player.health = player.health - 2
 					player.beenHit = true

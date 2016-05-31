@@ -6,7 +6,7 @@ require "weapon"
 
 function monster.load()
 
-	monster.amount = planetArray[currentPlanet][15]
+	monster.amount = love.math.random(2, 10)
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
@@ -20,7 +20,7 @@ function monster.load()
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
 		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
@@ -28,7 +28,6 @@ end
 
 function monster.update(dt)
 
-	monster.amount = planetArray[currentPlanet][15]
 	monster.currentGravity = planetArray[currentPlanet][4]
 
 	for m = 1, monster.amount do
@@ -46,7 +45,11 @@ function monster.update(dt)
 			elseif monsterArray[m][7] == 3 then
 				monsterArray[m][11] = images.cyclopsOgre
 				monsterArray[m][12] = images.cyclopsOgreMove
-				monsterArray[m][2] = 460
+				if monsterArray[m][16] == false then
+					monsterArray[m][2] = 460
+				elseif monsterArray[m][16] == true then
+					monsterArray[m][2] = 480
+				end
 			end
 
 			--Choosing Direction
