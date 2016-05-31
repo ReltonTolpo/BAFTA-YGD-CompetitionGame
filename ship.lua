@@ -46,6 +46,13 @@ end
 
 function update(dt)
 
+	if player.onPlanet == false then
+		sound.walking_sfx:pause()
+	end
+	if playerOverShip == true then
+		sound.walking_sfx:pause()
+	end
+
 	n = 0
 	if player.onPlanet == true then
 		if player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter < 4300 then
@@ -101,6 +108,16 @@ function draw()
 	local width = love.graphics.getWidth()
 	local height = love.graphics.getHeight()
 
+	love.graphics.setColor(255,255,255)
+
+	--[[if player.onPlanet == false then
+		test = "Off planet"
+	elseif player.onPlanet == true then
+		test = "on planet"
+	end
+
+	love.graphics.print(test, 200, 200)
+]]
 	love.graphics.translate(width/2, height/2)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255)

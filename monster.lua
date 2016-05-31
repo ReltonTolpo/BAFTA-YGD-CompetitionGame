@@ -95,10 +95,6 @@ function monster.update(dt)
 		        	monsterArray[m][14] = false
 		        end
 		    end
-
-		    if monsterArray[m][10] <= 0 then
-				sound.death:play()
-			end
 		end
 	end
 	

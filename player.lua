@@ -75,7 +75,6 @@ function player.draw()
 	love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
 	end
 
-
 	downS = love.keyboard.isDown('s')
 
 	if space.dayTime == 1 then
@@ -224,6 +223,7 @@ function player.physics(dt)
 end
 
 function player.update(dt)
+
 	psystem3:update(dt)
 	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
@@ -359,10 +359,6 @@ function player.update(dt)
 			sound.walking_sfx:pause()
 		end
 	elseif player.moving == false or player.active == false or player.onPlanet == false then
-		sound.walking_sfx:pause()
-	end
-
-	if player.onPlanet == false then
 		sound.walking_sfx:pause()
 	end
 
