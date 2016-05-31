@@ -28,7 +28,7 @@ end
 
 function endgame.wormhole()
      
-    if inventory.graviNum >= 0 and player.onPlanet == false and endgame.drawWormhole == true then
+    if inventory.graviNum >= 5 and player.onPlanet == false and endgame.drawWormhole == true then
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
         player.shipalpha = player.shipalpha - 1
@@ -76,7 +76,7 @@ function DRAW_ENDGAME()
 
 	endgame.wormhole()
     endgame.animation()
-
-   if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70 ,garyy) end
+    if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70 ,garyy) end
+    love.graphics.draw(psystem8,500,500)
     
 end
