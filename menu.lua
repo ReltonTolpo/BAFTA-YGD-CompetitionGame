@@ -57,12 +57,6 @@ function menu.drawStars()
 
 end
 
-function menu.update(dt)
-
-    
-
-end
-
 function menu.draw()
 
     --love.graphics.print(acceleration, 200, 200)
