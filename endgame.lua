@@ -12,26 +12,19 @@ function endgame.load()
     endgame.wormX = 575
     endgame.wormY = 350
     endgame.drawWormhole = true
-    garyx = 800
-    garyy = 450
-    endgame.endgame = false
-    endgame.counter = 0
-    endgame.hintString = "Welcome home\n adventurer!"
-
-  local fireworks = images.firework
-    psystem81 = love.graphics.newParticleSystem(fireworks, 70)
-    psystem81:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
-    psystem81:setEmissionRate(200)
-    psystem81:setSizeVariation(1)
-    psystem81:setLinearAcceleration(-5, -20, 5, -30) -- Random movement in all directions.
-    psystem81:setColors(love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255, love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255) -- Fade to transparency.
 
 end
 
 function endgame.wormhole()
+<<<<<<< HEAD
      
     if inventory.graviNum >=  0 and player.onPlanet == false and endgame.drawWormhole == true then
     
+=======
+
+    if inventory.graviNum >= 5 and player.onPlanet == false and endgame.drawWormhole == true then
+
+>>>>>>> origin/master
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
         player.shipalpha = player.shipalpha - 1
@@ -53,8 +46,8 @@ function endgame.wormhole()
 			player.x = 600
 			player.y = 200
 			player.canMove = true
-            endgame.endgame = true
     	end
+<<<<<<< HEAD
     end
 
 end
@@ -91,6 +84,8 @@ function endgame.animation()
         end
 
         endgame.counter = endgame.counter + 1
+=======
+>>>>>>> origin/master
 
     end
 
@@ -98,18 +93,10 @@ end
 
 function UPDATE_ENDGAME(dt)
 
-    psystem81:update(dt)
-    psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
-
 end
 
 function DRAW_ENDGAME()
 
 	endgame.wormhole()
-    endgame.animation()
-
-    if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70, garyy) end
-    
-    garytag(garyx, garyy, endgame.hintString, player.alpha)
 
 end
