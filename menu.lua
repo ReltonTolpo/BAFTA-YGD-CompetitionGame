@@ -66,7 +66,7 @@ function menu.draw()
         love.graphics.rectangle("fill", 480, 300, 200, 60 )
     else
         love.graphics.setColor(255, 255, 255)
-        love.graphics.rectangle("fill", 540, 300, 75, 60 )
+        love.graphics.rectangle("fill", 470, 300, 220, 60 )
         love.graphics.rectangle("fill", 470, 363, 220, 60 )
     end
     love.graphics.setColor(0, 0, 0)
@@ -81,7 +81,7 @@ end
 
 function love.mousepressed(x, y, button, istouch)
 
-    if button == 1 and x > 550 and x < 625 and y > 300 and y < 360 then
+    if button == 1 and x > 470 and x < 690 and y > 300 and y < 360 then
         inmenu = false
 
         images.load()
@@ -116,10 +116,6 @@ function love.mousepressed(x, y, button, istouch)
 
         player.tutorialOn = true
     end
-
-    --[[if button ~= 1 and x > 480 and x < 680 and y > 300 and y < 360 then
-        colourOver = true
-    end]]
 
 end
 
