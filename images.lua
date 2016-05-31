@@ -40,6 +40,7 @@ function images.load()
 	images.smoke				= love.graphics.newImage("images/particles/smoke.png") 			-- Smoke
 	images.haze					= love.graphics.newImage("images/particles/haze.png") 			-- Haze
 	images.fire					= love.graphics.newImage("images/particles/fire.png") 			-- Fire
+	images.firework				= love.graphics.newImage("images/particles/firework.png") 			-- Fireworks
 
 	--↓ Planet images
 	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet
