@@ -9,8 +9,8 @@ function inventory.load()
 
     inventory.inInv = false
     inventory.x = 375
-    printx=0
-    printy=0
+    printx = 0
+    printy = 0
     inventory.y = 100
     inventory.graviNum = 0
     inventory.locked = false
@@ -64,7 +64,7 @@ end
 function UPDATE_INVENTORY(dt)
 
     inventory.update(dt)
-  --  love.mousepressed()
+
 end
 
 function DRAW_INVENTORY()

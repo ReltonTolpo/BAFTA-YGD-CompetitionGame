@@ -64,25 +64,10 @@ function space.drawStars()
 
 end
 
-function space.wormhole()
-
-    if inventory.graviNum <= 1 and player.onPlanet == false then
-
-        space.wormRotate = space.wormRotate + 5
-        space.wormSize = space.wormSize + 1
-
-        love.graphics.draw(images.wormhole, love.graphics.getWidth()/2, love.graphics.getHeight()/2, space.wormRotate, space.wormSize, space.wormSize) 
-
-    end
-
-end
-
 function UPDATE_SPACE(dt)
 
     --TODO LOGIC CODE
-
-    space.wormhole()
-
+    
 end
 
 function DRAW_SPACE()

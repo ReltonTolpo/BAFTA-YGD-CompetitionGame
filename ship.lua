@@ -56,7 +56,7 @@ function update(dt)
 
 	n = 0
 	if player.onPlanet == true then
-		if player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter < 4300 then
+		if player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter < 5000 then
 			player.onShip = true
 		else
 			player.onShip = false	

@@ -21,7 +21,7 @@ function player.load()
     showhint = true
     hintString = "ERROR tets"
 
-	player.shipalpha = 255
+    player.shipalpha = 255
 	player.hasJetpack = false
 	player.jetpacking = false
 
