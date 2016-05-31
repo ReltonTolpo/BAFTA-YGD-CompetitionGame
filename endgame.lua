@@ -14,6 +14,7 @@ function endgame.load()
     endgame.drawWormhole = true
     garyx = 800
     garyy = 450
+    adveragey = 250
     endgame.endgame = false
     endgame.counter = 0
     endgame.hintString = "Welcome home\n adventurer!"
@@ -76,11 +77,11 @@ function endgame.animation()
 
         love.graphics.setColor(255,255,255,255)
         love.graphics.draw(images.gary, garyx, garyy, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 400, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 600, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 1000, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 200, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 0, 450, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 400, adveragey + 1, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 600, adveragey, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 1000, adveragey - 1, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 200, adveragey, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, 0, adveragey +2, 0, 2, 2)
 
         if endgame.counter < 500 then
             endgame.hintString = "Welcome to Earth! Or, a gravitiless Earth..."
@@ -96,7 +97,7 @@ function endgame.animation()
 end
 
 function UPDATE_ENDGAME(dt)
-
+adveragey = adveragey + love.math.random(-2, 2)
     psystem81:update(dt)
     psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
 
@@ -107,7 +108,14 @@ function DRAW_ENDGAME()
 	endgame.wormhole()
     endgame.animation()
 
-    if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70, garyy) end
+    if endgame.endgame == true then 
+love.graphics.draw(psystem81,garyx + 70, garyy) 
+love.graphics.draw(psystem81,200 + 70, adveragey)
+love.graphics.draw(psystem81,400 + 70, adveragey)
+love.graphics.draw(psystem81,600 + 70, adveragey)
+love.graphics.draw(psystem81,1000 + 70, adveragey)
+love.graphics.draw(psystem81,0 + 70, adveragey)
+end
     
     garytag(garyx, garyy, endgame.hintString, player.alpha)
 
