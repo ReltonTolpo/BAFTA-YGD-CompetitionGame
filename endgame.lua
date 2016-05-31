@@ -12,6 +12,7 @@ function endgame.load()
     endgame.wormX = 575
     endgame.wormY = 350
     endgame.drawWormhole = true
+
     garyx = 800
     garyy = 450
     adveragey = 250
@@ -27,11 +28,13 @@ function endgame.load()
     psystem81:setLinearAcceleration(-5, -20, 5, -30) -- Random movement in all directions.
     psystem81:setColors(love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255, love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255) -- Fade to transparency.
 
+
 end
 
 function endgame.wormhole()
-     
-    if inventory.graviNum >=  0 and player.onPlanet == false and endgame.drawWormhole == true then
+
+    if inventory.graviNum >= 5 and player.onPlanet == false and endgame.drawWormhole == true then
+
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
         player.shipalpha = player.shipalpha - 1
@@ -53,8 +56,8 @@ function endgame.wormhole()
 			player.x = 600
 			player.y = 200
 			player.canMove = true
-            endgame.endgame = true
     	end
+
     end
 
 end
@@ -92,6 +95,7 @@ function endgame.animation()
 
         endgame.counter = endgame.counter + 1
 
+
     end
 
 end
@@ -100,6 +104,7 @@ function UPDATE_ENDGAME(dt)
 adveragey = adveragey + love.math.random(-2, 2)
     psystem81:update(dt)
     psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
+
 
 end
 
@@ -118,5 +123,6 @@ love.graphics.draw(psystem81,0 + 70, adveragey)
 end
     
     garytag(garyx, garyy, endgame.hintString, player.alpha)
+
 
 end
