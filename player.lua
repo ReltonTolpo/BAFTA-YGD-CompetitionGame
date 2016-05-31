@@ -19,7 +19,7 @@ function player.load()
 	player.counterUp = true
 	player.tutorialOn = false
     showhint = true
-    hintString = "ERROR"
+    hintString = "ERROR tets"
 
 	player.shipalpha = 255
 	player.hasJetpack = false

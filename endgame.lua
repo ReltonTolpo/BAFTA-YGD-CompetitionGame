@@ -15,7 +15,9 @@ function endgame.load()
     garyx = 800
     garyy = 450
     endgame.endgame = false
-  
+    counter = 0
+    hintString = "Welcome home\n adventurer!"
+
   local fireworks = images.firework
     psystem81 = love.graphics.newParticleSystem(fireworks, 70)
     psystem81:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
@@ -74,9 +76,31 @@ end
 
 function DRAW_ENDGAME()
 
+
 	endgame.wormhole()
     endgame.animation()
-    if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70 ,garyy) end
+    if endgame.endgame == true then love.graphics.draw(psystem81,garyx + 70 ,garyy)
+
+        if player.counter < 500 then
+            hintString = "Welcome to Graviton Galaxy!"
+        end
+                if player.counter > 500  and player.counter < 1000 then
+            hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
+        end
+
+
+        function garytag(x,y,text,a)
+
+        love.graphics.setColor(207, 190, 4, a)
+        love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
+        love.graphics.line(x-200, y-200, x, y)
+        love.graphics.setColor(0, 0, 0, a)
+        love.graphics.print(text, x-200, y-200, 0, 1, 1)
+
+    end
+    counter = counter + 1
+     garytag(garyx, garyy, hintString, player.alpha)
+ end
 
 
 end
