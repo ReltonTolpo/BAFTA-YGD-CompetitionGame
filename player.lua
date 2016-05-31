@@ -231,12 +231,8 @@ end
 end
 
 function player.update(dt)
-<<<<<<< HEAD
 
-	psystem3:update(dt)
-=======
 	psystem30:update(dt)
->>>>>>> origin/master
 	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
 	end
