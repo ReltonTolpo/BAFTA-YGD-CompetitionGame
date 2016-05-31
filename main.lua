@@ -20,42 +20,12 @@ function love.load()
 	inmenu = true
 
 	menu.load()
-	if inmenu == false then
-		images.load()
-
-		space.load()
-		planet.load()
-		endgame.load()
-
-		player.load()
-		inventory.load()
-
-		monster.load()
-		weapon.load()
-		ship.load()
-	end
 	
 end
 
 function love.update(dt)
 
 	if inmenu == false then
-		x = x +1
-		if x == 1 then
-			images.load()
-
-			space.load()
-			planet.load()
-			endgame.load()
-
-			player.load()
-			weapon.load()
-			inventory.load()
-
-			monster.load()
-			weapon.load()
-			ship.load()
-		end
 		UPDATE_SOUND(dt)
 		UPDATE_IMAGES(dt)
 
