@@ -9,12 +9,12 @@ require "weapon"
 function player.load()
 		local fire = images.fire
 
-	psystem3 = love.graphics.newParticleSystem(fire, 1)
-	psystem3:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
-	psystem3:setEmissionRate(20)
-	psystem3:setSizeVariation(0)
-	psystem3:setLinearAcceleration(0, 0, 0, 50) -- Random movement in all directions.
-	psystem3:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+	psystem30 = love.graphics.newParticleSystem(fire, 100)
+	psystem30:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
+	psystem30:setEmissionRate(20)
+	psystem30:setSizeVariation(0)
+	psystem30:setLinearAcceleration(-4, 0, 4, 50) -- Random movement in all directions.
+	--psystem30:setColors(255, 0, 0, 0, 0, 0, 0, 255 ) -- Fade to transparency.
 
 	player.counter = 0
 	player.counterUp = true
@@ -22,7 +22,7 @@ function player.load()
     showhint = true
     hintString = "ERROR"
 
-	player.hasJetpack = true -- set to false when done
+	player.hasJetpack = false -- set to false when done
 	player.health = 100
 	player.x = 500
 	player.y = 50
@@ -33,6 +33,7 @@ function player.load()
 	player.dead = false
 	player.storedX = 0
 	player.storedY = 0
+	player.doJump = true
 	player.xvel = 1
 	player.yvel = 1
 	player.friction = 7
@@ -67,8 +68,12 @@ end
 
 function player.draw()
 	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
-		  	    love.graphics.draw(psystem3, player.x + 25, player.y + 30)
-		  	    	player.doGravity = false
+		player.y = player.y - player.y/10 + 2
+		love.graphics.setColor(255,255,255)
+		  	    love.graphics.draw(psystem30, player.x + 40, player.y + 70)
+		  	    		  	    love.graphics.draw(psystem30, player.x + 70, player.y + 70)
+		  	    --	player.doGravity = false
+		  	    player.doJump = false
 	end
 
 	if player.hasJetpack == true then 
@@ -217,14 +222,21 @@ function player.physics(dt)
 
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
+if player.doGravity == true then
 	player.yvel = player.yvel + player.weight --Gravity applied here
+end
+
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
 end
 
 function player.update(dt)
+<<<<<<< HEAD
 
 	psystem3:update(dt)
+=======
+	psystem30:update(dt)
+>>>>>>> origin/master
 	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
 	end
@@ -341,7 +353,7 @@ function player.update(dt)
 		end
 	end
 
-	if love.keyboard.isDown('space') and player.dead == false then
+	if love.keyboard.isDown('space') and player.dead == false and player.doJump == true then
 		player.y = player.y - 10
 	end
 
