@@ -11,10 +11,10 @@ function player.load()
 	player.counter = 0
 	player.counterUp = true
 	player.tutorialOn = true
-    showhint = true
+    showhint = true -- fixing oris thing 
     hintString = "ERROR"
 
-	player.hasJetpack = false
+	player.hasJetpack = true -- set to false when done
 	player.health = 100
 	player.x = 500
 	player.y = 50
@@ -45,6 +45,7 @@ function player.load()
 	player.tickspeed = 3
 
 	hero = images.playerIdle --Starts looking straight
+    jetpack = images.jetpack
 
 end
 
@@ -57,7 +58,9 @@ end
 
 
 function player.draw()
-
+	if player.hasJetpack == true then
+	love.graphics.draw(jetpack, player.x, player.y, 0, 2, 2)
+	end
 	downS = love.keyboard.isDown('s')
 
 	if space.dayTime == 1 then
@@ -159,17 +162,17 @@ function player.tutorial()
 			player.firstTimeInSpace = false
 	 	end
 
-	 	if player.counter > 4000 and player.counter < 4500 and player.onPlanet == true then
+	 	if player.counter > 5000 and player.counter < 5500 and player.onPlanet == true then
 	 		player.counterUp = false
 	 	end
 
-	 	if player.onPlanet == false and player.counterUp == false and player.counter > 4800 and player.counter < 4900 then
+	 	if player.onPlanet == false then
 	 		player.counterUp = true
 	 	end
 
 	 	print(player.counterUp)
 
-	 	if player.counter > 5300 and player.counter < 6000 and player.onPlanet == false then
+	 	if player.counter > 5500 and player.counter < 6000 then
 	 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
 	 		showhint = true
 	 	end
@@ -365,7 +368,7 @@ end
 function player.jetpack()
 
 	if player.hasJetpack == true then
-
+	love.graphics.draw(jetpack, player.x, player.y, 0, 2, 2)
 	end
 
 end
