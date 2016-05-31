@@ -31,16 +31,15 @@ function endgame.load()
 
 end
 
-function endgame.wormhole()
-<<<<<<< HEAD
+
      
     if inventory.graviNum >=  0 and player.onPlanet == false and endgame.drawWormhole == true then
     
-=======
+
 
     if inventory.graviNum >= 5 and player.onPlanet == false and endgame.drawWormhole == true then
 
->>>>>>> origin/master
+
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
         player.shipalpha = player.shipalpha - 1
@@ -63,7 +62,7 @@ function endgame.wormhole()
 			player.y = 200
 			player.canMove = true
     	end
-<<<<<<< HEAD
+
     end
 
 end
@@ -100,8 +99,7 @@ function endgame.animation()
         end
 
         endgame.counter = endgame.counter + 1
-=======
->>>>>>> origin/master
+
 
     end
 
