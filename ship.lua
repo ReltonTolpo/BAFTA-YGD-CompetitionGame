@@ -144,7 +144,7 @@ function draw()
 
 	if smokeActive == true then
 		--Draw the particle system at the center of the game window.
-		love.graphics.draw(psystem1,shipx+170,shipy+140)
+		--love.graphics.draw(psystem1,shipx+170,shipy+140)
 		love.graphics.draw(psystem1,shipx+150,shipy+140)
     	love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)

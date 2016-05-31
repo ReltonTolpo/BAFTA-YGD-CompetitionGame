@@ -9,6 +9,8 @@ function inventory.load()
 
     inventory.inInv = false
     inventory.x = 375
+    printx=0
+    printy=0
     inventory.y = 100
     inventory.graviNum = 0
     inventory.locked = false
@@ -88,11 +90,13 @@ end
             sleep(0.2)
         end
     end
-end
+end--]]
 
-function love.mousepressed(x, y, button, istouch)
+--[[function love.mousepressed(x, y, button, istouch)
    if button == 1 then -- the primary button
       printx = x
       printy = y
+                  love.graphics.print(printx, 607, 330, 0, 2.5, 2.5)
+            love.graphics.print(printy ,607, 350, 0, 2.5, 2.5)
    end
 end]]

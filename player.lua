@@ -19,10 +19,11 @@ function player.load()
 	player.counterUp = true
 	player.tutorialOn = false
     showhint = true
-    hintString = "ERROR"
+    hintString = "ERROR tets"
 
 	player.shipalpha = 255
 	player.hasJetpack = false
+	player.jetpacking = false
 
 	player.health = 100
 	player.x = 500
@@ -67,21 +68,6 @@ end
 
 function player.draw()
 
-	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
-		player.y = player.y - 2
-		love.graphics.setColor(255,255,255)
-		love.graphics.draw(psystem30, player.x + 40, player.y + 70)
-		love.graphics.draw(psystem30, player.x + 70, player.y + 70)
-		player.doGravity2 = false
-		player.doJump = false
-	else
-		player.doGravity2 = true
-	end
-
-	if player.hasJetpack == true then 
-		love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
-	end
-
 	downS = love.keyboard.isDown('s')
 
 	if space.dayTime == 1 then
@@ -101,15 +87,9 @@ function player.draw()
 	if player.beenHit == true then
 		love.graphics.setColor(255, 0, 0)
 		if player.direction == "right" then
-			jetpack = images.jetpackRight
 			love.graphics.draw(hero, player.x + 130, player.y, 0, -2, 2)
 		else
-			if player.direction == "left" then
-				jetpack = images.jetpackLeft
-			else
-				jetpack = images.jetpack
-				love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
-			end
+			love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
 		end
 	elseif player.beenHit == false then
 		love.graphics.setColor(255, 255, 255)
@@ -226,7 +206,6 @@ function player.physics(dt)
 	if player.doGravity2 == true then
 		player.yvel = player.yvel + player.weight --Gravity applied here this is just so I can add an extra comment
 	end
-
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
 end
@@ -277,7 +256,7 @@ function player.update(dt)
 	if player.moving ~= true then
 		player.direction = "still"
 	end
-	
+
 	for i = 1, monster.amount do --Monster deals damage to player here
 		if monsterArray[i][16] == false then
 			if monsterArray[i][7] == 1 then
@@ -354,10 +333,10 @@ function player.update(dt)
 		player.y = player.y - 10
 	end
 
-	if downS == true and player.dead == false and player.hasJetpack == false then
+	if downS == true and player.dead == false and player.jetpacking == false then
 		player.y = player.y + 10
 		player.x = player.storedX
-	elseif downS == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+	elseif downS == true and love.keyboard.isDown('space') and player.jetpacking == true then
 		player.y = player.y + 2
 	else
 		player.storedX = player.x
@@ -399,8 +378,22 @@ end
 
 function player.jetpack()
 
-	if player.hasJetpack == true then
+	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+		player.y = player.y - 2
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(psystem30, player.x + 40, player.y + 70)
+		love.graphics.draw(psystem30, player.x + 70, player.y + 70)
+		player.doGravity2 = false
+		player.doJump = false
+		player.jetpacking = true
+		sound.walking_sfx:pause()
+	else
+		player.doGravity2 = true
+		player.jetpacking = false
+	end
 
+	if player.hasJetpack == true then
+		love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
 	end
 
 end
@@ -414,13 +407,13 @@ function UPDATE_PLAYER(dt)
 	end
 
 	player.boundary()
-	player.jetpack()
 
 end
 
 function DRAW_PLAYER()
 
 	if player.playerExists == true then
+		player.jetpack()
 		player.draw()
 	end
 	if player.onPlanet == true then
