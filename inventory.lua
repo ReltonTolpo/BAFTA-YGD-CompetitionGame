@@ -13,7 +13,7 @@ function inventory.load()
     inventory.graviNum = 0
     inventory.locked = false
 
-    inventoryImages = {images.graviton, images.gunBase}
+    inventoryImages = {images.graviton, images.gunBase, images.jetpack}
     --Graviton, Weapon, Jetpack,
 
     basicGUI = images.inventory
@@ -28,7 +28,6 @@ function inventory.update(dt)
     elseif weapon.currentWeapon == 2 then
         slot1 = images.machineGun
     end
-
 
     --Opening Inventory
     if inventory.locked == false then
@@ -51,6 +50,9 @@ function inventory.draw()
         if inventory.graviNum > 0 then
             love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)
         	love.graphics.print("x"..inventory.graviNum, 607, 330, 0, 2.5, 2.5)
+        end
+        if player.hasJetpack == true then
+            love.graphics.draw(inventoryImages[3], 715, 290, 0, 5, 5)
         end
    	    love.graphics.draw(inventoryImages[2], 400, 280, 0, 10, 10)
     end

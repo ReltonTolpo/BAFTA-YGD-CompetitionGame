@@ -22,8 +22,8 @@ function player.load()
     hintString = "ERROR"
 
 	player.shipalpha = 255
-	player.hasJetpack = false -- set to false when done
-	
+	player.hasJetpack = false
+
 	player.health = 100
 	player.x = 500
 	player.y = 50
@@ -354,9 +354,11 @@ function player.update(dt)
 		player.y = player.y - 10
 	end
 
-	if downS == true and player.dead == false then
+	if downS == true and player.dead == false and player.hasJetpack == false then
 		player.y = player.y + 10
 		player.x = player.storedX
+	elseif downS == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+		player.y = player.y + 2
 	else
 		player.storedX = player.x
 	end
