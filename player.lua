@@ -22,6 +22,7 @@ function player.load()
     showhint = true
     hintString = "ERROR"
 
+player.shipalpha = 255
 	player.hasJetpack = false -- set to false when done
 	player.health = 100
 	player.x = 500
