@@ -13,6 +13,8 @@ function images.load()
 	images.machineGun			= love.graphics.newImage("images/items/machineGun.png") 			-- Machine Gun
 	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")				-- Basic Ammo
 	images.jetpack				= love.graphics.newImage("images/items/jetpack.png")				    -- AMAZINGLY AMAZING JETPACK INC. [sponsored by Danny&co.]
+	images.jetpackLeft			= love.graphics.newImage("images/items/jetpackLeft.png")
+	images.jetpackRight			= love.graphics.newImage("images/items/jetpackRight.png")
 
 	--↓ GUI images
 	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")				-- Basic Ammo

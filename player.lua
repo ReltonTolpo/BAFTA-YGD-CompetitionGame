@@ -7,6 +7,14 @@ require "monster"
 require "weapon"
 
 function player.load()
+		local fire = images.fire
+
+	psystem3 = love.graphics.newParticleSystem(fire, 1)
+	psystem3:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
+	psystem3:setEmissionRate(20)
+	psystem3:setSizeVariation(0)
+	psystem3:setLinearAcceleration(0, 0, 0, 50) -- Random movement in all directions.
+	psystem3:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
 
 	player.counter = 0
 	player.counterUp = true
@@ -58,9 +66,16 @@ end
 
 
 function player.draw()
-	if player.hasJetpack == true then
-	love.graphics.draw(jetpack, player.x, player.y, 0, 2, 2)
+	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+		  	    love.graphics.draw(psystem3, player.x + 25, player.y + 30)
+		  	    	player.doGravity = false
 	end
+
+	if player.hasJetpack == true then 
+	love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
+	end
+
+
 	downS = love.keyboard.isDown('s')
 
 	if space.dayTime == 1 then
@@ -80,9 +95,15 @@ function player.draw()
 	if player.beenHit == true then
 		love.graphics.setColor(255, 0, 0)
 		if player.direction == "right" then
+			    jetpack = images.jetpackRight
 			love.graphics.draw(hero, player.x + 130, player.y, 0, -2, 2)
 		else
+			if player.direction == "left" then
+				jetpack = images.jetpackLeft
+			else
+				jetpack = images.jetpack
 			love.graphics.draw(hero, player.x, player.y, 0, 2, 2)
+end
 		end
 	elseif player.beenHit == false then
 		love.graphics.setColor(255, 255, 255)
@@ -203,7 +224,7 @@ function player.physics(dt)
 end
 
 function player.update(dt)
-
+	psystem3:update(dt)
 	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
 	end
@@ -372,7 +393,7 @@ end
 function player.jetpack()
 
 	if player.hasJetpack == true then
-	love.graphics.draw(jetpack, player.x, player.y, 0, 2, 2)
+
 	end
 
 end
