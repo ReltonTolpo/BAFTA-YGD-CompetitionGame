@@ -16,7 +16,9 @@ function menu.load()
     starX = 0
     starY = 0
     colourOver = false
-    
+    acceleration = 0.2
+    delta = 0.001
+
 end
 
 local function createStars()
@@ -40,9 +42,17 @@ function menu.drawStars()
     createStars()
     for i, star in ipairs(stars) do
         love.graphics.setColor(255, 255, 255)
-        star.XPosition = star.XPosition + 0.5
-        star.YPosition = star.YPosition + 0.5
+        star.XPosition = star.XPosition + acceleration
+        star.YPosition = star.YPosition + acceleration
         love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
+    end
+        
+    acceleration = acceleration + delta
+
+    if acceleration <= -1.3 then
+        delta = -delta
+    elseif acceleration >= 1.3 then
+        delta = -delta
     end
 
 end
@@ -54,6 +64,8 @@ function menu.update(dt)
 end
 
 function menu.draw()
+
+    love.graphics.print(acceleration, 200, 200)
 
     sound.bg_music_space:play()
     if colourOver == true then

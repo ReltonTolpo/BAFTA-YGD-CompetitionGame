@@ -3,6 +3,7 @@ require "inventory"
 require "images"
 require "player"
 require "planet"
+require "ship"
 
 function endgame.load()
 
@@ -20,6 +21,7 @@ function endgame.wormhole()
 
         endgame.wormRotate = endgame.wormRotate + 0.001
         endgame.wormSize = endgame.wormSize + 0.01
+        player.shipalpha = player.shipalpha - 1
         endgame.wormX = endgame.wormX - 0.3
         endgame.wormY = endgame.wormY - 0.4
 

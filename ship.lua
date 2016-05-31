@@ -46,7 +46,7 @@ function ship.load()
 end	
 
 function update(dt)
-
+ shipalpha=player.shipalpha 
 	if player.onPlanet == false then
 		sound.walking_sfx:pause()
 	end
@@ -121,7 +121,7 @@ function draw()
 ]]
 	love.graphics.translate(width/2, height/2)
 	love.graphics.translate(-width/2, -height/2)
-	love.graphics.setColor(255, 255, 255,shipAlpha)
+	love.graphics.setColor(255, 255, 255,shipalpha)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
