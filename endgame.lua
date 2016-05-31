@@ -20,7 +20,7 @@ function endgame.load()
     endgame.counter = 0
     endgame.hintString = "Welcome home\n adventurer!"
 
-  local fireworks = images.firework
+    local fireworks = images.firework
     psystem81 = love.graphics.newParticleSystem(fireworks, 70)
     psystem81:setParticleLifetime(2, 10) -- Particles live at least 2s and at most 5s.
     psystem81:setEmissionRate(200)
@@ -56,44 +56,8 @@ function endgame.wormhole()
 			player.x = 600
 			player.y = 200
 			player.canMove = true
+            endgame.endgame = true
     	end
-    end
-
-end
-
-function endgame.animation()
-
-    function garytag(x,y,text,a)
-
-        if endgame.endgame == true then
-            love.graphics.setColor(220, 20, 20, a)
-            love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
-            love.graphics.line(x-200, y-200, x, y)
-            love.graphics.setColor(0, 0, 0, a)
-            love.graphics.print(text, x-200, y-200, 0, 1, 1)
-        end
-
-    end
-
-    if endgame.endgame == true then
-
-        love.graphics.setColor(255,255,255,255)
-        love.graphics.draw(images.gary, garyx, garyy, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 400, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 600, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 1000, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 200, 450, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 0, 450, 0, 2, 2)
-
-        if endgame.counter < 500 then
-            endgame.hintString = "Welcome to Earth!\nOr, a gravitiless Earth..."
-        end
-        if endgame.counter > 500 and endgame.counter < 1000 then
-            endgame.hintString = "Please deposit \nyour precious\nGRAVITONS to \nrestore the \nplanet's gravity!"
-        end
-
-        endgame.counter = endgame.counter + 1
-
     end
 
 end
@@ -123,7 +87,7 @@ function endgame.animation()
         love.graphics.draw(images.averagePerson, 0, adveragey +2, 0, 2, 2)
 
         if endgame.counter < 500 then
-            endgame.hintString = "Welcome to Earth! Or, a gravitiless Earth..."
+            endgame.hintString = "Welcome to Earth!\nOr, a gravitiless Earth..."
         end
         if endgame.counter > 500 and endgame.counter < 1000 then
             endgame.hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
@@ -131,16 +95,15 @@ function endgame.animation()
 
         endgame.counter = endgame.counter + 1
 
-
     end
 
 end
 
 function UPDATE_ENDGAME(dt)
-adveragey = adveragey + love.math.random(-2, 2)
+
+    adveragey = adveragey + love.math.random(-2, 2)
     psystem81:update(dt)
     psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
-
 
 end
 
@@ -150,15 +113,14 @@ function DRAW_ENDGAME()
     endgame.animation()
 
     if endgame.endgame == true then 
-love.graphics.draw(psystem81,garyx + 70, garyy) 
-love.graphics.draw(psystem81,200 + 70, adveragey)
-love.graphics.draw(psystem81,400 + 70, adveragey)
-love.graphics.draw(psystem81,600 + 70, adveragey)
-love.graphics.draw(psystem81,1000 + 70, adveragey)
-love.graphics.draw(psystem81,0 + 70, adveragey)
-end
+        love.graphics.draw(psystem81,garyx + 70, garyy) 
+        love.graphics.draw(psystem81,200 + 70, adveragey)
+        love.graphics.draw(psystem81,400 + 70, adveragey)
+        love.graphics.draw(psystem81,600 + 70, adveragey)
+        love.graphics.draw(psystem81,1000 + 70, adveragey)
+        love.graphics.draw(psystem81,0 + 70, adveragey)
+    end
     
     garytag(garyx, garyy, endgame.hintString, player.alpha)
-
 
 end

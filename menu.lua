@@ -123,6 +123,7 @@ end
 function UPDATE_MENU(dt)
 
     menu.update(dt)
+    love.mousepressed()
 
 end
 
@@ -130,6 +131,5 @@ function DRAW_MENU()
 
 	menu.drawStars()
     menu.draw()
-    love.mousepressed()
 
 end
