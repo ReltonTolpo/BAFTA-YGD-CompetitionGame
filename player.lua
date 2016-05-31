@@ -312,10 +312,9 @@ function player.update(dt)
 			space.load()
 			monster.load()
 			player.load()
-			inventory.load()
 
 			currentPlanet = 1
-
+			inventory.graviNum = inventory.graviNum - 1
 			player.dead = false
 		end
 
