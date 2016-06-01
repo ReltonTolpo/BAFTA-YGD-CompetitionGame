@@ -3,10 +3,17 @@ Graviton Galaxy
 What software did you use to make your game?
 Sublime Text, Paint.NET, Cubase and GitHub Desktop
 What happens in your game? (500 words)
+In Graviton Galaxy, you are an intrepid adventurer, far away from your uninhabitable home planet, on a mission to save your species. Your planet’s ‘Gravitons’ have been stolen by five evil alien boss monsters – Gravitons are super dense objects that keep your planet’s gravity at the right level, without them, your species can only float around, accomplishing almost nothing.
+Your mission is to fly around the universe, kill these 5 monsters and return their gravitons to your home planet. Each planet that populates this universe has a randomised orbit speed, colour, gravity and position and each will hold a new boss monster.
+You can accomplish this by pressing ‘E’ to enter your spaceship and fly around space with scrolling graphics. Pressing ‘E’ again to land on a planet and use the mouse to fire at monsters whilst jumping and dodging their attacks. Boss monsters have a chance of dropping either a new gun type, new armour or nothing. Currently though, there is only one special armour type (the jetpack!) and two gun types, although they do significantly increase your chances.
+Finally, once you have collected 5 gravitons and entered space, a wormhole opens up and takes you back home where you restore their gravity and complete the game!
+The controls are WASD to move SPACE to jump, I to access your inventory, S to fall faster and crouch (disables movement for aiming), Alt to sprint, LClick to fire and E to interact with things.
 Summarise your game in one sentence:
 Graviton Galaxy is a 2D game where you travel through space, fighting monsters and collecting gravitons to restore your home planet to a habitable level of gravity once more.
 How did you build your game? (300 words)
+We coded the game in Lua with the graphics engine Love2D. We decided to do this instead of using Scratch or Gamemaker because you can do so many more complex things with Lua including particle effects, scrolling graphics and pathfinding for monsters. 
+All of the textures for our game, we made ourselves using Paint.NET and both of the soundtracks we composed, played and produced ourselves at school using software called Cubase. The two sound effects (walking and shooting) were sourced from the internet.
+Although we did face many difficulties along the way as we were learning both Lua and Love from scratch as we coded the game. Going from being completely ignorant about anything in Lua to coding two dimensional arrays, simulating gravity with complex algorithms and using sine and cosine to create circular movement and rotation.
 If you could develop your game further, what would you do? (300 words)
 I would change the planet scenes so that they scrolled along a circular world. Improve the resolution of all textures. Add more armour, weapons and monsters (more variety). But mainly have multiple objectives so that the game didn't just end when you got 5 gravitons. Also, the game would be much better with progressive difficulty so that it got harder as you progressed.
-
 
