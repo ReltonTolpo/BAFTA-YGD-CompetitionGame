@@ -20,7 +20,6 @@ function weapon.load()
     weapon.bulletSpeed = 5
     weapon.firstFire = true
     weapon.ready = false
-    weapon.playSound = false
 
     weapon.a = true
     weapon.b = true
@@ -52,11 +51,9 @@ function weapon.bulletAnime()
             if weapon.bulletDirection == "left" or weapon.lockLeft == true then
                 love.graphics.setColor(255, 0, 0)
                 love.graphics.draw(ammoImage, weapon.ammoX - 50, weapon.ammoY + 40, 0, sizeX, 4)
-                weapon.playSound = true
             elseif weapon.bulletDirection == "right" or weapon.lockRight == true then
                 love.graphics.setColor(255, 0, 0)
                 love.graphics.draw(ammoImage, weapon.ammoX + 130, weapon.ammoY + 40, 0, sizeX, 4)
-                weapon.playSound = true
             end
         end
     end
@@ -76,12 +73,6 @@ function weapon.update(dt)
         weapon.gunDirection = "right"
     elseif player.onPlanet == true then
         weapon.gunDirection = "na"
-    end
-
-    if weapon.playSound == true then
-        sound.shot_fx:play()
-        weapon.playSound = false
-        love.timer.sleep(0.1)
     end
 
     --[[if player.onPlanet == false then
