@@ -311,7 +311,7 @@ function player.update(dt)
 
 			space.load()
 			monster.load()
-			player.load()
+			player.load() -- PLease plaease fix you losing your gun and jetpack on death (the game is too hard I can't complete it)
 
 			currentPlanet = 1
 			if inventory.graviNum > 0 then
