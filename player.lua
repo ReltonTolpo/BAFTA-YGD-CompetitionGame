@@ -158,12 +158,12 @@ function player.tutorial()
 			showhint = true
 		end
 
-		if player.counter > 5000 and player.counter < 5500 then
+		if player.counter > 5000 and player.counter < 5500 and smokeActive == false and player.onPlanet == true then
 			hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
 			showhint = true
 	 	end
 
-	 	if player.onPlanet == false  and player.firstTimeInSpace == true then
+	 	if player.counter > 5500 and player.counter < 6000 then
 			hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
 			showhint = true
 			player.firstTimeInSpace = false
@@ -175,17 +175,22 @@ function player.tutorial()
 
 	 	if player.onPlanet == false then
 	 		player.counterUp = true
+	 		player.counter = 5500
 	 	end
 
 	 	print(player.counterUp)
 
-	 	if player.counter > 5500 and player.counter < 6000 then
+	 	if player.counter > 6000 and player.counter < 6500 then
 	 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
 	 		showhint = true
 	 	end
 
 		if showhint == true then
-			player.tag(player.x, player.y, hintString, player.alpha)
+			if player.onPlanet == true then
+				player.tag(player.x, player.y, hintString, player.alpha)
+			elseif player.onPlanet == false then
+				player.tag(love.graphics.getWidth()/2, love.graphics.getHeight()/2, hintString, player.alpha)
+			end
 		end
 	end
 
