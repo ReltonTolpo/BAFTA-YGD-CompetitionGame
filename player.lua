@@ -314,7 +314,9 @@ function player.update(dt)
 			player.load()
 
 			currentPlanet = 1
+			if inventory.graviNum > 0 then
 			inventory.graviNum = inventory.graviNum - 1
+		end
 			player.dead = false
 		end
 
