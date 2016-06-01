@@ -29,8 +29,6 @@ function UPDATE_PLANET(dt)
 
 	love.graphics.setColor(255,0,0)
 
-
-
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5
 		if space.weatherX>500 then 

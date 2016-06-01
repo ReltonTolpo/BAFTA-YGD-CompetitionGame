@@ -309,14 +309,20 @@ function player.update(dt)
 		if love.keyboard.isDown('space') then
 			weapon.ammoAmount = 30
 
+			if player.hasJetpack == true then
+				player.load()
+				player.hasJetpack = true
+			else
+				player.load()
+			end
+
 			space.load()
 			monster.load()
-			player.load() -- PLease plaease fix you losing your gun and jetpack on death (the game is too hard I can't complete it)
 
 			currentPlanet = 1
 			if inventory.graviNum > 0 then
-			inventory.graviNum = inventory.graviNum - 1
-		end
+				inventory.graviNum = inventory.graviNum - 1
+			end
 			player.dead = false
 		end
 
