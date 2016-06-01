@@ -116,7 +116,7 @@ function weapon.update(dt)
     end
 
     if weapon.lock == true and weapon.ammoAmount ~= 0 then 
-        sound.shot:play()
+        sound.shot_fx:play()
     end
     
     if player.onPlanet == true then
