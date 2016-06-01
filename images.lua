@@ -8,7 +8,7 @@ function images.load()
 	images.playerWalk 			= love.graphics.newImage("images/player/playerWalking.png")		    -- Player moving left
 
 	--↓ Item images
-	images.graviton				= love.graphics.newImage("images/items/graviton.png")	 			-- Gravitons
+	images.graviton				= love.graphics.newImage("images/items/graviton.png")	 		-- Graviton texture doesn't change when you kill a boss	-- Gravitons
 	images.gunBase				= love.graphics.newImage("images/items/basicGun.png") 				-- Basic Gun
 	images.machineGun			= love.graphics.newImage("images/items/machineGun.png") 			-- Machine Gun
 	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")				-- Basic Ammo
