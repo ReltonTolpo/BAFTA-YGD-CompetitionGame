@@ -7,20 +7,35 @@ require "monster"
 require "weapon"
 
 function player.load()
+	
+	local fire = images.fire
+	psystem30 = love.graphics.newParticleSystem(fire, 100)
+	psystem30:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
+	psystem30:setEmissionRate(20)
+	psystem30:setSizeVariation(0)
+	psystem30:setLinearAcceleration(-4, 0, 4, 50) -- Random movement in all directions.
 
-	counter = 0
+	player.counter = 0
+	player.counterUp = true
+	player.tutorialOn = false
     showhint = true
-    hintString = "ERROR"
+    hintString = "ERROR tets"
+
+    player.shipalpha = 255
 	player.hasJetpack = false
+	player.jetpacking = false
+
 	player.health = 100
-	player.x = 50
+	player.x = 500
 	player.y = 50
 	player.alpha = 255
 	player.deadX = 50
+	player.firstTimeInSpace = true
 	player.deadY = 50
 	player.dead = false
 	player.storedX = 0
 	player.storedY = 0
+	player.doJump = true
 	player.xvel = 1
 	player.yvel = 1
 	player.friction = 7
@@ -32,16 +47,16 @@ function player.load()
 	player.moving = false
 	player.playerExists = true
 	player.canMove = true
-	player.doGravity = true
+	player.doGravity2 = true
 	player.onPlanet = true
 	player.beenHit = false
 	player.direction = "still"
 
 	player.weight = player.currentGravity * player.mass
+	player.tickspeed = 3
 
 	hero = images.playerIdle --Starts looking straight
-
-
+    jetpack = images.jetpack
 
 end
 
@@ -51,70 +66,9 @@ function sleep(sec)
 
 end
 
-
-
 function player.draw()
 
-
-
-function player.tag(x,y,text,a)
-		love.graphics.setColor(207,190,4,a)
-    love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
-        love.graphics.line(x-200, y-200, x, y)
-        love.graphics.setColor(0,0,0,a)
-            love.graphics.print(text, x-200, y-200, 0, 1, 1)
-
-	end
-
 	downS = love.keyboard.isDown('s')
-
-
-
-	showhint = false
-	hintString = "ERROR"
-	if counter < 300 then
-	hintString = "Welcome to The Gravity Game!"
-	showhint = true
-	 end
-	 if counter > 500 and counter < 1000 then
-	hintString = "Use A and D to move me \n around. \n Space to jump and S to crouch \n (means you don't move whilst \n turning)."
-	showhint = true
-	 end
-	if counter > 1200 and counter < 1800 then
-	hintString = "You are currently standing on \n your home planet.\n Its gravitons have been stolen \n by \n alien creatures, making its \n gravity extreemly unstable and \n no longer suitable to support \n human life!"
-	showhint = true
-	 end
-
-	if counter > 2000 and counter < 2500 then
-	hintString = "Your mission is to kill all 4 \n evil alien bosses and recover \n their gravitons to restore \n your home planet to its former \n glory!!"
-	showhint = true
-	 end
-
-	if counter > 2700 and counter < 3300 then
-	hintString = "As you can see, it is\n  currently day on your\n home planet. \n When it turns night, \n all the evil creatures \n come out and attack you. \n You have to defend yourself \n with your gun and \n limited ammo!"
-	showhint = true
- 	end
- 
- 	if counter > 3500 and counter < 4000 then
-	hintString = "You fire by clicking \n whilst using A and D \n to aim. \n Some monsters reqire \n you to jump in order for \n your bullets to hit \n them."
-	showhint = true
-	 end
-
-	if counter > 4200 and counter < 4700 then
-	hintString = "Go ahead! \n \n Walk up to the spaceship \n and press E to enter it. \n E does many things \n like enterig the ship \n and landing on planets."
-	showhint = true
- 	end
- 
-	if counter > 2600 and counter < 3000 then
-	hintString = "PLZ add to tutorial!!!!!"
-	showhint = true
-	 end
-
-if showhint == true then
-	player.tag(player.x,player.y,hintString,player.alpha)
-	end
-
-
 
 	if space.dayTime == 1 then
 		player.healthColourR = planetArray[currentPlanet][1] - 100
@@ -153,11 +107,94 @@ if showhint == true then
 
 end
 
+function player.tutorial()
+	
+	function player.tag(x,y,text,a)
+
+		love.graphics.setColor(207, 190, 4, a)
+	    love.graphics.rectangle("fill", x-200, y-200, 200, 120 )
+	    love.graphics.line(x-200, y-200, x, y)
+	    love.graphics.setColor(0, 0, 0, a)
+	    love.graphics.print(text, x-200, y-200, 0, 1, 1)
+
+	end
+
+	showhint = false
+	hintString = "ERROR"
+
+	if player.tutorialOn == true then
+		if player.counter < 300 then
+			hintString = "Welcome to Graviton Galaxy!"
+			showhint = true
+		end
+
+		if player.counter > 500 and player.counter < 1200 then
+			hintString = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
+			showhint = true
+		end
+
+		if player.counter > 1400 and player.counter < 2200 then
+			hintString = "You are currently standing on \na safe planet. My home \nplanet has had its gravitons \nstolen by alien creatures, \nmaking its gravity extremely \nunstable and no longer suitable \nto support human life!"
+			showhint = true
+		end
+
+		if player.counter > 2200 and player.counter < 3100 then
+			hintString = "Your mission is to kill 5 \nevil alien bosses and recover \ntheir gravitons to help me \nrestore my home planet to its \nformer glory!!"
+			showhint = true
+		end
+
+		if player.counter > 3100 and player.counter < 3900 then
+			hintString = "Once you have killed these \nterrible 5, a portal \nwill open to my home \nplanet for you to \njump through, and supply \nthe gravitons."
+			showhint = true
+		end
+
+		if player.counter > 3900 and player.counter < 4500 then
+			hintString = "As you can see, it is \ncurrently day on this \nplanet. When it turns night, \nall the evil creatures \ncome out and attack you. \nYou have to defend yourself \nwith your gun and \nlimited ammo!"
+			showhint = true
+	 	end
+	 
+	 	if player.counter > 4500 and player.counter < 5000 then
+			hintString = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+			showhint = true
+		end
+
+		if player.counter > 5000 and player.counter < 5500 then
+			hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+			showhint = true
+	 	end
+
+	 	if player.onPlanet == false  and player.firstTimeInSpace == true then
+			hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
+			showhint = true
+			player.firstTimeInSpace = false
+	 	end
+
+	 	if player.counter > 5000 and player.counter < 5500 and player.onPlanet == true then
+	 		player.counterUp = false
+	 	end
+
+	 	if player.onPlanet == false then
+	 		player.counterUp = true
+	 	end
+
+	 	print(player.counterUp)
+
+	 	if player.counter > 5500 and player.counter < 6000 then
+	 		hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
+	 		showhint = true
+	 	end
+
+		if showhint == true then
+			player.tag(player.x, player.y, hintString, player.alpha)
+		end
+	end
+
+end
+
 function player.drawInfo()
 
 	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
-	--	love.graphics.print("Current Tick = " ..counter, 30, 100, 0, 3, 3)
 	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 
 end
@@ -166,13 +203,24 @@ function player.physics(dt)
 
 	player.x = player.x + player.xvel * dt
 	player.y = player.y + player.yvel * dt
-	player.yvel = player.yvel + player.weight --Gravity applied here
+	if player.doGravity2 == true then
+		player.yvel = player.yvel + player.weight --Gravity applied here this is just so I can add an extra comment
+	end
 	player.xvel = player.xvel * (1 - math.min(dt * player.friction, 1))
 
 end
- 
+
 function player.update(dt)
-counter = counter + 1
+
+	psystem30:update(dt)
+	if player.counterUp == true and player.tutorialOn == true then
+		player.counter = player.counter + player.tickspeed
+	end
+
+	if player.tutorialOn == false then
+		player.counter = 6000
+	end
+
 	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerWalk
@@ -208,7 +256,7 @@ counter = counter + 1
 	if player.moving ~= true then
 		player.direction = "still"
 	end
-	
+
 	for i = 1, monster.amount do --Monster deals damage to player here
 		if monsterArray[i][16] == false then
 			if monsterArray[i][7] == 1 then
@@ -218,7 +266,7 @@ counter = counter + 1
 				else
 					player.beenHit = false
 				end
-			elseif monsterArray[i][7] == 2 then
+			elseif monsterArray[i][7] == 2 or monsterArray[i][7] == 3 then
 				if player.x >= monsterArray[i][1] - 20 and player.x <= monsterArray[i][1] + 20 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
 					player.health = player.health - 1
 					player.beenHit = true
@@ -234,7 +282,7 @@ counter = counter + 1
 				else
 					player.beenHit = false
 				end
-			elseif monsterArray[i][7] == 2 then
+			elseif monsterArray[i][7] == 2 or monsterArray[i][7] == 3 then
 				if player.x >= monsterArray[i][1] - 40 and player.x <= monsterArray[i][1] + 40 and player. y >= monsterArray[i][2] - 100 and player.y <= monsterArray[i][2] + 100 then
 					player.health = player.health - 2
 					player.beenHit = true
@@ -263,11 +311,12 @@ counter = counter + 1
 
 			space.load()
 			monster.load()
-			player.load()
-			inventory.load()
+			player.load() -- PLease plaease fix you losing your gun and jetpack on death (the game is too hard I can't complete it)
 
 			currentPlanet = 1
-
+			if inventory.graviNum > 0 then
+			inventory.graviNum = inventory.graviNum - 1
+		end
 			player.dead = false
 		end
 
@@ -281,22 +330,18 @@ counter = counter + 1
 		end
 	end
 
-	if love.keyboard.isDown('space') and player.dead == false then
+	if love.keyboard.isDown('space') and player.dead == false and player.doJump == true then
 		player.y = player.y - 10
 	end
 
-	if downS == true and player.dead == false then
+	if downS == true and player.dead == false and player.jetpacking == false then
 		player.y = player.y + 10
 		player.x = player.storedX
+	elseif downS == true and love.keyboard.isDown('space') and player.jetpacking == true then
+		player.y = player.y + 2
 	else
 		player.storedX = player.x
 	end
-
-	--[[if love.keyboard.isDown('c') and player.dead == false then
-		currentPlanet = currentPlanet + 1
-		monster.load()
-		love.timer.sleep(0.5)
-	end]]
 
 	if player.moving == true and player.canMove == true then
 		if player.onPlanet == true then
@@ -305,10 +350,6 @@ counter = counter + 1
 			sound.walking_sfx:pause()
 		end
 	elseif player.moving == false or player.active == false or player.onPlanet == false then
-		sound.walking_sfx:pause()
-	end
-
-	if player.onPlanet == false then
 		sound.walking_sfx:pause()
 	end
 
@@ -338,8 +379,22 @@ end
 
 function player.jetpack()
 
-	if player.hasJetpack == true then
+	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+		player.y = player.y - 2
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(psystem30, player.x + 40, player.y + 70)
+		love.graphics.draw(psystem30, player.x + 70, player.y + 70)
+		player.doGravity2 = false
+		player.doJump = false
+		player.jetpacking = true
+		sound.walking_sfx:pause()
+	else
+		player.doGravity2 = true
+		player.jetpacking = false
+	end
 
+	if player.hasJetpack == true then
+		love.graphics.draw(jetpack, player.x + 25 , player.y + 30, 0, 3, 3)
 	end
 
 end
@@ -353,17 +408,18 @@ function UPDATE_PLAYER(dt)
 	end
 
 	player.boundary()
-	player.jetpack()
 
 end
 
 function DRAW_PLAYER()
 
 	if player.playerExists == true then
+		player.jetpack()
 		player.draw()
 	end
 	if player.onPlanet == true then
 		player.drawInfo()
 	end
+	player.tutorial()
 
 end

@@ -11,6 +11,7 @@ function ship.load()
 	ship = images.ship
 	rampx = 350
 	rampy = 550
+	shipalpha = 255
 	shipvel = 2
 	animation4 = true
 	animation1 = false
@@ -45,15 +46,22 @@ function ship.load()
 end	
 
 function update(dt)
+ shipalpha=player.shipalpha 
+	if player.onPlanet == false then
+		sound.walking_sfx:pause()
+	end
+	if playerOverShip == true then
+		sound.walking_sfx:pause()
+	end
 
 	n = 0
 	if player.onPlanet == true then
-		if player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false then
+		if player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter < 5000 then
 			player.onShip = true
 		else
 			player.onShip = false	
 		end
-		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false then
+		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter > 4300 then
 			player.canMove = false
 			player.x = 350
 			player.hero = player.rightPlayer
@@ -82,12 +90,6 @@ function update(dt)
 			player.canMove = false
 		end
 		
-		if love.keyboard.isDown('p') then
-			liftoff = true
-			shipActive = false
-			smokeActive = false
-			player.canMove = false
-		end
 
 		if shipActive == true and weapon.ammoAmount < 30 then
 			weapon.ammoAmount = weapon.ammoAmount + 1
@@ -107,9 +109,19 @@ function draw()
 	local width = love.graphics.getWidth()
 	local height = love.graphics.getHeight()
 
+	love.graphics.setColor(255,255,255)
+
+	--[[if player.onPlanet == false then
+		test = "Off planet"
+	elseif player.onPlanet == true then
+		test = "on planet"
+	end
+
+	love.graphics.print(test, 200, 200)
+]]
 	love.graphics.translate(width/2, height/2)
 	love.graphics.translate(-width/2, -height/2)
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(255, 255, 255,shipalpha)
 
 	if player.onPlanet == true then
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
@@ -132,7 +144,7 @@ function draw()
 
 	if smokeActive == true then
 		--Draw the particle system at the center of the game window.
-		love.graphics.draw(psystem1,shipx+170,shipy+140)
+		--love.graphics.draw(psystem1,shipx+170,shipy+140)
 		love.graphics.draw(psystem1,shipx+150,shipy+140)
     	love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)

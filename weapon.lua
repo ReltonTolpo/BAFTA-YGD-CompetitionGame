@@ -123,6 +123,11 @@ function weapon.update(dt)
         weaponImage = images.machineGun
         sizeX = 3
     end
+
+    if weapon.lock == true and weapon.ammoAmount ~= 0 then 
+        sound.shot:play()
+    end
+    
     if player.onPlanet == true then
     --Testing for Left or Right bullet
         if weapon.gunDirection == "left" and weapon.left == true then

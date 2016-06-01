@@ -9,11 +9,13 @@ function inventory.load()
 
     inventory.inInv = false
     inventory.x = 375
+    printx = 0
+    printy = 0
     inventory.y = 100
     inventory.graviNum = 0
     inventory.locked = false
 
-    inventoryImages = {images.graviton, images.gunBase}
+    inventoryImages = {images.graviton, images.gunBase, images.jetpack}
     --Graviton, Weapon, Jetpack,
 
     basicGUI = images.inventory
@@ -28,7 +30,6 @@ function inventory.update(dt)
     elseif weapon.currentWeapon == 2 then
         slot1 = images.machineGun
     end
-
 
     --Opening Inventory
     if inventory.locked == false then
@@ -52,6 +53,9 @@ function inventory.draw()
             love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)
         	love.graphics.print("x"..inventory.graviNum, 607, 330, 0, 2.5, 2.5)
         end
+        if player.hasJetpack == true then
+            love.graphics.draw(inventoryImages[3], 715, 290, 0, 5, 5)
+        end
    	    love.graphics.draw(inventoryImages[2], 400, 280, 0, 10, 10)
     end
 
@@ -60,7 +64,7 @@ end
 function UPDATE_INVENTORY(dt)
 
     inventory.update(dt)
-  --  love.mousepressed()
+
 end
 
 function DRAW_INVENTORY()
@@ -86,11 +90,13 @@ end
             sleep(0.2)
         end
     end
-end
+end--]]
 
-function love.mousepressed(x, y, button, istouch)
+--[[function love.mousepressed(x, y, button, istouch)
    if button == 1 then -- the primary button
       printx = x
       printy = y
+                  love.graphics.print(printx, 607, 330, 0, 2.5, 2.5)
+            love.graphics.print(printy ,607, 350, 0, 2.5, 2.5)
    end
 end]]

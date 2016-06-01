@@ -6,7 +6,7 @@ require "weapon"
 
 function monster.load()
 
-	monster.amount = love.math.random(1, 10)
+	monster.amount = love.math.random(2, 10)
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
@@ -15,12 +15,12 @@ function monster.load()
 	monster.bossExtras = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 3), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 2), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
 		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
@@ -28,9 +28,19 @@ end
 
 function monster.update(dt)
 
+	if player.onPlanet == false then
+
+		for o = 1, monster.amount do
+			monsterArray[o] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[o][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+			--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+		end
+
+	end
+
+	monster.currentGravity = planetArray[currentPlanet][4]
+
 	for m = 1, monster.amount do
 		if player.onPlanet == true then
-
 			--Drawing Monster Stats
 			if monsterArray[m][7] == 1 then
 				monsterArray[m][11] = images.darkElf
@@ -40,6 +50,14 @@ function monster.update(dt)
 				monsterArray[m][12] = images.flyingOctoMove
 				if monsterArray[m][2] > 330 then
 					monsterArray[m][2] = 330
+				end
+			elseif monsterArray[m][7] == 3 then
+				monsterArray[m][11] = images.cyclopsOgre
+				monsterArray[m][12] = images.cyclopsOgreMove
+				if monsterArray[m][16] == false then
+					monsterArray[m][2] = 460
+				elseif monsterArray[m][16] == true then
+					monsterArray[m][2] = 480
 				end
 			end
 
@@ -60,14 +78,14 @@ function monster.update(dt)
 			end
 
 			--Bringing Monsters back at night
-			if space.dayTime == 0 and monster.a == true and monsterArray[m][16] == false then
+			if space.dayTime == 0 and monster.a == true and monsterArray[m][16] == false and monsterArray[m][7] ~= 3 then
 				monsterArray[m][2] = 450
 				monster.dayNight = false
 			end
 			monster.randomNumber = love.math.random(1, 200)
 
 			--Dealing damage to monster
-			if monsterArray[m][7] == 1 then
+			if monsterArray[m][7] == 1 or monsterArray[m][7] == 3 then
 		        if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 60 and monsterArray[m][2] <= weapon.ammoY + 70 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
@@ -75,7 +93,7 @@ function monster.update(dt)
 		        else
 		        	monsterArray[m][14] = false
 		        end
-		    elseif monsterArray[m][7] == 2 then
+		    elseif monsterArray[m][7] == 2 or monsterArray[m][7] == 3 then
 		    	if monsterArray[m][1] >= weapon.ammoX - 20 and monsterArray[m][1] <= weapon.ammoX + 20 and monsterArray[m][2] >= weapon.ammoY - 100 and monsterArray[m][2] <= weapon.ammoY + 200 then
 		            monsterArray[m][10] = monsterArray[m][10] - weapon.bulletDamage
 		            monsterArray[m][14] = true
@@ -93,7 +111,7 @@ function monster.boundary(dt)
 
 	for n = 1, monster.amount do
 
-		if monsterArray[n][2] > 450 then
+		if monsterArray[n][2] > 450 and monsterArray[n][7] == 1 then
 			monsterArray[n][2] = 450    	
 		end
 		if monsterArray[n][1] < -50 then
@@ -220,7 +238,6 @@ function monster.physics(dt)
 end
 
 function monster.draw()
-
 	for b = 1, monster.amount do
 		if player.onPlanet == true and monsterArray[b][10] > 0 then
 			if monsterArray[b][13] == "left" or monsterArray[b][13] == "still" then
