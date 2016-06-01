@@ -1,0 +1,12 @@
+Name of Game
+Graviton Galaxy
+What software did you use to make your game?
+Sublime Text, Paint.NET, Cubase and GitHub Desktop
+What happens in your game? (500 words)
+Summarise your game in one sentence:
+Graviton Galaxy is a 2D game where you travel through space, fighting monsters and collecting gravitons to restore your home planet to a habitable level of gravity once more.
+How did you build your game? (300 words)
+If you could develop your game further, what would you do? (300 words)
+I would change the planet scenes so that they scrolled along a circular world. Improve the resolution of all textures. Add more armour, weapons and monsters (more variety). But mainly have multiple objectives so that the game didn't just end when you got 5 gravitons. Also, the game would be much better with progressive difficulty so that it got harder as you progressed.
+
+
