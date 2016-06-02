@@ -22,7 +22,7 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
-	speed = 0.01
+	speed = 0.1
 	Xscroll = 0
     Yscroll = 0
     rotation = 0
@@ -114,15 +114,6 @@ function draw()
 	local height = love.graphics.getHeight()
 
 	love.graphics.setColor(255,255,255)
-
-	--[[if player.onPlanet == false then
-		test = "Off planet"
-	elseif player.onPlanet == true then
-		test = "on planet"
-	end
-
-	love.graphics.print(test, 200, 200)
-]]
 	love.graphics.translate(width/2, height/2)
 	love.graphics.translate(-width/2, -height/2)
 	love.graphics.setColor(255, 255, 255,shipalpha)
@@ -148,7 +139,6 @@ function draw()
 
 	if smokeActive == true then
 		--Draw the particle system at the center of the game window.
-		--love.graphics.draw(psystem1,shipx+170,shipy+140)
 		love.graphics.draw(psystem1,shipx+150,shipy+140)
     	love.graphics.setColor(200, 80, 80)
 		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
@@ -188,40 +178,6 @@ function playerIntoShip() --Animations for player getting into ship
 		   	smokeActive = true
 	    end
 	end
-
-end
-
-function boundary()
-
-	--[[if shipx < 0 then
-		shipx = 0
-		shipxvel = 0
-		--Xscroll = 0
-	end
-
-	if shipx > 1180 then
-		shipx = 1180
-		shipxvel = 0
-	--	Xscroll = 1180
-	end
-
-	if shipy < 0 then
-		shipy = 0
-		shipyvel = 0
-		--Yscroll = 0
-	end
-
-	if shipy > 730 then
-		shipy = 730
-		shipyvel = 0
-	--	Yscroll = 730
-	end
-	if player.onPlanet == false then
-		for i = 1, planetNum do
-			if shipx > planetArray[currentPlanet][6] - planetArray[currentPlanet][12] and shipx < planetArray[currentPlanet][6] + planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] - planetArray[currentPlanet][12] and shipy > planetArray[currentPlanet][7] + planetArray[currentPlanet][12] then
-			end
-		end
-	end]]
 
 end
 
@@ -286,7 +242,6 @@ function UPDATE_SHIP(dt)
 	psystem2:update(dt)
 	update(dt)
 	playerIntoShip()
-	boundary()
 	liftOff()
 	shipPhysics(dt)
 	shipMovement(dt)
