@@ -26,7 +26,7 @@ function UPDATE_PLANET(dt)
 	HomePlanetY = planetArray[1][7]
 	HomeSizeX = planetArray[1][12]
 	HomeSizeY = planetArray[1][13]
-	love.graphics.setColor(255, 255, 255,255)
+	love.graphics.setColor(255, 255, 255, 255)
 
 	if player.onPlanet == true then
 		space.weatherX = space.weatherX + planetArray[currentPlanet][5] * 5

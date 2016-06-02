@@ -6,9 +6,7 @@ require "monster"
 require "sound"
 require "images"
 require "ship"
-
 require "inventory"
-
 require "tutorial"
 
 
@@ -63,8 +61,6 @@ function menu.drawStars()
 end
 
 function menu.draw()
-
-    --love.graphics.print(acceleration, 200, 200)
 
     sound.bg_music_space:play()
     if colourOver == true then
@@ -127,7 +123,7 @@ function love.mousepressed(x, y, button, istouch)
         player.tutorialOn = true
     end
 
-        if button == 1 and x > 470 and x < 690 and y > 426 and y < 486 and inmenu == true then
+    if button == 1 and x > 470 and x < 690 and y > 426 and y < 486 and inmenu == true then
         inmenu = false
         
         images.load()
@@ -144,16 +140,16 @@ function love.mousepressed(x, y, button, istouch)
 
         player.tutorialOn = false
 
-            player.canMove = false
-            player.x = 350
-            player.hero = player.rightPlayer
-            liftoff = true
-            shipActive = false
-            player.doGravity = false
-            smokeActive = false
-            player.canMove = false
-            player.playerExists = false
-            inventory.graviNum = 5
+        player.canMove = false
+        player.x = 350
+        player.hero = player.rightPlayer
+        liftoff = true
+        shipActive = false
+        player.doGravity = false
+        smokeActive = false
+        player.canMove = false
+        player.playerExists = false
+        inventory.graviNum = 5
             
     end
 
