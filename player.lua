@@ -217,6 +217,8 @@ end
 
 function player.update(dt)
 
+	if love.keyboard.isDown('c') then player.counter = player.counter + 100 end
+	
 	psystem30:update(dt)
 	if player.counterUp == true and player.tutorialOn == true then
 		player.counter = player.counter + player.tickspeed
