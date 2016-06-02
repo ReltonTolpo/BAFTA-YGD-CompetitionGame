@@ -158,7 +158,7 @@ function player.tutorial()
 			showhint = true
 		end
 
-		if player.counter > 5000 and player.counter < 5500 and smokeActive == false and player.onPlanet == true then
+		if player.counter > 5000 and player.counter < 5500 and smokeActive == false and player.onPlanet == true and liftoff == false then
 			hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
 			showhint = true
 	 	end
