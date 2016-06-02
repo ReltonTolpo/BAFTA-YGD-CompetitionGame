@@ -47,10 +47,7 @@ function images.load()
 	--↓ Planet11 images
 	images.gary					= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
 	images.averagePerson		= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
-
-	--↓ Flag
-	images.flag					= love.graphics.newImage("images/planet/flag.png")				-- Flag
-
+	
 end
 
 function images.update()
