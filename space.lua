@@ -73,7 +73,7 @@ function space.tutorial()
     end
 
         if space.counter > 1500 and space.counter < 2000 then
-        space.hintString = "One way to stop you getting \nlost is paying attention \nto the colour \nof the planets. A \nwhite/pink is your \nspawn planet & a \ngreyed out planet means that you \nhave killed that \nplanet's boss!"
+        space.hintString = "One way to stop you getting \nlost is paying attention \nto the colour \nof the planets. A \nwhite/pink is your \nspawn planet & a greyed out \nplanet means \nthat you have killed that \nplanet's boss!"
         showhintA = true
     end
 
