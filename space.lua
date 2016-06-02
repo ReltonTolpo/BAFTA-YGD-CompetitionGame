@@ -52,9 +52,6 @@ function space.tutorial()
 
     showhintA = false
 
-    print(space.counter)
-    print(space.counterUp)
-
     if space.counterUp == true then
         space.counter = space.counter + 1
     end

@@ -13,7 +13,7 @@ function endgame.load()
     endgame.wormY = 350
     endgame.drawWormhole = true
 
-  a1,a2,a3,a4,a5 = 0,200,400,600,1000
+    a1,a2,a3,a4,a5 = 0,200,400,600,1000
     garyx = 800
     garyy = 450
     adveragey = 250
@@ -123,9 +123,10 @@ function UPDATE_ENDGAME(dt)
     adveragey = adveragey + love.math.random(-2, 2)
     psystem81:update(dt)
     psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
-if endgame.counter > 1300 then
-a1,a2,a3,a4,a5 = a1 + love.math.random(-3, 3), a2 + love.math.random(-2, 3),a3 + love.math.random(-3, 2), a4 + love.math.random(-4, 3),a5 + love.math.random(-3, 4)
-end
+    if endgame.counter > 1300 then
+        a1,a2,a3,a4,a5 = a1 + love.math.random(-3, 3), a2 + love.math.random(-2, 3),a3 + love.math.random(-3, 2), a4 + love.math.random(-4, 3),a5 + love.math.random(-3, 4)
+    end
+
 end
 
 function DRAW_ENDGAME()
@@ -133,7 +134,7 @@ function DRAW_ENDGAME()
 	endgame.wormhole()
     endgame.animation()
 
-            if endgame.counter > 1300 then
+    if endgame.counter > 1300 then
         love.graphics.draw(psystem81,garyx + 70, garyy) 
         love.graphics.draw(psystem81,a2 + 70, adveragey)
         love.graphics.draw(psystem81,a3 + 70, adveragey)
