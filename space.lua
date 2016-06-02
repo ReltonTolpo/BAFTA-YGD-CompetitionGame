@@ -19,6 +19,7 @@ function space.load()
     space.wormRotate = 0
     space.counter = 0
     space.counterUp = false
+    space.tutorialDone = false
 
     showhintA = false
 
@@ -66,6 +67,21 @@ function space.tutorial()
         showhintA = true
     end
 
+        if space.counter > 1000 and space.counter < 1500 then
+        space.hintString = "Beware though, if you fly \nto far, you will reach \nthe EDGE of the \nUniverse. A barren \nplace with no stars,\nno planets and no\n life. Some become lost forvever \nin this dark void!"
+        showhintA = true
+    end
+
+        if space.counter > 1500 and space.counter < 2000 then
+        space.hintString = "One way to stop you getting \nlost is paying attention \nto the colour \nof the planets. A \nwhite/pink is your \nspawn planet & a \ngreyed out planet means that you \nhave killed that \nplanet's boss!"
+        showhintA = true
+    end
+
+        if space.counter > 2000 and space.counter < 2500 then
+        space.hintString = "You can land on planets by \nflying over them and \npressing 'E'. So \ngo ahead, explore the \nunknown, kill \nsome bosses and get \n5 gravitons!"
+        space.tutorialDone = true
+        showhintA = true
+    end
 end
 
 local function createStars()
