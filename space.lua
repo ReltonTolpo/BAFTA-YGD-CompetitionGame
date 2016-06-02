@@ -1,5 +1,6 @@
 space = {}
 require "images"
+require "tutorial"
 local stars = nil
 
 function space.load()
@@ -16,6 +17,10 @@ function space.load()
     space.starY = 0
     space.wormSize = 1
     space.wormRotate = 0
+    space.counter = 0
+    space.counterUp = false
+
+    showhintA = false
 
 end
 
@@ -30,7 +35,38 @@ function space.draw()
         love.graphics.draw(images.sun, space.weatherX, space.weatherY, 0, 10, 10)
     elseif(player.onPlanet == false)then
         space.drawStars()
+        space.counterUp = true
+    end
 
+    if showhintA == true and player.tutorialOn == true and player.onPlanet == false then
+        love.graphics.setColor(207, 190, 4, 255)
+        love.graphics.rectangle("fill", love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, 200, 120 )
+        love.graphics.line(love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, love.graphics.getWidth()/2, love.graphics.getHeight()/2)
+        love.graphics.setColor(0, 0, 0, 255)
+        love.graphics.print(space.hintString, love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, 0, 1, 1)
+    end
+
+end
+
+function space.tutorial()
+
+    showhintA = false
+
+    print(space.counter)
+    print(space.counterUp)
+
+    if space.counterUp == true then
+        space.counter = space.counter + 1
+    end
+
+    if space.counter > 1 and space.counter < 500 then
+        space.hintString = "WOW! You got to space \nfirst try, never \nseen that before! \n\nAnyway... Where was I? \nahh, yes, controls."
+        showhintA = true
+    end
+
+    if space.counter > 500 and space.counter < 1000 then
+        space.hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
+        showhintA = true
     end
 
 end
@@ -66,7 +102,7 @@ end
 
 function UPDATE_SPACE(dt)
 
-    --TODO LOGIC CODE
+    space.tutorial()
     
 end
 

@@ -6,7 +6,11 @@ require "monster"
 require "sound"
 require "images"
 require "ship"
+
 require "inventory"
+
+require "tutorial"
+
 
 function menu.load()
 
@@ -99,6 +103,7 @@ function love.mousepressed(x, y, button, istouch)
         weapon.load()
         ship.load()
         player.load()
+        tutorial.load()
 
         player.tutorialOn = false
     end
@@ -117,6 +122,7 @@ function love.mousepressed(x, y, button, istouch)
         weapon.load()
         ship.load()
         player.load()
+        tutorial.load()
 
         player.tutorialOn = true
     end

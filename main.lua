@@ -40,6 +40,7 @@ function love.update(dt)
 		UPDATE_INVENTORY(dt)
 
 		UPDATE_MONSTER(dt)
+		UPDATE_TUTORIAL(dt)
 	end
 
 end
@@ -65,6 +66,7 @@ function love.draw()
 			DRAW_WEAPON()
 		end
 		DRAW_INVENTORY()
+		DRAW_TUTORIAL()
 	end
 
 end
