@@ -13,6 +13,7 @@ function endgame.load()
     endgame.wormY = 350
     endgame.drawWormhole = true
 
+  a1,a2,a3,a4,a5 = 0,200,400,600,1000
     garyx = 800
     garyy = 450
     adveragey = 250
@@ -47,12 +48,13 @@ function endgame.wormhole()
         	currentPlanet = 11
         	player.onPlanet = true
         	monster.amount = 0
+            shipalpha = 255
         	endgame.drawWormhole = false
         	playerOverShip = false
 			player.playerExists = true
 			ship = images.ship
-			shipx = -500
-			shipy = 350
+			shipx = -5000
+			shipy = 3500
 			player.x = 600
 			player.y = 200
 			player.canMove = true
@@ -72,6 +74,7 @@ function endgame.animation()
             love.graphics.line(x-200, y-200, x, y)
             love.graphics.setColor(0, 0, 0, a)
             love.graphics.print(text, x-200, y-200, 0, 1, 1)
+
         end
 
     end
@@ -80,17 +83,33 @@ function endgame.animation()
 
         love.graphics.setColor(255,255,255,255)
         love.graphics.draw(images.gary, garyx, garyy, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 400, adveragey + 1, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 600, adveragey, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 1000, adveragey - 1, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 200, adveragey, 0, 2, 2)
-        love.graphics.draw(images.averagePerson, 0, adveragey +2, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, a3, adveragey + 1, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, a4, adveragey, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, a5, adveragey - 1, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, a2, adveragey, 0, 2, 2)
+        love.graphics.draw(images.averagePerson, a1, adveragey +2, 0, 2, 2)
 
         if endgame.counter < 500 then
             endgame.hintString = "Welcome to Earth!\nOr, a gravitiless Earth..."
         end
         if endgame.counter > 500 and endgame.counter < 1000 then
             endgame.hintString = "Please deposit \n your precious\n GRAVITONS to \n restore the \n planet's gravity!"
+        end
+
+        if endgame.counter > 1000 and endgame.counter < 1300 then
+            endgame.hintString = "Thank you so much!"
+        end
+
+                if endgame.counter > 1300 then
+            endgame.hintString = "FIREWORK PARTY!!"
+                    love.graphics.setColor(200, 80, 80)
+        love.graphics.print("The End!", player.x, player.y - 50, 0, 3, 3)
+        end
+
+         if endgame.counter > 1000 then
+            inventory.graviNum = 0
+            adveragey = garyy
+            planetArray[11][4] = 1.5
         end
 
         endgame.counter = endgame.counter + 1
@@ -104,7 +123,9 @@ function UPDATE_ENDGAME(dt)
     adveragey = adveragey + love.math.random(-2, 2)
     psystem81:update(dt)
     psystem81:setColors(love.math.random(-255, 255), love.math.random(-255, 255), love.math.random(-255, 255), 255)-- Fade to transparency
-
+if endgame.counter > 1300 then
+a1,a2,a3,a4,a5 = a1 + love.math.random(-3, 3), a2 + love.math.random(-2, 3),a3 + love.math.random(-3, 2), a4 + love.math.random(-4, 3),a5 + love.math.random(-3, 4)
+end
 end
 
 function DRAW_ENDGAME()
@@ -112,13 +133,13 @@ function DRAW_ENDGAME()
 	endgame.wormhole()
     endgame.animation()
 
-    if endgame.endgame == true then 
+            if endgame.counter > 1300 then
         love.graphics.draw(psystem81,garyx + 70, garyy) 
-        love.graphics.draw(psystem81,200 + 70, adveragey)
-        love.graphics.draw(psystem81,400 + 70, adveragey)
-        love.graphics.draw(psystem81,600 + 70, adveragey)
-        love.graphics.draw(psystem81,1000 + 70, adveragey)
-        love.graphics.draw(psystem81,0 + 70, adveragey)
+        love.graphics.draw(psystem81,a2 + 70, adveragey)
+        love.graphics.draw(psystem81,a3 + 70, adveragey)
+        love.graphics.draw(psystem81,a4 + 70, adveragey)
+        love.graphics.draw(psystem81,a5 + 70, adveragey)
+        love.graphics.draw(psystem81,a1 + 70, adveragey)
     end
     
     garytag(garyx, garyy, endgame.hintString, player.alpha)

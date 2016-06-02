@@ -61,7 +61,7 @@ function update(dt)
 		else
 			player.onShip = false	
 		end
-		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter > 5000 then
+		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and player.counter > 5000 and currentPlanet ~= 11 then
 			player.canMove = false
 			player.x = 350
 			player.hero = player.rightPlayer

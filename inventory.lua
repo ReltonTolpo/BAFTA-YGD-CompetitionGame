@@ -14,6 +14,7 @@ function inventory.load()
     inventory.y = 100
     inventory.graviNum = 0
     inventory.locked = false
+    inventory.alpha = 255
 
     inventoryImages = {images.graviton, images.gunBase, images.jetpack}
     --Graviton, Weapon, Jetpack,
@@ -48,6 +49,7 @@ end
 function inventory.draw()
 
     if inventory.inInv == true then
+            love.graphics.setColor(255, 255, 255,255)
         love.graphics.draw(basicGUI, inventory.x, inventory.y, 0, 1.953125, 1.953125)
         if inventory.graviNum > 0 then
             love.graphics.draw(inventoryImages[1], 575, 300, 0, 8, 8)

@@ -6,6 +6,7 @@ require "monster"
 require "sound"
 require "images"
 require "ship"
+require "inventory"
 
 function menu.load()
 
@@ -69,10 +70,12 @@ function menu.draw()
         love.graphics.setColor(255, 255, 255)
         love.graphics.rectangle("fill", 470, 300, 220, 60 )
         love.graphics.rectangle("fill", 470, 363, 220, 60 )
+        love.graphics.rectangle("fill", 470, 426, 220, 60 )
     end
     love.graphics.setColor(0, 0, 0)
     love.graphics.print("Play", 550, 307, 0, 2, 3)
     love.graphics.print("Play with Tutorial", 480, 370, 0, 2, 3)
+      love.graphics.print("Skip to awesome \n end animation!", 520, 440, 0, 1, 1.5)
  
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf("Graviton Galaxy", 0, 60, 75, "center", 0, 3, 3, -155)
@@ -116,6 +119,36 @@ function love.mousepressed(x, y, button, istouch)
         player.load()
 
         player.tutorialOn = true
+    end
+
+        if button == 1 and x > 470 and x < 690 and y > 426 and y < 486 and inmenu == true then
+        inmenu = false
+        
+        images.load()
+        space.load()
+        planet.load()
+        endgame.load()
+        inventory.load()
+        weapon.load()
+        inventory.load()
+        monster.load()
+        weapon.load()
+        ship.load()
+        player.load()
+
+        player.tutorialOn = false
+
+            player.canMove = false
+            player.x = 350
+            player.hero = player.rightPlayer
+            liftoff = true
+            shipActive = false
+            player.doGravity = false
+            smokeActive = false
+            player.canMove = false
+            player.playerExists = false
+            inventory.graviNum = 5
+            
     end
 
 end
