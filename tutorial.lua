@@ -71,7 +71,7 @@ end
 
 function tutorial.update()
 
-	if love.keyboard.isDown('c') then tutorial.counter = tutorial.counter + 100 end
+
 
 	if tutorial.counterUp == true and player.tutorialOn == true then
 		tutorial.counter = tutorial.counter + player.tickspeed
