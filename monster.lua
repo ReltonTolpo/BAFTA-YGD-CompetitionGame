@@ -28,7 +28,7 @@ end
 
 function monster.update(dt)
 
-	if player.onPlanet == false then
+	if player.onPlanet == false and currentPlanet ~= 1 then
 
 		for o = 1, monster.amount do
 			monsterArray[o] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[o][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
