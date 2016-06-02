@@ -75,9 +75,7 @@ function DRAW_PLANET()
 		for i = 1, planetNum do
 			planetArray[i][6] = planetArray[i][6] + space.starX
 			planetArray[i][7] = planetArray[i][7] + space.starY
-			planetArray[i][11] = planetArray[i][11] + 0.01 --planetArray[i][5] - 0.5
-
-			--for i = 2, planetNum do
+			planetArray[i][11] = planetArray[i][11] + 0.01
 			if planetArray[i][15] == true and i ~= 1 and planetArray[i][14] == false then
 				love.graphics.setColor(100,100,100)
 			else
@@ -89,43 +87,42 @@ function DRAW_PLANET()
 			local width = love.graphics.getWidth()
 			local height = love.graphics.getHeight()
 			if player.tutorialOn == true then
-			if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") and inventory.graviNum ~= 5 and space.tutorialDone == true then
-				player.onPlanet = true
-				playerOverShip = false
-				player.playerExists = true
-				currentPlanet = i
-				ship = images.ship
-				shipx = 50
-				shipy = 350
-				player.x = 600
-				player.y = 200
-				player.canMove = true
-				planetArray[i][15] = true
-				for i = 1, monster.amount do
-					monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
-					--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+				if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") and inventory.graviNum ~= 5 and space.tutorialDone == true then
+					player.onPlanet = true
+					playerOverShip = false
+					player.playerExists = true
+					currentPlanet = i
+					ship = images.ship
+					shipx = 50
+					shipy = 350
+					player.x = 600
+					player.y = 200
+					player.canMove = true
+					planetArray[i][15] = true
+					for i = 1, monster.amount do
+						monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+						--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+					end
+				end
+			else
+				if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") and inventory.graviNum ~= 5 then
+					player.onPlanet = true
+					playerOverShip = false
+					player.playerExists = true
+					currentPlanet = i
+					ship = images.ship
+					shipx = 50
+					shipy = 350
+					player.x = 600
+					player.y = 200
+					player.canMove = true
+					planetArray[i][15] = true
+					for i = 1, monster.amount do
+						monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+						--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
+					end
 				end
 			end
-		else 
-						if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and love.keyboard.isDown("e") and inventory.graviNum ~= 5 then
-				player.onPlanet = true
-				playerOverShip = false
-				player.playerExists = true
-				currentPlanet = i
-				ship = images.ship
-				shipx = 50
-				shipy = 350
-				player.x = 600
-				player.y = 200
-				player.canMove = true
-				planetArray[i][15] = true
-				for i = 1, monster.amount do
-					monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
-					--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
-				end
-			end
-		end
-
 		end
 	end
 end
