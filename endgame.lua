@@ -29,7 +29,6 @@ function endgame.load()
     psystem81:setLinearAcceleration(-5, -20, 5, -30) -- Random movement in all directions.
     psystem81:setColors(love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255, love.math.random(0, 255), love.math.random(0, 255), love.math.random(0, 255), 255) -- Fade to transparency.
 
-
 end
 
 function endgame.wormhole()
