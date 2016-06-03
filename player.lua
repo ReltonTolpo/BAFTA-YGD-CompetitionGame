@@ -104,9 +104,9 @@ end
 
 function player.drawInfo()
 	if player.playerExists == true then
-	love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
-end
-	love.graphics.setColor(255,0,0)
+		--love.graphics.setColor(player.healthColourR, player.healthColourG, player.healthColourB)
+		love.graphics.setColor(255,0,0)
+	end
 	love.graphics.print("Player Health = " ..player.health, 30, 30, 0, 3, 3)
 	love.graphics.print("Ammo amount = " ..weapon.ammoAmount, 780, 30, 0, 3, 3)
 	love.graphics.setColor(255,255,255)
