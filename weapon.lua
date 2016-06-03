@@ -14,6 +14,7 @@ function weapon.load()
     weapon.bulletDirection = "na"
     weapon.gunDirection = "na"
     weapon.currentWeapon = 1
+    weapon.previousWeapon = weapon.currentWeapon
     weapon.drawAmmo = false
     weapon.lock = false
     weapon.bulletDamage = 10
@@ -113,6 +114,9 @@ function weapon.update(dt)
         weapon.bulletSpeed = 25
         weaponImage = images.machineGun
         sizeX = 3
+    elseif weapon.currentWeapon == 0 then
+        weapon.gunDirection = "na"
+        weapon.bulletDirection = "na"
     end
 
     if weapon.lock == true and weapon.ammoAmount ~= 0 then 

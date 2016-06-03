@@ -26,6 +26,7 @@ function ship.load()
 	Xscroll = 0
     Yscroll = 0
     rotation = 0
+    number = 1
 
 	local smoke = images.smoke
 	local fire = images.fire
@@ -46,7 +47,28 @@ function ship.load()
 end	
 
 function update(dt)
- shipalpha=player.shipalpha 
+
+	if shipActive == true or liftoff == true then
+		playerInsideShip = true
+	else
+		playerInsideShip = false
+	end
+
+	if playerInsideShip == true and number == 1 then
+		weapon.previousWeapon = weapon.currentWeapon
+		weapon.currentWeapon = 0
+		number = 0
+	end
+
+	if player.onPlanet == true and shipActive == false and liftoff == false then
+		number = 1
+	end
+
+	if number == 1 then
+		weapon.currentWeapon = weapon.previousWeapon
+	end
+
+ 	shipalpha=player.shipalpha 
 	if player.onPlanet == false then
 		sound.walking_sfx:pause()
 	end
@@ -70,6 +92,8 @@ function update(dt)
 			player.x = 350
 			player.hero = player.rightPlayer
 		    animation1 = true
+
+		    weapon.currentWeapon = weapon.previousWeapon
 		elseif love.keyboard.isDown('e') and shipActive == true then
 			ship = images.ship
 			player.x = 100
@@ -109,6 +133,15 @@ end
 
 function draw()
 
+	-- love.graphics.print(weapon.currentWeapon, 200,200)
+	-- love.graphics.print(weapon.previousWeapon, 200,220)
+	-- if shipActive ==true then
+	-- 	love.graphics.print("Active", 200,240)
+	-- end	
+	-- if liftoff ==true then
+	-- 	love.graphics.print("liftOff", 200,240)
+	-- end
+	
 	local width = love.graphics.getWidth()
 	local height = love.graphics.getHeight()
 
@@ -128,6 +161,7 @@ function draw()
 	if shipActive == true then
 		love.graphics.setColor(0, 0, 0,255)
 	    love.graphics.line(350, 550, rampx, rampy)
+	    --weapon.currentWeapon = 0
 	end
 
 	if liftoff == true then
