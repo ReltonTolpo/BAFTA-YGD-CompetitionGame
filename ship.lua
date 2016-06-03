@@ -103,7 +103,6 @@ function update(dt)
 			shipvel = 0
 		end
 
-		function math.round(shipvel, deci) deci = 10^(deci or 0) return math.floor(shipvel*deci+.5)/deci end
 	end
 
 end
@@ -123,7 +122,7 @@ function draw()
 		shipvel = 2
 	elseif player.onPlanet == false then
 		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1, 30, 30)
-		love.graphics.print("Speed = "..shipvel, 520, 50, 0, 2, 2)
+		love.graphics.print("Speed = "..string.format("%.2f", shipvel), 520, 50, 0, 2, 2)
 	end
 	 
 	if shipActive == true then
