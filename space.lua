@@ -54,7 +54,7 @@ function space.tutorial()
     showhintA = false
 
     if space.counterUp == true then
-        space.counter = space.counter + 10
+        space.counter = space.counter + 1
     end
 
     if space.counter > 1 and space.counter < 500 then

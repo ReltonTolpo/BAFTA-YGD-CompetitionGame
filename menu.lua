@@ -150,7 +150,6 @@ function love.mousepressed(x, y, button, istouch)
         player.canMove = false
         player.playerExists = false
         inventory.graviNum = 5
-        player.hasJetpack = true
             
     end
 

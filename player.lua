@@ -48,7 +48,7 @@ function player.load()
 	player.direction = "still"
 
 	player.weight = player.currentGravity * player.mass
-	player.tickspeed = 10
+	player.tickspeed = 3
 
 	hero = images.playerIdle --Starts looking straight
     jetpack = images.jetpack
