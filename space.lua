@@ -55,6 +55,7 @@ function space.tutorial()
 
     if space.counterUp == true then
         space.counter = space.counter + 1
+        tutorial.counter = 10000
     end
 
     if space.counter > 1 and space.counter < 500 then
