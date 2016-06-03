@@ -117,6 +117,7 @@ function weapon.update(dt)
     elseif weapon.currentWeapon == 0 then
         weapon.gunDirection = "na"
         weapon.bulletDirection = "na"
+        mouseDown = false
     end
 
     if weapon.lock == true and weapon.ammoAmount ~= 0 then 
