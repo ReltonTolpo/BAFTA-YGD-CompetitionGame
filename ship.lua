@@ -22,7 +22,7 @@ function ship.load()
     shipx = 50
     shipy = 350
 	liftoff = false
-	speed = 0.1
+	speed = 0.01
 	Xscroll = 0
     Yscroll = 0
     rotation = 0
@@ -86,14 +86,12 @@ function update(dt)
 
 		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and tutorial.counter > 5000 and currentPlanet ~= 11 then
 
-
-
 			player.canMove = false
 			player.x = 350
 			player.hero = player.rightPlayer
 		    animation1 = true
-
 		    weapon.currentWeapon = weapon.previousWeapon
+
 		elseif love.keyboard.isDown('e') and shipActive == true then
 			ship = images.ship
 			player.x = 100
@@ -132,15 +130,6 @@ function update(dt)
 end
 
 function draw()
-
-	-- love.graphics.print(weapon.currentWeapon, 200,200)
-	-- love.graphics.print(weapon.previousWeapon, 200,220)
-	-- if shipActive ==true then
-	-- 	love.graphics.print("Active", 200,240)
-	-- end	
-	-- if liftoff ==true then
-	-- 	love.graphics.print("liftOff", 200,240)
-	-- end
 	
 	local width = love.graphics.getWidth()
 	local height = love.graphics.getHeight()
@@ -161,7 +150,6 @@ function draw()
 	if shipActive == true then
 		love.graphics.setColor(0, 0, 0,255)
 	    love.graphics.line(350, 550, rampx, rampy)
-	    --weapon.currentWeapon = 0
 	end
 
 	if liftoff == true then
