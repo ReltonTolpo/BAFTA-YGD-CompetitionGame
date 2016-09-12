@@ -18,9 +18,9 @@ function images.load()
 	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")				-- Basic Ammo
 
 	--↓ Ship images
-	images.ship 		        = love.graphics.newImage("images/ship/shipLand.png")				-- Ship without player inside
-	images.playerInShip     	= love.graphics.newImage("images/ship/shipLandPlayer.png")			-- Ship with player inside
-	images.playerInShipNoGear	= love.graphics.newImage("images/ship/shipLandPlayerNoGear.png")	-- Ship with player inside and no landing gears
+	images.ship 		 		= love.graphics.newImage("images/ship/shipLand.png")				-- Ship without player inside
+	images.playerInShip     		= love.graphics.newImage("images/ship/shipLandPlayer.png")			-- Ship with player inside
+	images.playerInShipNoGear		= love.graphics.newImage("images/ship/shipLandPlayerNoGear.png")	-- Ship with player inside and no landing gears
 	images.shipInSpace			= love.graphics.newImage("images/ship/shipSpace.png")				-- Ship in space
 
 	--↓ Monster images
@@ -45,8 +45,8 @@ function images.load()
 	images.planet   			= love.graphics.newImage("images/planet/basePlanet.png") 		-- Planet image
 
 	--↓ Planet11 images
-	images.gary					= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
-	images.averagePerson		= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
+	images.gary				= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
+	images.averagePerson			= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
 	
 end
 
