@@ -48,6 +48,36 @@ function images.load()
 	images.gary				= love.graphics.newImage("images/planet11/gary.png")			-- Gary NPC
 	images.averagePerson			= love.graphics.newImage("images/planet11/averagePerson.png")	-- Average NPC
 	
+	--filters:
+
+	images.gary:setFilter("nearest", "nearest")
+	images.averagePerson:setFilter("nearest", "nearest")
+	images.planet:setFilter("nearest", "nearest")
+	images.firework:setFilter("nearest", "nearest")
+	images.fire:setFilter("nearest", "nearest")
+	images.smoke:setFilter("nearest", "nearest")
+	images.wormhole:setFilter("nearest", "nearest")
+	images.sun:setFilter("nearest", "nearest")
+	images.moon:setFilter("nearest", "nearest")
+	images.cyclopsOgreMove:setFilter("nearest", "nearest")
+	images.cyclopsOgre:setFilter("nearest", "nearest")
+	images.flyingOctoMove:setFilter("nearest", "nearest")
+	images.flyingOcto:setFilter("nearest", "nearest")
+	images.darkElfMove:setFilter("nearest", "nearest")
+	images.darkElf:setFilter("nearest", "nearest")
+	images.ship:setFilter("nearest", "nearest")
+	images.shipInSpace:setFilter("nearest", "nearest")
+	images.playerInShip:setFilter("nearest", "nearest")
+	images.playerInShipNoGear:setFilter("nearest", "nearest")
+	images.inventory:setFilter("nearest", "nearest")
+	images.jetpack:setFilter("nearest", "nearest")
+	images.ammoBase:setFilter("nearest", "nearest")
+	images.machineGun:setFilter("nearest", "nearest")
+	images.gunBase:setFilter("nearest", "nearest")
+	images.graviton:setFilter("nearest", "nearest")
+	images.playerWalk:setFilter("linear", "linear")
+	images.playerDead:setFilter("linear", "linear")
+	images.playerIdle:setFilter("linear", "linear")
 end
 
 function images.update()
