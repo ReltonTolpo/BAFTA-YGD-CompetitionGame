@@ -49,6 +49,8 @@ end
 
 function update(dt)
 
+	if smokeActive then love.system.vibrate(0.1) end
+
 	if gameType == "desktop" then edown = love.keyboard.isDown('e') else edown = buttons.enter end
 
 	if shipActive == true or liftoff == true then

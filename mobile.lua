@@ -11,22 +11,22 @@ function mobile.update()
 
 	buttons.left = mobile.checkButton(115,650)
 	buttons.right = mobile.checkButton(320,650)
-	buttons.up = mobile.checkButton(230,500)
-	buttons.fire = mobile.checkButton(650,650)
-	buttons.inventory = mobile.checkButton(850,650)
-	buttons.enter = mobile.checkButton(1050,650)
+	buttons.up = mobile.checkButton(1050,650)
+	buttons.fire = mobile.checkButton(850,650)
+	buttons.inventory = mobile.checkButton(650,650)
+	buttons.enter = mobile.checkButton(230,500)
 
 
 end
 
 function mobile.draw()
 
-	mobile.drawButton("<",115,650)
-	mobile.drawButton(">",320,650)
-	mobile.drawButton("^",230,500)
-	mobile.drawButton("F",650,650)
-	mobile.drawButton("I",850,650)
-	mobile.drawButton("E",1050,650)
+	mobile.drawButton("<",115,650,buttons.left)
+	mobile.drawButton(">",320,650,buttons.right)
+	mobile.drawButton("E",230,500,buttons.enter)
+	mobile.drawButton("I",650,650,buttons.inventory)
+	mobile.drawButton("F",850,650,buttons.fire)
+	mobile.drawButton("^",1050,650,buttons.up)
 
 
 end
@@ -43,9 +43,9 @@ function DRAW_MOBILE()
 
 end
 
-function mobile.drawButton(text,x,y)
+function mobile.drawButton(text,x,y,selected)
 
-	love.graphics.setColor(200,200,200,100)
+	if selected then love.graphics.setColor(50,50,50,100) else love.graphics.setColor(200,200,200,100) end
 	love.graphics.circle("fill",x,y,80)
 	love.graphics.setColor(0,0,0)
 	love.graphics.print(text,x-10,y-10,0,3)
