@@ -6,6 +6,7 @@ require "images"
 
 function weapon.load()
 
+    mdown = false
     weapon.ammoAmount = 30
     weapon.ammoX = player.x
     weapon.ammoY = player.y
@@ -30,6 +31,8 @@ function weapon.load()
 
     weapon.lockLeft = false
     weapon.lockRight = false
+
+    timer3 = 20
 
     weaponImage = images.gunBase
     ammoImage = images.ammoBase
@@ -62,6 +65,16 @@ function weapon.bulletAnime()
 end
 
 function weapon.update(dt)
+
+    if gameType == "desktop" then
+        mdown = love.mouse.isDown(1)
+    else 
+        if timer3 < 1 then
+        mdown = buttons.fire
+        else mdown = true end
+    end
+
+    if timer3 > -1 then timer3 = timer3 - 1 end
 
     weapon.playerX = player.x
     weapon.mouseX = love.mouse.getX()
@@ -99,9 +112,9 @@ function weapon.update(dt)
     end]]
 
     psystem3:update(dt)
-    mouseDown = love.mouse.isDown(1)
-    leftDown = love.keyboard.isDown("a")
-    rightDown = love.keyboard.isDown("d")
+    mouseDown = mdown
+    leftDown = adown
+    rightDown = ddown
 
     --Setting things depending on weapon
     if weapon.currentWeapon == 1 then

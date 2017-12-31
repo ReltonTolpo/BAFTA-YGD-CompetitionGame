@@ -109,7 +109,9 @@ function space.drawStars()
         star.XPosition = star.XPosition + space.starX
         star.YPosition = star.YPosition + space.starY
     end
-        love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
+        if star.XPosition > -10 and star.XPosition < love.graphics.getWidth()+10 and star.YPosition > -10 and star.YPosition < love.graphics.getHeight()+10 then
+            love.graphics.rectangle("fill", star.XPosition, star.YPosition, star.Size, star.Size)
+        end
     end
 
 end

@@ -7,7 +7,7 @@ require "monster"
 require "weapon"
 
 function player.load()
-	
+
 	local fire = images.fire
 	psystem30 = love.graphics.newParticleSystem(fire, 100)
 	psystem30:setParticleLifetime(2, 3) -- Particles live at least 2s and at most 5s.
@@ -97,7 +97,11 @@ function player.draw()
 
 	if player.dead == true then
 		love.graphics.setColor(200, 80, 80)
-		love.graphics.print("Press SPACE to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
+		if gameType == "desktop" then
+			love.graphics.print("Press SPACE to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
+		else
+			love.graphics.print("Press UP to respawn", player.deadX - 100, player.deadY - 50, 0, 3, 3)
+		end
 	end
 
 end
@@ -126,7 +130,7 @@ function player.update(dt)
 	
 	psystem30:update(dt)
 
-	if love.keyboard.isDown('d') and player.xvel < player.speed and player.dead == false then
+	if ddown and player.xvel < player.speed and player.dead == false then
 		player.xvel = player.xvel + player.speed * dt
 		hero = images.playerWalk
 
@@ -134,7 +138,7 @@ function player.update(dt)
 		player.moving = true
 	end
 
-	if love.keyboard.isDown('a') and player.xvel > -player.speed and player.dead == false then
+	if adown and player.xvel > -player.speed and player.dead == false then
 		player.xvel = player.xvel - player.speed * dt
 		hero = images.playerWalk
 
@@ -211,7 +215,7 @@ function player.update(dt)
 		player.dead = true
 		player.moving = false
 
-		if love.keyboard.isDown('space') then
+		if spacedown then
 			weapon.ammoAmount = 30
 
 			if player.hasJetpack == true then
@@ -241,14 +245,14 @@ function player.update(dt)
 		end
 	end
 
-	if love.keyboard.isDown('space') and player.dead == false and player.doJump == true then
+	if spacedown and player.dead == false and player.doJump == true then
 		player.y = player.y - 10
 	end
 
 	if downS == true and player.dead == false and player.jetpacking == false then
 		player.y = player.y + 10
 		player.x = player.storedX
-	elseif downS == true and love.keyboard.isDown('space') and player.jetpacking == true then
+	elseif downS == true and spacedown and player.jetpacking == true then
 		player.y = player.y + 2
 	else
 		player.storedX = player.x
@@ -290,7 +294,7 @@ end
 
 function player.jetpack()
 
-	if player.onPlanet == true and love.keyboard.isDown('space') and player.hasJetpack == true then
+	if player.onPlanet == true and spacedown and player.hasJetpack == true then
 		player.y = player.y - 2
 		love.graphics.setColor(255,255,255)
 		love.graphics.draw(psystem30, player.x + 40, player.y + 70)

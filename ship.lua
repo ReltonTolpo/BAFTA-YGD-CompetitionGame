@@ -7,6 +7,7 @@ require "weapon"
 
 function ship.load()
 
+	edown = false
 	shipActive = false
 	ship = images.ship
 	rampx = 350
@@ -48,6 +49,8 @@ end
 
 function update(dt)
 
+	if gameType == "desktop" then edown = love.keyboard.isDown('e') else edown = buttons.enter end
+
 	if shipActive == true or liftoff == true then
 		playerInsideShip = true
 	else
@@ -84,7 +87,7 @@ function update(dt)
 			player.onShip = false	
 		end
 
-		if love.keyboard.isDown('e') and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and tutorial.counter > 5000 and currentPlanet ~= 11 then
+		if edown and player.x < 400 and player.x > 100 and player.y > 400 and shipActive == false and player.dead == false and tutorial.counter > 5000 and currentPlanet ~= 11 then
 
 			player.canMove = false
 			player.x = 350
@@ -92,7 +95,7 @@ function update(dt)
 		    animation1 = true
 		    weapon.currentWeapon = weapon.previousWeapon
 
-		elseif love.keyboard.isDown('e') and shipActive == true then
+		elseif edown and shipActive == true then
 			ship = images.ship
 			player.x = 100
 			player.playerExists = true
@@ -108,8 +111,7 @@ function update(dt)
 	  	    shipy = 350
 	    	liftoff = false
 		end
-
-		if love.keyboard.isDown('space') and smokeActive == true then
+		if spacedown and smokeActive then    
 			liftoff = true
 			shipActive = false
 			smokeActive = false
@@ -162,7 +164,11 @@ function draw()
 		--Draw the particle system at the center of the game window.
 		love.graphics.draw(psystem1,shipx+150,shipy+140)
     	love.graphics.setColor(200, 80, 80)
-		love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
+    	if gameType == "desktop" then
+			love.graphics.print("Press SPACE to start the Engine", shipx , shipy - 50, 0, 3, 3)
+		else
+			love.graphics.print("Press UP to start the Engine", shipx , shipy - 50, 0, 3, 3)
+		end
 	end
 
 end
@@ -230,15 +236,15 @@ function shipMovement(dt)
 
 	if player.onPlanet == false then
 
-		if love.keyboard.isDown('a') and player.dead == false then
+		if adown and player.dead == false then
 			rotation = rotation - 0.1 -- restore to 0.01
 		end
 
-		if love.keyboard.isDown('d') and player.dead == false then
+		if ddown and player.dead == false then
 			rotation = rotation + 0.1  -- restore to 0.01
 		end
 
-		if love.keyboard.isDown('w') and player.dead == false then
+		if spacedown and player.dead == false then
 			shipvel = shipvel + speed
 		end
 

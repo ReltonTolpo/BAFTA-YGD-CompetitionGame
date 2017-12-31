@@ -1,0 +1,63 @@
+mobile = {}
+
+function mobile.load()
+
+	buttons = {left=false,right=false,up=false,fire=false,inventory=false,enter=false}
+
+
+end
+
+function mobile.update()
+
+	buttons.left = mobile.checkButton(115,650)
+	buttons.right = mobile.checkButton(320,650)
+	buttons.up = mobile.checkButton(230,500)
+	buttons.fire = mobile.checkButton(650,650)
+	buttons.inventory = mobile.checkButton(850,650)
+	buttons.enter = mobile.checkButton(1050,650)
+
+
+end
+
+function mobile.draw()
+
+	mobile.drawButton("<",115,650)
+	mobile.drawButton(">",320,650)
+	mobile.drawButton("^",230,500)
+	mobile.drawButton("F",650,650)
+	mobile.drawButton("I",850,650)
+	mobile.drawButton("E",1050,650)
+
+
+end
+
+function UPDATE_MOBILE()
+
+	mobile.update()
+
+end
+
+function DRAW_MOBILE()
+
+	mobile.draw()
+
+end
+
+function mobile.drawButton(text,x,y)
+
+	love.graphics.setColor(200,200,200,100)
+	love.graphics.circle("fill",x,y,80)
+	love.graphics.setColor(0,0,0)
+	love.graphics.print(text,x-10,y-10,0,3)
+
+end
+
+function mobile.checkButton(x,y)
+
+	down,mx,my = love.mouse.isDown(1), love.mouse.getX(), love.mouse.getY()
+
+	if down == true and mx > (x-80)*scale and mx < (x+80)*scale and my > (y-80)*scale and my < (y+80)*scale then
+		return true
+	else return false end
+
+end

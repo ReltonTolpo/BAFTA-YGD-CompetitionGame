@@ -10,9 +10,14 @@ require "ship"
 require "inventory"
 require "menu"
 require "endgame"
+require "mobile"
+
 
 function love.load()
 
+	adown,ddown,spacedown = false,false,false
+
+	mobile.load()
 	playerOverShip = true
 	x = 0
 
@@ -20,10 +25,28 @@ function love.load()
 	inmenu = true
 
 	menu.load()
+
+	scale = love.graphics.getWidth()/1200
+
+	gameType = "desktop"
+
+	if love.system.getOS() == 'iOS' or love.system.getOS() == 'Android' then
+  		gameType = "mobile"
+	end
 	
 end
 
 function love.update(dt)
+
+	if gameType == "desktop" then
+		adown = love.keyboard.isDown('a')
+		ddown = love.keyboard.isDown('d')
+		spacedown = love.keyboard.isDown('space')
+	else
+		adown = buttons.left
+		ddown = buttons.right
+		spacedown = buttons.up
+	end
 
 	if inmenu == false then
 		UPDATE_SOUND(dt)
@@ -41,11 +64,20 @@ function love.update(dt)
 
 		UPDATE_MONSTER(dt)
 		UPDATE_TUTORIAL(dt)
+		if gameType == "mobile" then
+			UPDATE_MOBILE()
+		end
 	end
+
+	touches = love.touch.getTouches()
 
 end
 
 function love.draw()
+
+	love.graphics.push()
+
+	love.graphics.scale(scale)
 
 	if inmenu == true then
 		DRAW_MENU()
@@ -65,8 +97,14 @@ function love.draw()
 			DRAW_PLAYER()
 			DRAW_WEAPON()
 		end
+		if gameType == "mobile" then
+			DRAW_MOBILE()
+		end
 		DRAW_INVENTORY()
 		DRAW_TUTORIAL()
 	end
+
+	love.graphics.pop()
+
 
 end

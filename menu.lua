@@ -81,11 +81,12 @@ function menu.draw()
     love.graphics.printf("Graviton Galaxy", 0, 60, 75, "center", 0, 3, 3, -155)
     love.graphics.printf("Created by Benjamin Broadbent, Danny Harris and Ori Taylor", 65, 600, 1000, "center")
 
+
 end
 
 function love.mousepressed(x, y, button, istouch)
 
-    if button == 1 and x > 470 and x < 690 and y > 300 and y < 360 and inmenu == true then
+    if button == 1 and x > 470*scale and x < 690*scale and y > 300*scale and y < 360*scale and inmenu == true then
         inmenu = false
 
         images.load()
@@ -104,7 +105,7 @@ function love.mousepressed(x, y, button, istouch)
         player.tutorialOn = false
     end
 
-    if button == 1 and x > 470 and x < 690 and y > 363 and y < 423 and inmenu == true then
+    if button == 1 and x > 470*scale and x < 690*scale and y > 363*scale and y < 423*scale and inmenu == true then
         inmenu = false
         
         images.load()
@@ -121,9 +122,10 @@ function love.mousepressed(x, y, button, istouch)
         tutorial.load()
 
         player.tutorialOn = true
+
     end
 
-    if button == 1 and x > 470 and x < 690 and y > 426 and y < 486 and inmenu == true then
+    if button == 1 and x > 470*scale and x < 690*scale and y > 426*scale and y < 486*scale and inmenu == true then
         inmenu = false
         
         images.load()
@@ -131,12 +133,12 @@ function love.mousepressed(x, y, button, istouch)
         planet.load()
         endgame.load()
         inventory.load()
+        player.load()
         weapon.load()
         inventory.load()
-        monster.load()
         weapon.load()
+        monster.load()
         ship.load()
-        player.load()
 
         player.tutorialOn = false
 
@@ -159,6 +161,32 @@ function UPDATE_MENU(dt)
 
     menu.update(dt)
     love.mousepressed()
+
+    --check for touches
+
+    for i, id in ipairs(touches) do
+            local x, y = love.touch.getPosition(id)
+            if x > 470 and x < 690 and y > 300 and y < 360 and inmenu == true then
+
+                inmenu = false
+                images.load()
+                space.load()
+                planet.load()
+                endgame.load()
+                inventory.load()
+                weapon.load()
+                inventory.load()
+                monster.load()
+                weapon.load()
+                ship.load()
+                player.load()
+                tutorial.load()
+
+                player.tutorialOn = false
+
+            end
+    end
+
 
 end
 

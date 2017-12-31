@@ -7,6 +7,7 @@ require "space"
 
 function inventory.load()
 
+    idown = false
     inventory.inInv = false
     inventory.x = 375
     printx = 0
@@ -25,6 +26,8 @@ end
 
 function inventory.update(dt)
 
+    if gameType == "desktop" then idown = love.keyboard.isDown('i') else idown = buttons.inventory end
+
     --Changing Items in inventory
     if weapon.currentWeapon == 1 then
         slot1 = images.gunBase
@@ -34,14 +37,9 @@ function inventory.update(dt)
 
     --Opening Inventory
     if inventory.locked == false then
-	    if love.keyboard.isDown('i') then
-	        if inventory.inInv == true then
-	            inventory.inInv = false
-	        elseif inventory.inInv == false then
-	            inventory.inInv = true
-	        end
-            sleep(0.2)
-	    end
+	    if idown then
+            inventory.inInv = true
+	    else inventory.inInv =  false end
 	end
 
 end
