@@ -28,7 +28,7 @@ function love.load()
 
 	scale = love.graphics.getWidth()/1200
 
-	gameType = "mobile"
+	gameType = "desktop"
 
 	if love.system.getOS() == 'iOS' or love.system.getOS() == 'Android' then
   		gameType = "mobile"

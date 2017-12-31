@@ -91,7 +91,7 @@ function DRAW_PLANET()
 			local width = love.graphics.getWidth()
 			local height = love.graphics.getHeight()
 			if player.tutorialOn == true then
-				if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and edown and inventory.graviNum ~= 5 and space.tutorialDone == true then
+				if planetArray[i][6] > (615 - 128) and planetArray[i][6] < (615 + 128) and planetArray[i][7] > (409 - 128) and planetArray[i][7] < (409 + 128) and edown and inventory.graviNum ~= 5 and space.tutorialDone == true then
 					player.onPlanet = true
 					playerOverShip = false
 					player.playerExists = true
@@ -109,7 +109,7 @@ function DRAW_PLANET()
 					end
 				end
 			else
-				if planetArray[i][6] > 615 - 128 and planetArray[i][6] < 615 + 128 and planetArray[i][7] > 409 - 128 and planetArray[i][7] < 409 + 128 and edown and inventory.graviNum ~= 5 then
+				if planetArray[i][6] > (615 - 128) and planetArray[i][6] < (615 + 128) and planetArray[i][7] > (409 - 128) and planetArray[i][7] < (409 + 128) and edown and inventory.graviNum ~= 5 then
 					player.onPlanet = true
 					playerOverShip = false
 					player.playerExists = true

@@ -16,7 +16,6 @@ function mobile.update()
 	buttons.inventory = mobile.checkButton(650,650)
 	buttons.enter = mobile.checkButton(230,500)
 
-
 end
 
 function mobile.draw()

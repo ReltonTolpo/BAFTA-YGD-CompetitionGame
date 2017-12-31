@@ -6,6 +6,15 @@ function tutorial.load()
 	tutorial.counter = 0
 	tutorial.counterUp = true
 
+	if gameType == "desktop" then
+		ts1 = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
+		ts2 = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+		ts3 = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+	else
+		ts1 = "Use left, right and up to move\nyou around."
+		ts2 = "You fire by pressing F \nwhilst using left and right \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+		ts3 = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+	end
 end
 
 function tutorial.draw()
@@ -29,7 +38,7 @@ function tutorial.draw()
 	end
 
 	if tutorial.counter > 500 and tutorial.counter < 1200 then
-		hintString = "Use A and D to move you \naround. \n\nSpace to jump and S to crouch \n(crouch means you don't move \nwhilst turning)."
+		hintString = ts1
 		showhint = true
 	end
 
@@ -54,12 +63,12 @@ function tutorial.draw()
 	end
 	 
 	if tutorial.counter > 4500 and tutorial.counter < 5000 then
-		hintString = "You fire by clicking \nwhilst using A and D \nto aim. Some monsters reqire \nyou to jump in order for \nyour bullets to hit them. \n\nYou can collect more ammo \nfrom your ship."
+		hintString = ts2
 		showhint = true
 	end
 
 	if tutorial.counter > 5000 and tutorial.counter < 5500 and smokeActive == false and player.onPlanet == true and liftoff == false then
-		hintString = "Go ahead! \n\nWalk up to the spaceship \nand press E to enter it. \nE does many things \nlike entering the ship \nand landing on planets."
+		hintString = ts3
 		showhint = true
 	end
 

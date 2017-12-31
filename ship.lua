@@ -147,7 +147,7 @@ function draw()
 		love.graphics.draw(ship, shipx, shipy, 0, 7, 7)
 		shipvel = 2
 	elseif player.onPlanet == false then
-		love.graphics.draw(ship, love.graphics.getWidth()/2, love.graphics.getHeight()/2, rotation, 1, 1, 30, 30)
+		love.graphics.draw(ship, (love.graphics.getWidth()/2)/scale, (love.graphics.getHeight()/2)/scale, rotation, 1, 1, 30, 30)
 		love.graphics.print("Speed = "..string.format("%.2f", shipvel), 520, 50, 0, 2, 2)
 	end
 	 
