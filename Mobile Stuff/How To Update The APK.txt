@@ -1,0 +1,17 @@
+DO THIS ONCE:
+1)Download https://qubodup.itch.io/startgamedev
+2)Unzip it
+
+DO THIS EVERY TIME YOU WANT A NEW APK FILE:
+1)Go into the graviton galaxy folder and select all the game files (all the .lua files andthe sound and image folders)
+2)Zip them into a new zipped folder
+3)Rename the zipped folder into game.love
+4)Run it to check you did it right
+5)Replace the existing game.love file in the startgamedev folder with your one
+6)Edit the icon png to be your custom icon
+7)Open the make-apk.bat file in a text editor and change line 29:
+
+		tools\sed-win\bin\sed -i "s/loveToAndroid Game/		YOUR CUSTOM APP NAME HERE	/g" tools\love-android-sdl2\AndroidManifest.xml
+
+8)Run the make-apk.bat script
+9)Transfer the resulting apk to your phone

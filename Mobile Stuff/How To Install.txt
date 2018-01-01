@@ -1,0 +1,6 @@
+(Won't work with apple)
+
+1) Connect phone to pc with micro USB to USB cable
+2) Transfer apk file to downloads folder in phone or somewhere
+3) Open a file manager or download one on your phone and find the folder you put it in
+4) Click it and install

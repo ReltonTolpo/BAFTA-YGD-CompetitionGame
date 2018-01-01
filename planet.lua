@@ -66,9 +66,9 @@ function DRAW_PLANET()
 			love.graphics.setBackgroundColor(planetArray[currentPlanet][1] - 100, planetArray[currentPlanet][2] - 100, planetArray[currentPlanet][3] - 100)
 		end
 		love.graphics.setColor(planetArray[currentPlanet][8], planetArray[currentPlanet][9], planetArray[currentPlanet][10])
-		love.graphics.rectangle("fill", 0, 560, 1200, 600) --> Dirt/Earth
+		love.graphics.rectangle("fill", 0, 560, love.graphics.getWidth(), 600) --> Dirt/Earth
 		love.graphics.setColor(planetArray[currentPlanet][8] - planetArray[currentPlanet][1], planetArray[currentPlanet][9] + planetArray[currentPlanet][2], planetArray[currentPlanet][10] - planetArray[currentPlanet][3])
-		love.graphics.rectangle("fill", 0, 560, 1200, 30) --> Grass
+		love.graphics.rectangle("fill", 0, 560, love.graphics.getWidth(), 30) --> Grass
 	elseif player.onPlanet == false then
 		love.graphics.setBackgroundColor(0, 0, 0)
 		space.dayTime = 0
