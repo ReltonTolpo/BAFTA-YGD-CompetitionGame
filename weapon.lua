@@ -89,28 +89,6 @@ function weapon.update(dt)
         weapon.gunDirection = "na"
     end
 
-    --[[if player.onPlanet == false then
-        weapon.gunDirection = "na"
-    elseif player.direction == "still" and player.onPlanet == true then
-        if weapon.mouseX < weapon.playerX+64 then
-            weapon.gunDirection = "left"
-        elseif weapon.mouseX > weapon.playerX+64 then
-            weapon.gunDirection = "right"
-        end
-    elseif player.direction == "left" and player.onPlanet == true then
-        if weapon.mouseX < weapon.playerX+64 then
-            weapon.gunDirection = "left"
-        elseif weapon.mouseX > weapon.playerX+64 then
-            weapon.gunDirection = "na"
-        end
-    elseif player.direction == "right" and player.onPlanet == true then
-        if weapon.mouseX > weapon.playerX+64 then
-            weapon.gunDirection = "right"
-        elseif weapon.mouseX < weapon.playerX+64 then
-            weapon.gunDirection = "na"
-        end
-    end]]
-
     psystem3:update(dt)
     mouseDown = mdown
     leftDown = adown
@@ -123,10 +101,20 @@ function weapon.update(dt)
         sizeX = 4
         weaponImage = images.gunBase
     elseif weapon.currentWeapon == 2 then
-        weapon.bulletDamage = 3
-        weapon.bulletSpeed = 25
+        weapon.bulletDamage = 6
+        weapon.bulletSpeed = 30
         weaponImage = images.machineGun
-        sizeX = 3
+        sizeX = 2
+    elseif weapon.currentWeapon == 3 then
+        weapon.bulletDamage = 18
+        weapon.bulletSpeed = 10
+        weaponImage = images.cannon
+        sizeX = 5
+    elseif weapon.currentWeapon == 4 then
+        weapon.bulletDamage = 12
+        weapon.bulletSpeed = 15
+        weaponImage = images.harpoonGun
+        sizeX = 20
     elseif weapon.currentWeapon == 0 then
         weapon.gunDirection = "na"
         weapon.bulletDirection = "na"

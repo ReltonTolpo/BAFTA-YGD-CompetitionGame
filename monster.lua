@@ -6,7 +6,7 @@ require "weapon"
 
 function monster.load()
 
-	monster.amount = love.math.random(2, 10)
+	monster.amount = love.math.random(2, 9)
 	monster.currentGravity = planetArray[currentPlanet][4]
 	monster.randomNumber = 1
 
@@ -15,12 +15,12 @@ function monster.load()
 	monster.bossExtras = true
 
 	monsterArray = {{}}
-	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 3), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+	monsterArray[1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 1), love.math.random(1, 3), 1, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 8), false, 2}
 
     monsterArray[1][8] = monsterArray[1][5] * monster.currentGravity
 
 	for i = 1, monster.amount do
-		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+		monsterArray[#monsterArray + 1] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[i][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 8), false, 2}
 		--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 	end
 	
@@ -31,7 +31,7 @@ function monster.update(dt)
 	if player.onPlanet == false then
 
 		for o = 1, monster.amount do
-			monsterArray[o] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[o][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 10), false, 2}
+			monsterArray[o] = {love.math.random(0, 1200), 200, 4, 0, love.math.random(5, 20), love.math.random(0.1, 3), love.math.random(1, 3), monsterArray[o][5] * monster.currentGravity, images.darkElf, love.math.random(20, 100), images.darkElf, images.darkElfMove, "still", false, love.math.random(0, 8), false, 2}
 			--Monster X 1, Monster Y 2, Random Move 3, Random Track 4, Mass 5, Speed 6, Monster Type 7, Monster Weight 8, Monster Current Image 9, Monster Health 10, Monster Straight Image 11, Monster Image Move 12, Monster Direction 13, Monster Been Hit 14, Monster Drops 15, Monster is boss 16, Monster Size 17
 		end
 
@@ -195,8 +195,15 @@ function monster.bossBase(dt)
 
 			if monsterArray[k][15] == 1 then
 				weapon.currentWeapon = 2
-			elseif monsterArray[k][15] == 2 then
+				weapon.previousWeapon = 2
+			elseif (monsterArray[k][15] == 2) or (monsterArray[k][15] == 3) then
 				player.hasJetpack = true
+			elseif monsterArray[k][15] == 5 then
+				weapon.currentWeapon = 3
+				weapon.previousWeapon = 3
+			elseif monsterArray[k][15] == 6 then
+				weapon.currentWeapon = 4
+				weapon.previousWeapon = 4
 			end
 
 			monster.bossExtras = true

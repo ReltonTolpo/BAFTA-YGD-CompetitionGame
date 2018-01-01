@@ -15,6 +15,8 @@ require "mobile"
 
 function love.load()
 
+	love.window.setFullscreen(true)
+
 	adown,ddown,spacedown = false,false,false
 
 	mobile.load()

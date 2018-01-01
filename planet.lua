@@ -14,7 +14,7 @@ function planet.load()
 	planetArray[11] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), 0, 0.1, 4000, 4000, love.math.random(0, 255),love.math.random(0, 255) ,love.math.random(0, 255), love.math.random(-math.pi, math.pi), 5, 5, false}
 
 	for j = 1, planetNum do
-		planetArray[#planetArray + 1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(2, 10), love.math.random(0.01, 0.1), love.math.random(-2400,2400), love.math.random(-1500, 1500), love.math.random(0, 255), love.math.random(0, 255),love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(5,7), love.math.random(5,7), true, false, 1, 1}
+		planetArray[#planetArray + 1] = {love.math.random(0, 127), love.math.random(50, 255), love.math.random(100, 255), love.math.random(0.7, 3), love.math.random(0.01, 0.1), love.math.random(-2400,2400), love.math.random(-1500, 1500), love.math.random(0, 255), love.math.random(0, 255),love.math.random(0, 255), love.math.random(-math.pi, math.pi), love.math.random(5,7), love.math.random(5,7), true, false, 1, 1}
 		--Planet R 1, Planet G 2, Planet B 3, gravity 4, orbitTime 5, Space X 6, Space Y 7, Space R 8, Space G 9, Space B 10, rotation 11, sizex 12, sizey 13, Has Boss 14, Visited 15
 	end
 
@@ -128,5 +128,12 @@ function DRAW_PLANET()
 				end
 			end
 		end
+		    if showhintA == true and player.tutorialOn == true and player.onPlanet == false then
+        love.graphics.setColor(207, 190, 4, 255)
+        love.graphics.rectangle("fill", (love.graphics.getWidth()/2)/scale - 200, (love.graphics.getHeight()/2)/scale - 200, 200, 120 )
+        love.graphics.line((love.graphics.getWidth()/2)/scale - 200, (love.graphics.getHeight()/2)/scale - 200, (love.graphics.getWidth()/2)/scale, (love.graphics.getHeight()/2)/scale)
+        love.graphics.setColor(0, 0, 0, 255)
+        love.graphics.print(space.hintString, (love.graphics.getWidth()/2)/scale - 200, (love.graphics.getHeight()/2)/scale - 200, 0, 1, 1)
+    end
 	end
 end

@@ -13,6 +13,8 @@ function images.load()
 	images.machineGun			= love.graphics.newImage("images/items/machineGun.png") 			-- Machine Gun
 	images.ammoBase				= love.graphics.newImage("images/items/basicAmmo.png")				-- Basic Ammo
 	images.jetpack				= love.graphics.newImage("images/items/jetpack.png")				-- AMAZINGLY AMAZING JETPACK INC. [sponsored by Danny&co.]
+	images.cannon				= love.graphics.newImage("images/items/cannon.png")
+	images.harpoonGun			= love.graphics.newImage("images/items/harpoonGun.png")
 
 	--↓ GUI images
 	images.inventory			= love.graphics.newImage("images/GUI/inventoryGUI.png")				-- Basic Ammo
@@ -78,6 +80,8 @@ function images.load()
 	images.playerWalk:setFilter("linear", "linear")
 	images.playerDead:setFilter("linear", "linear")
 	images.playerIdle:setFilter("linear", "linear")
+	images.cannon:setFilter("nearest", "nearest")
+	images.harpoonGun:setFilter("nearest", "nearest")
 end
 
 function images.update()

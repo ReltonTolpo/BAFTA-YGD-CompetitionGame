@@ -5,6 +5,11 @@ local stars = nil
 
 function space.load()
 
+    if gameType == "desktop" then 
+        movementExplanation = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S." 
+    else movementExplanation = "You can manourve in space \nby using the < and > \nkeys to turn. \n\nTo increase \nyour speed, use ^."
+    end
+
     space.starNum = love.math.random(600, 800) 
     space.starSize = 10
     space.starXPosition = 100
@@ -39,13 +44,6 @@ function space.draw()
         space.counterUp = true
     end
 
-    if showhintA == true and player.tutorialOn == true and player.onPlanet == false then
-        love.graphics.setColor(207, 190, 4, 255)
-        love.graphics.rectangle("fill", love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, 200, 120 )
-        love.graphics.line(love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, love.graphics.getWidth()/2, love.graphics.getHeight()/2)
-        love.graphics.setColor(0, 0, 0, 255)
-        love.graphics.print(space.hintString, love.graphics.getWidth()/2 - 200, love.graphics.getHeight()/2 - 200, 0, 1, 1)
-    end
 
 end
 
@@ -64,7 +62,7 @@ function space.tutorial()
     end
 
     if space.counter > 500 and space.counter < 1000 then
-        space.hintString = "You can manourve in space \nby using the A and D \nkeys to turn. \n\nTo increase and decrease \nyour speed, use W and S."
+        space.hintString = movementExplanation
         showhintA = true
     end
 

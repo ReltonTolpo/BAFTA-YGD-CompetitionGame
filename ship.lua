@@ -59,9 +59,9 @@ function update(dt)
 		playerInsideShip = false
 	end
 
-	if playerInsideShip == true and number == 1 then
+	if playerInsideShip == true and number == 1 then --calls once per time the player enters the ship
 		weapon.previousWeapon = weapon.currentWeapon
-		weapon.currentWeapon = 0
+		weapon.currentWeapon = 0 --makes it so you can't fire when in the ship
 		number = 0
 	end
 
