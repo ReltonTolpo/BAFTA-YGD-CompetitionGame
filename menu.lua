@@ -71,11 +71,13 @@ function menu.draw()
         love.graphics.rectangle("fill", 470, 300, 220, 60 )
         love.graphics.rectangle("fill", 470, 363, 220, 60 )
         love.graphics.rectangle("fill", 470, 426, 220, 60 )
+        love.graphics.rectangle("fill", 470, 490, 220, 60 )
     end
     love.graphics.setColor(0, 0, 0)
     love.graphics.print("Play", 550, 307, 0, 2, 3)
     love.graphics.print("Play with Tutorial", 480, 370, 0, 2, 3)
-      love.graphics.print("Skip to awesome \n end animation!", 520, 440, 0, 1, 1.5)
+    love.graphics.print("Skip to awesome \n end animation!", 550, 440, 0, 1, 1.5)
+    love.graphics.print("Website", 520, 510, 0, 1, 1.5)
  
     love.graphics.setColor(255, 255, 255)
     love.graphics.printf("Graviton Galaxy", 0, 60, 75, "center", 0, 3, 3, -155)
@@ -85,6 +87,10 @@ function menu.draw()
 end
 
 function love.mousepressed(x, y, button, istouch)
+
+    if button == 1 and x > 470*scale and x < 690*scale and y > 486*scale and y <546*scale and inmenu == true then
+        love.system.openURL("https://bdo-coding.github.io/")
+    end
 
     if button == 1 and x > 470*scale and x < 690*scale and y > 300*scale and y < 360*scale and inmenu == true then
         inmenu = false

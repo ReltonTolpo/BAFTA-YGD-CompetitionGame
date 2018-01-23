@@ -85,7 +85,7 @@ function weapon.update(dt)
         weapon.gunDirection = "left"
     elseif rightDown == true and player.onPlanet == true then
         weapon.gunDirection = "right"
-    elseif player.onPlanet == true then
+    elseif player.onPlanet == true and gameType == "desktop" then
         weapon.gunDirection = "na"
     end
 
